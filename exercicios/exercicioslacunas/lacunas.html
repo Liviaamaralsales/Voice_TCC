@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Preencher Lacunas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .exercise {
+            margin-bottom: 20px;
+        }
+        .sentence {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 150px;
+            text-align: center;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .feedback {
+            color: #5cb85c;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercícios de Preencher Lacunas</h1>
+
+        <div class="exercise">
+            <p class="sentence">I ___ to the store yesterday. <input type="text" id="answer1">(word/word)</p>
+        </div>
+
+        <div class="exercise">
+            <p class="sentence">She ___ reading a book. <input type="text" id="answer2">(word/word)</p>
+        </div>
+
+        <div class="exercise">
+            <p class="sentence">They ___ happy with the results. <input type="text" id="answer3"> (word/word)</p>
+        </div>
+
+        <div class="exercise">
+            <p class="sentence">We ___ a great time at the party. <input type="text" id="answer4">(word/word)</p>
+        </div>
+
+        <div class="exercise">
+            <p class="sentence">He ___ to school every day. <input type="text" id="answer5">(word/word)</p>
+        </div>
+
+        <button onclick="checkAnswers()">Verificar Respostas</button>
+
+        <p id="feedback" class="feedback"></p>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            answer1: "went",
+            answer2: "is",
+            answer3: "are",
+            answer4: "had",
+            answer5: "goes"
+        };
+
+        function checkAnswers() {
+            let allCorrect = true;
+            let feedbackMessage = "";
+
+            for (let key in correctAnswers) {
+                const userAnswer = document.getElementById(key).value.trim().toLowerCase();
+                if (userAnswer !== correctAnswers[key]) {
+                    allCorrect = false;
+                    feedbackMessage += `A resposta para a frase ${key.replace('answer', '')} está incorreta. A resposta correta é "${correctAnswers[key]}".<br>`;
+                }
+            }
+
+            if (allCorrect) {
+                feedbackMessage = "Parabéns! Todas as respostas estão corretas.";
+            }
+
+            document.getElementById("feedback").innerHTML = feedbackMessage;
+        }
+    </script>
+</body>
+</html>
