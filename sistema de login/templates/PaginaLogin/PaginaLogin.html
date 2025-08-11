@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="tudo">
+        <div class="container-login" id="container-login">
+            <div class="login">
+                <h3>Login</h3>
+                <form method="POST" action="/login" id="form-login">
+                    <p>E-mail</p>
+                    <input type="email" placeholder="Digite seu email" id="email" name="email" required>
+                    <div class="linha-rm-senha">
+                        <div>
+                            <p>Rm</p>
+                            <input type="text" placeholder="Digite seu Rm" id="rm" required name="rm" maxlength="5">
+                        </div>
+                        <div>
+                            <p>Senha</p>
+                            <input type="password" placeholder="Digite sua senha" id="senha" name="senha" required>
+                        </div>
+                    </div>
+                    <div class="entrar-cadastro">
+                        <div class="linha-botoes">
+                            <button type="submit" id="entrar">Entrar</button>
+                            <p id="ou">ou</p>
+                            <a href="/cadastro" id="cadastrar">Cadastrar</a>
+                        </div>
+                        <a id="esqueci-senha" href="/esqueci_senha">Esqueci minha senha</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
