@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='cadastro.css') }}">
-
 </head>
-<body>
-    <div class="tudo">
-        <div class="container-cadastro" id="container-cadastro">
-            <div class="cadastro">
-                <h3>Cadastro</h3> 
-                <form method="POST" action="/cadastro" id="form-cadastro">
-                    <p>E-mail</p> 
-                    <input type="email" id="email" name="email" placeholder="Digite seu email" required>
-                    <div class="linha-rm-senha">
-                        <div>
-                            <p>Rm</p>
-                            <input type="text" id="rm" name="rm" placeholder="Digite seu Rm" maxlength="5" required>
-                        </div>
-                        <div>
-                            <p>Senha</p>
-                            <input type="text" id="senha" name="senha" placeholder="Crie uma senha" required>
-                        </div>
-                    </div>
-                    <p>Confirme a senha</p>
-                    <input type="text" id="confirmarSenha" name="confirmarSenha" placeholder="Digite a mesma senha do campo anterior" required>
-                    <div class="cadastro-entrar">
-                        <div class="botoes-linha">
-                            <button type="submit" id="cadastrar2">Cadastrar</button>
-                            <p id="ou">ou</p>
-                            <a type="button" id="entrar2" href="/">Entrar</a>
-                        </div>
-                    </div>
+<body class="light">
+    <div class="container">
+        <div class="image-space">
+            <img src="{{ url_for('static', filename='LogoVoice.png') }}" alt="Logo" class="image">
+        </div>
+
+        <div class="form-space">
+            <div class="theme-toggle">
+                <input type="checkbox" class="checkbox" id="chk">
+                <label class="label-theme" for="chk">
+                    <img src="{{ url_for('static', filename='sol.png') }}" class="icone-sol" alt="Sol">
+                    <img src="{{ url_for('static', filename='lua.png') }}" class="icone-lua" alt="Lua">
+                    <div class="ball"></div>
+                </label>
+            </div>
+
+            <div class="box large">
+                <h2>Cadastro</h2>
+                <form method="POST" action="{{ url_for('auth.cadastro') }}">
+                    <label class="label" for="email">E-mail</label>
+                    <input class="input" type="email" name="email" id="email" required>
+
+                    <label class="label" for="rm">RM</label>
+                    <input class="input" type="text" name="rm" id="rm" maxlength="5" required>
+
+                    <label class="label" for="senha">Senha</label>
+                    <input class="input" type="password" name="senha" id="senha" required>
+
+                    <label class="label" for="confirmarSenha">Confirme a senha</label>
+                    <input class="input" type="password" name="confirmarSenha" id="confirmarSenha" required>
+
+                    <button class="btn btn-primary" type="submit">Cadastrar</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        const chk = document.getElementById('chk');
+        chk.addEventListener('change', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        });
+    </script>
 </body>
 </html>
