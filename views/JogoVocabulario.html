@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Correspondência de Vocabulário</title>
+    <link rel="stylesheet" href="../css/JogoVocabulario.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Jogo de Vocabulário em Inglês</h1>
+            <div class="score-board">
+                <div class="score-item">
+                    <span>Acertos: </span><span id="correct-count">0</span>
+                </div>
+                <div class="score-item">
+                    <span>Tentativas: </span><span id="attempts-count">0</span>
+                </div>
+                <div class="score-item">
+                    <span>Dicas Usadas: </span><span id="hints-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="verbs-column" id="verbs-column">
+                <!-- Verbos serão inseridos aqui -->
+            </div>
+
+            <div class="controls">
+                <button class="hint-btn" id="hint-btn">💡 Dica</button>
+                <button class="reset-btn" id="reset-btn">🔄 Reiniciar</button>
+                <div class="hint-display" id="hint-display">
+                    Clique em "Dica" para obter ajuda!
+                </div>
+            </div>
+
+            <div class="definitions-column" id="definitions-column">
+                <!-- Definições serão inseridas aqui -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gameData = {
+        verbs: [
+            {
+                word: "EXPLORE",
+                definition: "To travel through an area to learn about it",
+                hint: "Aventureiros fazem isso em lugares desconhecidos 🗺️"
+            },
+            {
+                word: "CREATE",
+                definition: "To make something new or bring into existence",
+                hint: "Artistas fazem isso com suas obras 🎨"
+            },
+            {
+                word: "DISCOVER",
+                definition: "To find something for the first time",
+                hint: "Cientistas fazem isso com novas espécies 🔬"
+            },
+            {
+                word: "ACHIEVE",
+                definition: "To successfully complete or accomplish something",
+                hint: "Atletas fazem isso com seus objetivos 🏆"
+            },
+            {
+                word: "INSPIRE",
+                definition: "To motivate someone to do something creative",
+                hint: "Professores fazem isso com seus alunos ✨"
+            },
+            {
+                word: "TRANSFORM",
+                definition: "To change completely in form or appearance",
+                hint: "Lagartas fazem isso para se tornarem borboletas 🦋"
+            }
+        ]
+    };
+
+    let selectedVerb = null;
+    let selectedDefinition = null;
+    let matches = [];
+    let attempts = 0;
+    let hintsUsed = 0;
+    let currentHintIndex = 0;
+    let selectedVerbs = [];
+
+    function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+
+    function initializeGame() {
+        const verbsColumn = document.getElementById('verbs-column');
+        const definitionsColumn = document.getElementById('definitions-column');
+
+        // Limpar colunas
+        verbsColumn.innerHTML = '';
+        definitionsColumn.innerHTML = '';
+
+        // Selecionar 4 verbos aleatórios
+        selectedVerbs = shuffleArray(gameData.verbs).slice(0, 4);
+
+        // Embaralhar definições dos verbos selecionados
+        const shuffledDefinitions = shuffleArray([...selectedVerbs]);
+
+        // Criar cards de verbos
+        selectedVerbs.forEach((item, index) => {
+            const verbCard = document.createElement('div');
+            verbCard.className = 'verb-card';
+            verbCard.textContent = item.word;
+            verbCard.dataset.index = index;
+            verbCard.addEventListener('click', () => selectVerb(verbCard, index));
+            verbsColumn.appendChild(verbCard);
+        });
+
+        // Criar cards de definições (embaralhados)
+        shuffledDefinitions.forEach((item, index) => {
+            const definitionCard = document.createElement('div');
+            definitionCard.className = 'definition-card';
+            definitionCard.textContent = item.definition;
+            definitionCard.dataset.originalIndex = selectedVerbs.findIndex(v => v.word === item.word);
+            definitionCard.addEventListener('click', () => selectDefinition(definitionCard, definitionCard.dataset.originalIndex));
+            definitionsColumn.appendChild(definitionCard);
+        });
+
+        // Reset counters
+        matches = [];
+        attempts = 0;
+        hintsUsed = 0;
+        currentHintIndex = 0;
+        updateScoreboard();
+
+        document.getElementById('hint-display').textContent = 'Clique em "Dica" para obter ajuda!';
+    }
+
+    function selectVerb(card, index) {
+        if (card.classList.contains('matched')) return;
+
+        // Remover seleção anterior
+        document.querySelectorAll('.verb-card').forEach(c => c.classList.remove('selected'));
+
+        selectedVerb = { card, index };
+        card.classList.add('selected');
+
+        checkForMatch();
+    }
+
+    function selectDefinition(card, originalIndex) {
+        if (card.classList.contains('matched')) return;
+
+        // Remover seleção anterior
+        document.querySelectorAll('.definition-card').forEach(c => c.classList.remove('selected'));
+
+        selectedDefinition = { card, index: parseInt(originalIndex) };
+        card.classList.add('selected');
+
+        checkForMatch();
+    }
+
+    function checkForMatch() {
+        if (!selectedVerb || !selectedDefinition) return;
+
+        attempts++;
+
+        if (selectedVerb.index === selectedDefinition.index) {
+            // Match correto!
+            selectedVerb.card.classList.add('matched');
+            selectedDefinition.card.classList.add('matched');
+            selectedVerb.card.classList.remove('selected');
+            selectedDefinition.card.classList.remove('selected');
+
+            matches.push({
+                verb: selectedVerb.index,
+                definition: selectedDefinition.index
+            });
+
+            showCelebration();
+
+            // Verificar se o jogo terminou
+            if (matches.length === selectedVerbs.length) {
+                setTimeout(showCompletionMessage, 1000);
+            }
+        } else {
+            // Match incorreto
+            setTimeout(() => {
+                selectedVerb.card.classList.remove('selected');
+                selectedDefinition.card.classList.remove('selected');
+            }, 1000);
+        }
+
+        selectedVerb = null;
+        selectedDefinition = null;
+        updateScoreboard();
+    }
+
+    function showCelebration() {
+        const celebrations = ['🎉', '⭐', '🌟', '✨', '🎊', '🏆'];
+        const celebration = document.createElement('div');
+        celebration.className = 'celebration';
+        celebration.textContent = celebrations[Math.floor(Math.random() * celebrations.length)];
+        document.body.appendChild(celebration);
+
+        setTimeout(() => {
+            document.body.removeChild(celebration);
+        }, 1000);
+    }
+
+    function showCompletionMessage() {
+        const completionDiv = document.createElement('div');
+        completionDiv.className = 'completion-message';
+        completionDiv.innerHTML = `
+            <div class="completion-content">
+                <h2>🎉 Parabéns!</h2>
+                <p>Você completou o jogo!</p>
+                <p><strong>Estatísticas:</strong></p>
+                <p>Acertos: ${matches.length}/${selectedVerbs.length}</p>
+                <p>Tentativas: ${attempts}</p>
+                <p>Dicas usadas: ${hintsUsed}</p>
+                <button class="play-again-btn" onclick="playAgain()">Jogar Novamente</button>
+            </div>
+        `;
+        document.body.appendChild(completionDiv);
+    }
+
+    function playAgain() {
+        const completionMessage = document.querySelector('.completion-message');
+        if (completionMessage) {
+            document.body.removeChild(completionMessage);
+        }
+        initializeGame();
+    }
+
+    function showHint() {
+        if (currentHintIndex >= selectedVerbs.length) {
+            document.getElementById('hint-display').textContent = 'Todas as dicas foram usadas! 🤔';
+            return;
+        }
+
+        // Encontrar próximo verbo não combinado
+        let hintIndex = currentHintIndex;
+        while (hintIndex < selectedVerbs.length && matches.some(m => m.verb === hintIndex)) {
+            hintIndex++;
+        }
+
+        if (hintIndex >= selectedVerbs.length) {
+            document.getElementById('hint-display').textContent = 'Todas as dicas foram usadas! 🤔';
+            return;
+        }
+
+        const hint = selectedVerbs[hintIndex].hint;
+        const word = selectedVerbs[hintIndex].word;
+        document.getElementById('hint-display').textContent = `💡 ${word}: ${hint}`;
+
+        hintsUsed++;
+        currentHintIndex = hintIndex + 1;
+        updateScoreboard();
+    }
+
+    function updateScoreboard() {
+        document.getElementById('correct-count').textContent = matches.length;
+        document.getElementById('attempts-count').textContent = attempts;
+        document.getElementById('hints-count').textContent = hintsUsed;
+    }
+
+    // Event listeners
+    document.getElementById('hint-btn').addEventListener('click', showHint);
+    document.getElementById('reset-btn').addEventListener('click', initializeGame);
+
+    // Inicializar o jogo
+    initializeGame();
+
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d9d90ca63af1e6',t:'MTc1NzYyMTgzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
