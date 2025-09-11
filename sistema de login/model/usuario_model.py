@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash
 db_config = {
     "host": "localhost",
     "user": "root",
-    "database": "tcc_sql",
+    "database": "voice",
      "cursorclass": pymysql.cursors.DictCursor
     }
 def get_db_connection():
