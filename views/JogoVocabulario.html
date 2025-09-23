@@ -44,37 +44,229 @@
 
     <script>
         const gameData = {
-        verbs: [
-            {
-                word: "EXPLORE",
-                definition: "To travel through an area to learn about it",
-                hint: "Aventureiros fazem isso em lugares desconhecidos 🗺️"
-            },
-            {
-                word: "CREATE",
-                definition: "To make something new or bring into existence",
-                hint: "Artistas fazem isso com suas obras 🎨"
-            },
-            {
-                word: "DISCOVER",
-                definition: "To find something for the first time",
-                hint: "Cientistas fazem isso com novas espécies 🔬"
-            },
-            {
-                word: "ACHIEVE",
-                definition: "To successfully complete or accomplish something",
-                hint: "Atletas fazem isso com seus objetivos 🏆"
-            },
-            {
-                word: "INSPIRE",
-                definition: "To motivate someone to do something creative",
-                hint: "Professores fazem isso com seus alunos ✨"
-            },
-            {
-                word: "TRANSFORM",
-                definition: "To change completely in form or appearance",
-                hint: "Lagartas fazem isso para se tornarem borboletas 🦋"
-            }
+            verbs: [
+                { word: "EXPLORE", 
+                  definition: "To travel through an area to learn about it", 
+                  hint: "Aventureiros fazem isso em lugares desconhecidos 🗺️" },
+
+                { word: "CREATE", 
+                  definition: "To make something new or bring into existence", 
+                  hint: "Artistas fazem isso com suas obras 🎨" },
+
+                { word: "DISCOVER", 
+                  definition: "To find something for the first time", 
+                  hint: "Cientistas fazem isso com novas espécies 🔬" },
+
+                { word: "ACHIEVE", 
+                 definition: "To successfully complete or accomplish something", 
+                 hint: "Atletas fazem isso com seus objetivos 🏆" },
+
+                { word: "INSPIRE", 
+                  definition: "To motivate someone to do something creative",
+                  hint: "Professores fazem isso com seus alunos ✨" },
+                
+                { word: "TRANSFORM",
+                  definition: "To change completely in form or appearance",
+                  hint: "Lagartas fazem isso para se tornarem borboletas 🦋" },
+                { word: "LEARN", 
+                  definition: "To acquire knowledge or skills through study or experience", 
+                  hint: "Estudantes fazem isso na escola 📚" },
+
+                { word: "COMMUNICATE", 
+                  definition: "To share or exchange information, thoughts, or feelings", 
+                  hint: "Amigos fazem isso para se entenderem 🗣️" },
+
+                { word: "MOTIVATE", 
+                  definition: "To give someone a reason or incentive to do something", 
+                  hint: "Líderes fazem isso com suas equipes 👏" },
+
+                { word: "SUPPORT", 
+                  definition: "To give help or assistance", 
+                  hint: "Família faz isso para nos apoiar em momentos difíceis 🤗" },
+
+                { word: "IMAGINE", 
+                  definition: "To form a mental image or concept of something", 
+                  hint: "Escritores fazem isso ao criar mundos fantásticos 📖" },
+
+                { word: "BUILD", 
+                  definition: "To construct something by putting parts or materials together", 
+                  hint: "Arquitetos fazem isso para criar novas construções 🏗️" },
+
+                { word: "DESIGN", 
+                  definition: "To plan and create something with a specific function or appearance", 
+                  hint: "Designers fazem isso com seus projetos 💡" },
+
+                { word: "COLLABORATE", 
+                  definition: "To work together with others to achieve a common goal", 
+                  hint: "Equipes fazem isso para alcançar melhores resultados 🤝" },
+
+                { word: "INNOVATE", 
+                  definition: "To make changes or introduce new methods, ideas, or products", 
+                  hint: "Empresas fazem isso para se destacarem no mercado 🚀" },
+
+                { word: "CONQUER", 
+                  definition: "To overcome something or gain control of it", 
+                  hint: "Guerreiros fazem isso em batalhas ⚔️" },
+
+                { word: "EXPRESS", 
+                  definition: "To convey or communicate an idea or feeling", 
+                  hint: "Artistas fazem isso através de suas obras 🎤" },
+
+                { word: "IMPROVE", 
+                  definition: "To make something better or more effective", 
+                  hint: "Atletas fazem isso em seu desempenho no esporte 🏃‍♂️" },
+
+                { word: "HELP", 
+                  definition: "To give assistance or aid to someone", 
+                  hint: "Médicos fazem isso para salvar vidas 🩺" },
+
+                { word: "REFLECT", 
+                  definition: "To think deeply or carefully about something", 
+                  hint: "Filósofos fazem isso para entender a vida 🤔" },
+
+                { word: "CONNECT", 
+                  definition: "To join or link together", 
+                  hint: "Tecnologia faz isso entre pessoas em todo o mundo 🌍" },
+
+                { word: "ACHIEVE", 
+                  definition: "To successfully complete or accomplish something", 
+                  hint: "Atletas fazem isso com seus objetivos 🏆" },
+
+                { word: "SING", 
+                  definition: "To produce musical tones with the voice", 
+                  hint: "Cantores fazem isso para entreter o público 🎤" },
+
+                { word: "DREAM", 
+                  definition: "To imagine something as a possibility or goal", 
+                  hint: "Sonhadores fazem isso para criar seu futuro ✨" },
+
+                { word: "JUMP", 
+                  definition: "To push yourself off the ground and into the air", 
+                  hint: "Gatos fazem isso quando se assustam 😸" },
+
+                { word: "RUN", 
+                  definition: "To move at a fast pace on foot", 
+                  hint: "Corredores fazem isso em competições 🏃" },
+
+                { word: "READ", 
+                  definition: "To look at and understand written words", 
+                  hint: "Estudantes fazem isso para aprender 📖" },
+
+                { word: "WRITE", 
+                  definition: "To produce text or symbols on a surface", 
+                  hint: "Escritores fazem isso para contar histórias 🖋️" },
+
+                { word: "HELP", 
+                  definition: "To give assistance or support", 
+                  hint: "Voluntários fazem isso para ajudar quem precisa 🤲" },
+
+                { word: "LISTEN", 
+                  definition: "To give attention to sound or speech", 
+                  hint: "Músicos fazem isso para aprender novas melodias 🎶" },
+
+                { word: "SHOW", 
+                  definition: "To present or display something", 
+                  hint: "Apresentadores fazem isso em programas de TV 📺" },
+
+                { word: "CREATE", 
+                  definition: "To make something new or bring into existence", 
+                  hint: "Artistas fazem isso com suas obras 🎨" },
+                  
+                { word: "IMAGINE", 
+                  definition: "To form a mental image of something", 
+                  hint: "Escritores fazem isso ao criar mundos fantásticos 📖" },
+
+                { word: "THINK", 
+                  definition: "To use the mind to process information", 
+                  hint: "Filósofos fazem isso para refletir sobre a existência 🤯" },
+
+                { word: "SLEEP", 
+                  definition: "To rest in a state of unconsciousness", 
+                  hint: "Pessoas fazem isso para descansar e recarregar energias 😴" },
+
+                { word: "GROW", 
+                  definition: "To increase in size, number, or importance", 
+                  hint: "Plantas fazem isso ao se desenvolverem no solo 🌱" },
+
+                { word: "RELAX", 
+                  definition: "To become less tense or anxious", 
+                  hint: "Pessoas fazem isso para reduzir o estresse 🧘‍♀️" },
+
+                { word: "BREATHE", 
+                  definition: "To take air into the lungs and expel it", 
+                  hint: "Todos fazem isso para viverem 🫁" },
+
+                { word: "EXPLORE", 
+                  definition: "To travel through an area to learn about it", 
+                  hint: "Aventureiros fazem isso em lugares desconhecidos 🗺️" },
+
+                { word: "SHARE", 
+                  definition: "To give a portion of something to others", 
+                  hint: "Amigos fazem isso quando dividem seus momentos 🤝" },
+
+                { word: "OBSERVE", 
+                  definition: "To watch carefully", 
+                  hint: "Cientistas fazem isso para estudar fenômenos naturais 🔬" },
+
+                { word: "JUDGE", 
+                  definition: "To form an opinion or conclusion about something", 
+                  hint: "Juízes fazem isso em tribunais ⚖️" },
+
+                { word: "TEACH", 
+                  definition: "To impart knowledge or skills", 
+                  hint: "Professores fazem isso em salas de aula 👩‍🏫" },
+
+                { word: "LEAD", 
+                  definition: "To guide or direct a group or activity", 
+                  hint: "Líderes fazem isso para alcançar objetivos coletivos 💼" },
+
+                { word: "RUN", 
+                  definition: "To move quickly on foot", 
+                  hint: "Corredores fazem isso em maratonas 🏃‍♂️" },
+
+                { word: "PRACTICE", 
+                  definition: "To do something repeatedly to improve skill", 
+                  hint: "Músicos fazem isso com seus instrumentos 🎸" },
+
+                { word: "HELP", 
+                  definition: "To provide assistance", 
+                  hint: "Profissionais de saúde fazem isso para tratar pacientes 🏥" },
+
+                { word: "REMEMBER", 
+                  definition: "To bring to mind an idea or fact", 
+                  hint: "Pessoas fazem isso para não esquecer algo importante 🧠" },
+
+                { word: "RESOLVE", 
+                  definition: "To find a solution to a problem", 
+                  hint: "Engenheiros fazem isso para consertar falhas em projetos 🛠️" },
+
+                { word: "DISCUSS", 
+                  definition: "To talk about something in detail", 
+                  hint: "Estudantes fazem isso para trocar ideias sobre um tema 🗣️" },
+
+                { word: "CREATE", 
+                  definition: "To produce something new", 
+                  hint: "Músicos fazem isso com suas composições 🎼" },
+
+                { word: "IMPROVISE", 
+                  definition: "To create or perform something without preparation", 
+                  hint: "Atores fazem isso durante uma performance improvisada 🎭" },
+
+                { word: "STUDY", 
+                  definition: "To apply oneself to learning or understanding", 
+                  hint: "Alunos fazem isso para se preparar para provas 📚" },
+
+                { word: "WAIT", 
+                  definition: "To remain in a state of readiness or expectation", 
+                  hint: "Pacientes fazem isso em salas de espera ⏳" },
+
+                { word: "EXERCISE", 
+                  definition: "To engage in physical activity to maintain fitness", 
+                  hint: "Pessoas fazem isso para se manterem saudáveis 💪" },
+                  
+                { word: "CLEAN", 
+                  definition: "To remove dirt or mess", 
+                  hint: "Domésticas fazem isso para manter o ambiente limpo"}
         ]
     };
 
