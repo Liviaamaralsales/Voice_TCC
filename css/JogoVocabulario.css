@@ -12,7 +12,8 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 80%;
+    height: 480px;
     margin: 0 auto;
     background: white;
     border-radius: 20px;
@@ -58,7 +59,9 @@ body {
 .verbs-column, .definitions-column {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    width: 70%;
+    height: 20%;
 }
 
 .verb-card, .definition-card {
@@ -66,7 +69,7 @@ body {
     border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 1.1rem;
+    font-size: 17px;
     font-weight: bold;
     text-align: center;
     border: 3px solid transparent;
