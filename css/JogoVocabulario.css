@@ -1,14 +1,76 @@
+/* Fonte */
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
+/* Background wavy */
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 150px; /* Espaço para o nav-bottom */
+    box-sizing: border-box; /* Garante que o padding não aumente a altura total */
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #9c65f5;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+  
+.wave span {
+    position: absolute;
+    width: 360vh; /* reduzido de 325vh */
+    height: 360vh; /* reduzido de 325vh */
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -75%);
+}
+  
+.wave span:nth-child(1) {
+    border-radius: 45%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: animate 5s linear infinite;
+}
+  
+.wave span:nth-child(2) {
+    border-radius: 40%;
+    background: rgba(255, 255, 255, 0.4);
+    animation: animate 10s linear infinite;
+}
+  
+.wave span:nth-child(3) {
+    border-radius: 42.5%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: animate 15s linear infinite;
+}
+  
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+}
+  100% {
+    transform: translate(-50%, -75%) rotate(180deg);
+  }
 }
 
 .container {
@@ -22,15 +84,17 @@ body {
 }
 
 .header {
-    background: linear-gradient(45deg, #ff6b6b, #feca57);
-    padding: 30px;
+    padding: 5px 0;
     text-align: center;
-    color: white;
+    font-size: 20px;
+    color: #fff;
+    background: linear-gradient(90deg,rgba(70, 15, 140, 1) 0%, rgba(118, 75, 162, 1) 50%, rgba(51, 26, 79, 1) 100%);
 }
 
 .header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
@@ -38,34 +102,36 @@ body {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .score-item {
     background: rgba(255,255,255,0.2);
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 15px;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .game-area {
-    padding: 40px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 40px;
-    align-items: start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 75%;
+    overflow-y: hidden;
+
 }
 
 .verbs-column, .definitions-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 70%;
-    height: 20%;
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    margin-top: 5%;
 }
 
 .verb-card, .definition-card {
-    padding: 20px;
+    padding: 10px;
     border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -78,12 +144,14 @@ body {
 }
 
 .verb-card {
+    margin-bottom: 10px;
     background: linear-gradient(45deg, #4ecdc4, #44a08d);
     color: white;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .definition-card {
+    margin-bottom: 10px;
     background: linear-gradient(45deg, #f093fb, #f5576c);
     color: white;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
@@ -109,15 +177,26 @@ body {
 .controls {
     display: flex;
     flex-direction: column;
-    gap: 15px;
     align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+button {
+    padding: 5px;
+    font-size: 0.8em;
+    margin: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
 }
 
 .hint-btn, .reset-btn {
-    padding: 15px 25px;
+    padding: 15px 15px;
     border: none;
     border-radius: 25px;
-    font-size: 1rem;
+    font-size: 12px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -144,7 +223,7 @@ body {
     background: #fff3cd;
     border: 2px solid #ffeaa7;
     border-radius: 15px;
-    padding: 15px;
+    padding: 10px;
     margin-top: 15px;
     font-style: italic;
     color: #856404;
@@ -189,6 +268,16 @@ body {
     z-index: 1000;
     opacity: 0;
     animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.completion-message .message-content {
+    font-size: 1em;
+    max-width: 40%;
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    z-index: 1001;
 }
 
 .completion-content {
@@ -283,3 +372,88 @@ body {
         gap: 10px;
     }
 }
+
+/* NAVBAR */
+.bottom-navbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    width: 400px; /* Barra fechada */
+    padding: 10px 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
+    z-index: 1001; /* Garante que fique acima de tudo */
+  }
+  
+  .bottom-navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around; /* ícones igualmente espaçados */
+  }
+  
+  .bottom-navbar li {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Links */
+  .bottom-navbar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 50px;
+    transition: transform 0.4s ease;
+  }
+  
+  /* Ícone sempre visível */
+  .bottom-navbar a i {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Texto inicialmente escondido */
+  .bottom-navbar a span {
+    opacity: 0;
+    width: 0px;
+    transform: translateX(-10px);
+    margin-left: 8px;
+    white-space: nowrap;
+    transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
+  }
+  
+  /* Hover: barra expande */
+  .bottom-navbar:hover {
+    width: 70%;
+    padding: 10px 20px;
+  }
+  
+  /* Hover: texto aparece */
+  .bottom-navbar:hover a span {
+    opacity: 1;
+    width: auto;
+    transform: translateX(0);
+  }
+  
+  /* Efeito cascata para os spans */
+  .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
+  .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
+  .bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
+  .bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
+  .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
+  .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
+  .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
+  

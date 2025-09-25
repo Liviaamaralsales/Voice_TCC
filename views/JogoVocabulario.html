@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Correspondência de Vocabulário</title>
+    <title>Jogo Vocabulário</title>
     <link rel="stylesheet" href="../css/JogoVocabulario.css">
+    <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- ONDAS -->
+    <div class="wave">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <section>
     <div class="container">
         <div class="header">
             <h1>🎯 Jogo de Vocabulário em Inglês</h1>
@@ -41,6 +51,54 @@
             </div>
         </div>
     </div>
+
+    <nav class="bottom-navbar">
+      <ul>
+          <li>
+              <a href="#">
+                  <i class="fas fa-home"></i>
+                  <span class="nav-text">Início</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                  <span class="nav-text">Classes</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fas fa-running"></i>
+                  <span class="nav-text">Activities</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fas fa-gamepad"></i>
+                  <span class="nav-text">Games</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="nav-text">Perfil</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fas fa-cog"></i>
+                  <span class="nav-text">Configurações</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="fas fa-life-ring"></i>
+                  <span class="nav-text">Apoio</span>
+              </a>
+          </li>
+      </ul>
+  </nav>        
+    </section>
 
     <script>
         const gameData = {
@@ -407,7 +465,7 @@
         const completionDiv = document.createElement('div');
         completionDiv.className = 'completion-message';
         completionDiv.innerHTML = `
-            <div class="completion-content">
+            <div class="completion-content message-content">
                 <h2>🎉 Parabéns!</h2>
                 <p>Você completou o jogo!</p>
                 <p><strong>Estatísticas:</strong></p>
