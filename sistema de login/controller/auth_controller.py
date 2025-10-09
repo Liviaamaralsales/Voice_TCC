@@ -1,3 +1,4 @@
+
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from model import usuario_model
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -39,7 +40,7 @@ def cadastro():
         usuario_model.cadastrar(rm, email, senha_hash)
 
         flash("Usuário cadastrado com sucesso!")
-        return redirect(url_for("auth.login"))  # Vai para a tela de login
+        return redirect(url_for("auth.login"))
 
     return render_template("PaginaCadastro/PaginaCadastro.html")
 
@@ -52,11 +53,12 @@ def login():
         senha = request.form["senha"]
 
         usuario = usuario_model.buscar_usuario_por_email(email)
-        if usuario and check_password_hash(usuario["senha"], senha):
+
+        # Ajuste dependendo de como o model retorna os dados
+        if usuario and check_password_hash(usuario["senha"], senha):  
             session["usuario"] = usuario["email"]
             flash("Login realizado com sucesso!")
-            # Redireciona para uma rota após login, por exemplo dashboard
-            return redirect(url_for("main.dashboard"))  
+            return redirect(url_for("home"))  # redireciona para home
         else:
             flash("E-mail ou senha inválidos")
             return redirect(url_for("auth.login"))
@@ -64,9 +66,10 @@ def login():
     return render_template("PaginaLogin/PaginaLogin.html")
 
 
-# ROTA DE LOGOUT (opcional)
+# ROTA DE LOGOUT
 @auth_bp.route('/logout')
 def logout():
     session.pop("usuario", None)
     flash("Você saiu da conta.")
     return redirect(url_for("auth.login"))
+

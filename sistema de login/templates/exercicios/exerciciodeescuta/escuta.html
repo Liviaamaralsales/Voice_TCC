@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Tradução de Escuta em Inglês</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .audio-player {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .question {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 50px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .feedback {
+            color: #5cb85c;
+            font-weight: bold;
+            text-align: center;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercícios de Tradução de Escuta em Inglês</h1>
+
+        <div class="audio-player">
+            <audio controls id="audioPlayer">
+                <source id="audioSource" src="" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+
+        <div class="question">
+            <p id="instruction">Ouça a frase em inglês e traduza para o português:</p>
+            <textarea id="translation" placeholder="Digite sua tradução aqui..."></textarea>
+        </div>
+
+        <button onclick="checkTranslation()">Verificar Tradução</button>
+        <p id="feedback" class="feedback"></p>
+
+        <div class="navigation">
+            <button onclick="prevExercise()">Anterior</button>
+            <button onclick="nextExercise()">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        const exercises = [
+            {
+                audio: "https://example.com/audio1.mp3",
+                sentence: "Hello, how are you?",
+                translation: "Olá, como você está?"
+            },
+            {
+                audio: "https://example.com/audio2.mp3",
+                sentence: "What is your name?",
+                translation: "Qual é o seu nome?"
+            },
+            {
+                audio: "https://example.com/audio3.mp3",
+                sentence: "I am fine, thank you.",
+                translation: "Estou bem, obrigado."
+            },
+            {
+                audio: "https://example.com/audio4.mp3",
+                sentence: "Where do you live?",
+                translation: "Onde você mora?"
+            },
+            {
+                audio: "https://example.com/audio5.mp3",
+                sentence: "Good morning!",
+                translation: "Bom dia!"
+            },
+            {
+                audio: "https://example.com/audio6.mp3",
+                sentence: "See you later.",
+                translation: "Até mais tarde."
+            }
+        ];
+
+        let currentExercise = 0;
+
+        function loadExercise(index) {
+            const exercise = exercises[index];
+            document.getElementById("audioSource").src = exercise.audio;
+            document.getElementById("instruction").textContent = `Ouça a frase: "${exercise.sentence}" e traduza para o português:`;
+            document.getElementById("audioPlayer").load();
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("translation").value = "";
+        }
+
+        function checkTranslation() {
+            const userTranslation = document.getElementById("translation").value.trim();
+            const correctTranslation = exercises[currentExercise].translation;
+
+            if (userTranslation.toLowerCase() === correctTranslation.toLowerCase()) {
+                document.getElementById("feedback").textContent = "Parabéns! Sua tradução está correta.";
+            } else {
+                document.getElementById("feedback").textContent = `Sua tradução está incorreta. A tradução correta é: "${correctTranslation}"`;
+            }
+        }
+
+        function nextExercise() {
+            currentExercise = (currentExercise + 1) % exercises.length;
+            loadExercise(currentExercise);
+        }
+
+        function prevExercise() {
+            currentExercise = (currentExercise - 1 + exercises.length) % exercises.length;
+            loadExercise(currentExercise);
+        }
+
+        // Load the first exercise
+        loadExercise(currentExercise);
+    </script>
+</body>
+</html>
