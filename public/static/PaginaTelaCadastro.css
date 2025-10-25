@@ -1,0 +1,332 @@
+/* Reset e full screen */
+html, body {
+    font-family: 'Katibeh', cursive;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s linear, color 0.2s linear;
+  }
+  /* Tema Claro (padrão) */
+  body.light {
+    background: white;
+    color: black;
+  }
+  /* Tema Escuro */
+  body.dark {
+    background: #121212;
+    color: white;
+  }
+  /* Container principal */
+  .container {
+    display: flex;
+    width: 80vw;
+    height: 80vh;
+    box-shadow: 0 0 15px rgba(122, 93, 241, 0.6);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  /* Espaço da imagem */
+  .image-space {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Espaço do formulário */
+  .form-space {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #7a5df1;
+    position: relative;
+  }
+  body.dark .form-space {
+    background: #744E9D;
+  }
+  /* Caixa do formulário */
+  .box {
+    background: #7a5df1;
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+  }
+  .box.large {
+    max-width: 450px;
+  }
+  body.dark .box {
+    background: #744E9D;
+    color: white;
+  }
+  /* Título */
+  h2 {
+    color: black;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  body.dark h2 {
+    color: white;
+  }
+  /* Labels */
+  .label {
+    display: block;
+    text-align: left;
+    margin: 12px 0 6px 4px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  /* Inputs */
+  .input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease;
+  }
+  .input:focus {
+    box-shadow: 0 0 8px #3d1ce4;
+  }
+  /* Botão de troca de tema */
+  .theme-toggle {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    z-index: 100;
+  }
+  /* Esconde o checkbox original */
+  .checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  /* Estilo da área do interruptor */
+  .label-theme {
+    background-color: #111;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6px;
+    position: relative;
+    height: 30px;
+    width: 60px;
+    box-sizing: border-box;
+  }
+  /* Ícones do sol e lua em lados opostos */
+  .label-theme img {
+    width: 16px;
+    height: 16px;
+    z-index: 2;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+  /* Destacar a lua no modo escuro */
+  body.dark .icone-lua {
+    opacity: 1;
+  }
+  /* Destacar o sol no modo claro */
+  body.light .icone-sol {
+    opacity: 1;
+  }
+  /* Bolinha do botão */
+  .label-theme .ball {
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: 22px;
+    width: 22px;
+    transform: translateX(0px);
+    transition: transform 0.3s ease;
+  }
+  /* Move a bolinha para a direita quando checado */
+  .checkbox:checked + .label-theme .ball {
+    transform: translateX(30px);
+  }
+  /* Estilo do botão de cadastro */
+  .button-container {
+    align-items: center;
+    background: #000;
+    border-radius: 40px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    position: relative;
+    width: 200px;
+    margin: 20px auto;
+  }
+  .button-container .text {
+    color: white;
+    position: absolute;
+    transition: opacity 300ms;
+    user-select: none;
+    -moz-user-select: none;
+  }
+  .button-container .fingerprint {
+    left: -8px;
+    opacity: 0;
+    position: absolute;
+    stroke: #777;
+    top: -9px;
+    transition: opacity 1ms;
+  }
+  .button-container .fingerprint-active {
+    stroke: #fff;
+  }
+  .button-container .fingerprint-out {
+    opacity: 1;
+  }
+  .button-container .odd {
+    stroke-dasharray: 0px 50px;
+    stroke-dashoffset: 1px;
+    transition: stroke-dasharray 1ms;
+  }
+  .button-container .even {
+    stroke-dasharray: 50px 50px;
+    stroke-dashoffset: -41px;
+    transition: stroke-dashoffset 1ms;
+  }
+  .button-container .ok {
+    opacity: 0;
+  }
+  .button-container.active {
+    animation: 6s Container;
+  }
+  .button-container.active .text {
+    opacity: 0;
+    animation: 6s Text forwards;
+  }
+  .button-container.active .fingerprint {
+    opacity: 1;
+    transition: opacity 300ms 200ms;
+  }
+  .button-container.active .fingerprint-base .odd {
+    stroke-dasharray: 50px 50px;
+    transition: stroke-dasharray 800ms 100ms;
+  }
+  .button-container.active .fingerprint-base .even {
+    stroke-dashoffset: 0px;
+    transition: stroke-dashoffset 800ms;
+  }
+  .button-container.active .fingerprint-active .odd {
+    stroke-dasharray: 50px 50px;
+    transition: stroke-dasharray 2000ms 1500ms;
+  }
+  .button-container.active .fingerprint-active .even {
+    stroke-dashoffset: 0px;
+    transition: stroke-dashoffset 2000ms 1300ms;
+  }
+  .button-container.active .fingerprint-out {
+    opacity: 0;
+    transition: opacity 300ms 4100ms;
+  }
+  .button-container.active .ok {
+    opacity: 1;
+    animation: 6s Ok forwards;
+  }
+  /* Efeito de flutuação da logo */
+  .floating-logo {
+    max-width: 50%;
+    max-height: 50%;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  /* ---- Ondas de fundo ---- */
+  .wave {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #9c65f5;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+      z-index: -1;
+  }
+  .wave span {
+      position: absolute;
+      width: 360vh;
+      height: 360vh;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -75%);
+  }
+  .wave span:nth-child(1) {
+      border-radius: 45%;
+      background: rgba(255, 255, 255, 0.5);
+      animation: animate 5s linear infinite;
+  }
+  .wave span:nth-child(2) {
+      border-radius: 40%;
+      background: rgba(255, 255, 255, 0.4);
+      animation: animate 10s linear infinite;
+  }
+  .wave span:nth-child(3) {
+      border-radius: 42.5%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: animate 15s linear infinite;
+  }
+  @keyframes animate {
+      0% {
+          transform: translate(-50%, -75%) rotate(0deg);
+      }
+      100% {
+          transform: translate(-50%, -75%) rotate(180deg);
+      }
+  }
+  @keyframes Container {
+    0% { width: 200px }
+    6% { width: 80px }
+    71% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+    77% { transform: scale(1); }
+    94% { width: 80px }
+    100% { width: 200px }
+  }
+  @keyframes Text {
+    0% { opacity: 1; transform: scale(1); }
+    6% { opacity: 0; transform: scale(0.5); }
+    94% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes Ok {
+    0% { opacity: 0 }
+    70% { opacity: 0; transform: scale(0); }
+    75% { opacity: 1; transform: scale(1.1); }
+    77% { opacity: 1; transform: scale(1); }
+    92% { opacity: 1; transform: scale(1); }
+    96% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 0 }
+  }
+  

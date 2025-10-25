@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Configurações</title>
+  <link rel="stylesheet" href="../static/config.css">
+  <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- ONDAS NO FUNDO -->
+  <div class="wave">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div class="config-page">
+    <!-- Bloco esquerdo -->
+    <div class="config-left">
+      <!-- Abas -->
+      <div class="tabs">
+        <button class="tab-button active" data-tab="personal">Configurações Pessoais</button>
+        <button class="tab-button" data-tab="other">Outras Configurações</button>
+      </div>
+
+      <!-- Conteúdo da aba Pessoais -->
+      <div class="tab-content active" id="personal">
+        <form>
+          <div class="acessibilidade">
+            <label>Nome da criança:</label>
+            <input type="text" placeholder="Digite o nome completo da criança">
+
+            <label>Data de nascimento:</label>
+            <input type="date">
+          </div>
+
+          <hr>
+          <h3>Área do Responsável</h3>
+
+          <label>Nome completo:</label>
+          <input type="nome" placeholder="Digite o nome completo do responsável">
+
+          <label>E-mail:</label>
+          <input type="email" placeholder="Digite o e-mail do responsável">
+
+          <div class="form-inline">
+            <input type="password" placeholder="Digite a nova senha">
+            <button type="button" class="confirm-btn">Confirmar</button>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="danger">Descartar as alterações</button>
+            <button type="submit" class="success">Salvar as alterações</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Conteúdo da aba Outras -->
+      <div class="tab-content" id="other">
+        <form>
+          <div class="form-row">
+            <label>Tema:</label>
+            <div class="toggle-group">
+              <button type="button" class="toggle active">Claro</button>
+              <button type="button" class="toggle">Escuro</button>
+            </div>
+
+            <label>Efeitos sonoros:</label>
+            <div class="toggle-group">
+              <button type="button" class="toggle active">Ativar</button>
+              <button type="button" class="toggle">Desativar</button>
+            </div>
+          </div>
+
+          <hr>
+          <H3>AREA DE RISCO</H3>
+
+          <div class="danger-zone">
+            <div>
+              <h4>Reiniciar progresso</h4>
+              <p>Atenção: ao reiniciar, todo o seu progresso será perdido e não poderá ser recuperado.</p>
+              <button type="button" class="danger">Limpar dados</button>
+            </div>
+            <div>
+              <h4>Excluir Conta</h4>
+              <p>Atenção: ao excluir, todo o seu progresso será perdido e não poderá ser recuperado.</p>
+              <button type="button" class="danger">Excluir conta</button>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="danger">Descartar as alterações</button>
+            <button type="submit" class="success">Salvar as alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bloco direito -->
+    <div class="config-right">
+      <div class="avatar">
+        <div class="avatar-img">
+          <img src="../static/gaviao.png" alt="Avatar atual">
+        </div>
+        <h3>Character:</h3>
+        <div class="characters">
+          <div class="icon"><img src="../static/gaviao.png" alt=""></div>
+          <div class="icon"><img src="../static/jacare.png" alt=""></div>
+          <div class="icon"><img src="../static/onca-pintada.png" alt=""></div>
+          <div class="icon"><img src="../static/raposa.png" alt=""></div>
+          <div class="icon"><img src="../static/tucano.png" alt=""></div>
+          <div class="icon"><img src="../static/urso.png" alt=""></div>
+          <div class="icon"></div>
+          <div class="icon"></div>
+          <div class="icon"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-navbar">
+    <ul>
+        <li>
+            <a href="#">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Início</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span class="nav-text">Classes</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-running"></i>
+                <span class="nav-text">Activities</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-gamepad"></i>
+                <span class="nav-text">Games</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-user-circle"></i>
+                <span class="nav-text">Perfil</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-cog"></i>
+                <span class="nav-text">Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-life-ring"></i>
+                <span class="nav-text">Apoio</span>
+            </a>
+        </li>
+    </ul>
+  </nav>
+
+  <script src="../static/config.js"></script>
+</body>
+</html>

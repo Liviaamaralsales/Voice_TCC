@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botões + Calendário</title>
+    <link rel="stylesheet" href="Home.css">
+      <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
+</head>
+<body>
+
+     <!-- ONDAS -->
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="principal">
+        <!-- Botões -->
+        <div class="button-container">
+            <button class="button">Classes</button>
+            <button class="button">Activities</button>
+            <button class="button">Games</button>
+        </div>
+
+        <div class="direita">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="img/polvo.png" alt="Logo Polvo">
+            </div>
+
+            <!-- Calendário com container roxo -->
+            <div class="calendario-container">
+                <div class="calendario">
+                    <header id="monthYear"></header>
+                    <div class="weekdays">
+                        <div>Dom</div><div>Seg</div><div>Ter</div>
+                        <div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                    </div>
+                    <div class="days" id="days"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ondas de fundo -->
+    <section>
+        <div class="wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+         <nav class="bottom-navbar">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Início</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span class="nav-text">Classes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-running"></i>
+                        <span class="nav-text">Activities</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-gamepad"></i>
+                        <span class="nav-text">Games</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="nav-text">Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span class="nav-text">Configurações</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-life-ring"></i>
+                        <span class="nav-text">Apoio</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>      
+    </section>
+
+    <script>
+        const monthYear = document.getElementById("monthYear");
+const daysContainer = document.getElementById("days");
+
+const today = new Date();
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+const currentDay = today.getDate();
+
+const months = [
+  "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+];
+
+// Cabeçalho
+monthYear.textContent = `${months[currentMonth]} ${currentYear}`;
+
+// Primeiro dia do mês
+const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+// Último dia do mês
+const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+// Espaços em branco antes do primeiro dia
+for (let i = 0; i < firstDay; i++) {
+  const emptyCell = document.createElement("div");
+  daysContainer.appendChild(emptyCell);
+}
+
+// Preencher os dias
+for (let day = 1; day <= lastDate; day++) {
+  const dayElem = document.createElement("div");
+  dayElem.textContent = day;
+
+  if (day === currentDay) {
+    dayElem.classList.add("today");
+  }
+
+  daysContainer.appendChild(dayElem);
+}
+
+    </script>
+</body>
+</html>

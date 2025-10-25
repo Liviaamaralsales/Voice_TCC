@@ -1,20 +1,17 @@
 from flask import Flask, render_template, request
-import requests
+import google.generativeai as genai
 import urllib.parse
-import os
-from google.generativeai import GenerativeModel, configure
+import requests
 
-configure(api_key="AIzaSyCPqHzSQGo9nN9tRiI3FUjdX5asAX8kec4")
+# Configuração da chave da API
+genai.configure(api_key="AIzaSyCPqHzSQGo9nN9tRiI3FUjdX5asAX8kec4")
 
-# Pegue a chave da API de variável de ambiente ou coloque direto (não recomendado)
-
-
-# Inicializa modelo Gemini
-model = GenerativeModel("gemini-1.5-flash")
+# Inicializa o modelo Gemini 2.5 Flash
+model = genai.GenerativeModel(model_name="gemini-2.5-flash")
 
 app = Flask(__name__)
 
-# Tradução com API gratuita Lingva
+# Função de tradução com API gratuita Lingva
 def traduzir_lingva(texto, source_lang, target_lang):
     texto_escapado = urllib.parse.quote(texto)
     url = f"https://lingva.ml/api/v1/{source_lang}/{target_lang}/{texto_escapado}"
@@ -69,10 +66,9 @@ def responder_como_chatbot(mensagem):
     elif "tchau" in mensagem or "até logo" in mensagem:
         return "Tchau! Até a próxima!"
 
-    # Resposta IA com Gemini
     return resposta_gemini(mensagem)
 
-# Chamada para o modelo Gemini
+# Chamada ao modelo Gemini 2.5 Flash
 def resposta_gemini(pergunta):
     try:
         resposta = model.generate_content(pergunta)
