@@ -1,0 +1,5 @@
+py -3.13 -m venv venv;
+venv\Scritps\activate.bat (cmd);
+& C:/Voice_TCC/venv/Scripts/Activate.ps1;
+pip install flask flask-sqlalchemy PyMySQL google-generativeai requests mysql-connector-python;
+python.exe -m pip install --upgrade pip;
