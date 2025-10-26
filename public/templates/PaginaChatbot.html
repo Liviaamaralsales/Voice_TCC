@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
   <!-- CSS externo -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/PaginaChatbot.css') }}">
 </head>
 <body>
   <section>
@@ -47,7 +47,7 @@
 
   // Cria a imagem do polvo
   var imagem = new Image();
-  imagem.src = '{{ url_for("static", filename="polvo.png") }}';
+  imagem.src = '{{ url_for("static", filename="assets/polvo.png") }}';
   imagem.alt = 'meu polvo';
   imagem.style.maxWidth = '13%';
 
