@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, Blueprint, render_template, request
 import google.generativeai as genai
 import urllib.parse
 import requests
+
+# Cria o blueprint
+chatbot_bp = Blueprint('chatbot', __name__, template_folder='../public/templates')
 
 # Configuração da chave da API
 genai.configure(api_key="AIzaSyCPqHzSQGo9nN9tRiI3FUjdX5asAX8kec4")
@@ -86,7 +89,9 @@ def index():
         texto_usuario = request.form['texto']
         resposta_bot = responder_como_chatbot(texto_usuario)
 
-    return render_template('index.html', texto_usuario=texto_usuario, traducao=resposta_bot)
+    return render_template('PaginaChatbot.html', texto_usuario=texto_usuario, traducao=resposta_bot)
+
+app = Flask(__name__)
 
 if __name__ == '__main__':
     app.run(debug=True)
