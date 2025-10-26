@@ -63,7 +63,7 @@ def login():
             flash("E-mail ou senha inválidos")
             return redirect(url_for("auth.login"))
 
-    return render_template("PaginaLogin/PaginaLogin.html")
+    return render_template("PaginaTelaLogin.html")
 
 
 # ROTA DE LOGOUT
