@@ -29,14 +29,14 @@ def buscar_usuario_por_rm_e_email(rm, email):
         conn.close()
 
 
-def cadastrar(rm, email, senha_hash):
+def cadastrar(nome, data_nascimento, email, senha_hash):
     """Cadastra um novo usuário no banco de dados."""
     conn = get_db_connection()
     try:
         with conn.cursor() as cursor:
             cursor.execute(
-                'INSERT INTO usuarios (rm, email, senha) VALUES (%s, %s, %s)',
-                (rm, email, senha_hash)
+                "INSERT INTO usuarios (nome, data_nascimento, email, senha) VALUES (%s, %s, %s, %s)",
+                (nome, data_nascimento, email, senha_hash)
             )
             conn.commit()
     finally:
@@ -44,14 +44,11 @@ def cadastrar(rm, email, senha_hash):
 
 
 def buscar_usuario_por_email(email):
-    """Busca usuário apenas pelo Email."""
+    """Busca usuário pelo Email."""
     conn = get_db_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute(
-                'SELECT * FROM usuarios WHERE email = %s',
-                (email,)
-            )
+            cursor.execute("SELECT * FROM usuarios WHERE email = %s", (email,))
             return cursor.fetchone()
     finally:
         conn.close()
