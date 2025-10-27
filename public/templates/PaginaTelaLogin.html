@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login</title>
-  <link rel="stylesheet" href="../static/CadastroLogin.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/PaginaTelaLogin.css') }}">
   <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
 
   <div class="container">
 <div class="image-space">
-  <img src="img/LogoVoice.png" alt="Polvo" class="floating-logo" />
+  <img src="{{ url_for('static', filename='assets/polvo.png') }}" alt="Polvo" class="floating-logo" />
 </div>
 
 
@@ -38,16 +38,16 @@
         </label>
       </div>
 
-      <div class="box">
+      <form action="{{ url_for('auth.login') }}" method="POST" class="box">
         <h2>ENTRAR</h2>
-        <label class="label">Email ou nome de usuário:</label>
-        <input type="text" placeholder="digite seu email ou nome de usuário" class="input" />
+        <label class="label">Email:</label>
+        <input name="email" type="text" placeholder="digite seu email ou nome de usuário" class="input" />
         <label class="label">SENHA:</label>
-        <input type="password" placeholder="digite sua senha" class="input" />
+        <input name="senha" type="password" placeholder="digite sua senha" class="input" />
 
         <!-- Botão animado com SVG de digital -->
-        <div class="button-container" onclick="this.classList.toggle('active')">
-          <span class="text">ENTRAR</span>
+        <button type="submit" class="button-container" onclick="this.classList.toggle('active')">
+          <span type="submit" class="text">ENTRAR</span>
 
           <svg class="fingerprint fingerprint-base" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
             <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
@@ -66,11 +66,11 @@
           <svg class="ok" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
             <path d="M34.912 50.75l10.89 10.125L67 36.75" fill="none" stroke="#fff" stroke-width="6"/>
           </svg>
-        </div>
+        </button>
 
         <p class="signup-text">
           Ainda não tem uma conta?
-          <a href="TelaCadastro.html" class="signup-link">Crie aqui!</a>
+          <a href="{{ url_for('cadastro') }}" class="signup-link">Crie aqui!</a>
         </p>
 
         <div class="divider">OU</div>
@@ -78,11 +78,11 @@
 
         <button class="btn btn-google">
           Entrar com
-          <img src="img/google.png" alt="Google Logo" class="google-icon" />
+          <img src="img/google.png"  alt="Google Logo" class="google-icon" />
         </button>
       
 
-      </div>
+      </form>
     </div>
   </div>
 
