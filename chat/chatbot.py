@@ -6,10 +6,6 @@ import requests
 # Cria o blueprint
 chatbot_bp = Blueprint('chatbot', __name__, template_folder='../public/templates')
 
-# Cria app e registra blueprint
-app = Flask(__name__, static_folder="../public/static")
-app.register_blueprint(chatbot_bp)
-
 # Configuração da chave da API
 genai.configure(api_key="AIzaSyCPqHzSQGo9nN9tRiI3FUjdX5asAX8kec4")
 
@@ -82,8 +78,8 @@ def resposta_gemini(pergunta):
         return f"Erro com Gemini: {e}"
 
 # Rota principal
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@chatbot_bp.route('/', methods=['GET', 'POST'])
+def chat():
     texto_usuario = None
     resposta_bot = None
 
@@ -92,6 +88,3 @@ def index():
         resposta_bot = responder_como_chatbot(texto_usuario)
 
     return render_template('PaginaChatbot.html', texto_usuario=texto_usuario, traducao=resposta_bot)
-
-if __name__ == '__main__':
-    app.run(debug=True)

@@ -26,7 +26,7 @@
         {% endif %}
       </div>
 
-      <form method="POST" class="input-form">
+      <form action="{{ url_for('chatbot.chat') }}" method="POST" class="input-form">
         <input type="text" name="texto" placeholder="Digite sua mensagem..." required autocomplete="off">
         <button type="submit">Enviar</button>
       </form>
