@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Botões + Calendário</title>
-    <link rel="stylesheet" href="Home.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/PaginaHome.css') }}">
       <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
@@ -28,7 +28,8 @@
         <div class="direita">
             <!-- Logo -->
             <div class="logo-container">
-                <img src="img/polvo.png" alt="Logo Polvo">
+                <img src="{{ url_for('static', filename='assets/polvo.png') }}" alt="Logo Polvo">
+                <a href="{{ url_for('chatbot.chat') }}">Teste Chatbot</a>
             </div>
 
             <!-- Calendário com container roxo -->
