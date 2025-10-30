@@ -5,6 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from flask import Flask, render_template
 from controller.auth_controller import auth_bp
+from controller.auth_controller import login_required
 from chat.chatbot import chatbot_bp  # importa o blueprint do chatbot
 
 app = Flask(__name__, template_folder="public/templates", static_folder="public/static")
@@ -30,6 +31,7 @@ def cadastro():
     return render_template("PaginaTelaCadastro.html")
 
 @app.route("/home")
+@login_required
 def home():
     return render_template("PaginaHome.html")
 
