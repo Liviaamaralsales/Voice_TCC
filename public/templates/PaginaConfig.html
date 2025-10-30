@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Configurações</title>
-  <link rel="stylesheet" href="../static/config.css">
+  <link rel="stylesheet" href="../static/CSS/PaginaConfig.css">
   <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -102,16 +102,16 @@
     <div class="config-right">
       <div class="avatar">
         <div class="avatar-img">
-          <img src="../static/gaviao.png" alt="Avatar atual">
+          <img src="../static/assets/gaviao.png" alt="Avatar atual">
         </div>
         <h3>Character:</h3>
         <div class="characters">
-          <div class="icon"><img src="../static/gaviao.png" alt=""></div>
-          <div class="icon"><img src="../static/jacare.png" alt=""></div>
-          <div class="icon"><img src="../static/onca-pintada.png" alt=""></div>
-          <div class="icon"><img src="../static/raposa.png" alt=""></div>
-          <div class="icon"><img src="../static/tucano.png" alt=""></div>
-          <div class="icon"><img src="../static/urso.png" alt=""></div>
+          <div class="icon"><img src="../static/assets/gaviao.png" alt=""></div>
+          <div class="icon"><img src="../static/assets/jacare.png" alt=""></div>
+          <div class="icon"><img src="../static/assets/onca-pintada.png" alt=""></div>
+          <div class="icon"><img src="../static/assets/raposa.png" alt=""></div>
+          <div class="icon"><img src="../static/assets/tucano.png" alt=""></div>
+          <div class="icon"><img src="../static/assets/urso.png" alt=""></div>
           <div class="icon"></div>
           <div class="icon"></div>
           <div class="icon"></div>
@@ -123,43 +123,43 @@
   <nav class="bottom-navbar">
     <ul>
         <li>
-            <a href="#">
+            <a href="{{ url_for('home') }}">
                 <i class="fas fa-home"></i>
                 <span class="nav-text">Início</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="">
                 <i class="fas fa-chalkboard-teacher"></i>
                 <span class="nav-text">Classes</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="">
                 <i class="fas fa-running"></i>
                 <span class="nav-text">Activities</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="">
                 <i class="fas fa-gamepad"></i>
                 <span class="nav-text">Games</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ url_for('configuracoes') }}">
                 <i class="fas fa-user-circle"></i>
                 <span class="nav-text">Perfil</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ url_for('configuracoes') }}">
                 <i class="fas fa-cog"></i>
                 <span class="nav-text">Configurações</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ url_for('apoiadores') }}">
                 <i class="fas fa-life-ring"></i>
                 <span class="nav-text">Apoio</span>
             </a>
@@ -167,6 +167,6 @@
     </ul>
   </nav>
 
-  <script src="../static/config.js"></script>
+  <script src="../static/JS/PaginaConfig.js"></script>
 </body>
 </html>
