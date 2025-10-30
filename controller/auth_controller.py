@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from model import usuario_model
-
+from functools import wraps
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -73,3 +73,11 @@ def logout():
     flash("Você saiu da conta.")
     return redirect(url_for("auth.login"))
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "usuario" not in session:
+            flash("Você precisa estar logado para acessar esta página.", "warning")
+            return redirect(url_for("auth.login"))
+        return f(*args, **kwargs)
+    return decorated_function
