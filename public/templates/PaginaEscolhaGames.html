@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="TelaGames.css" />
+  </head>
+  <body>
+    <!-- Botão no canto superior direito -->
+    <a href="{{ url_for('chatbot.chat') }}" class="logo-button">
+      <img src="logo do botão.png" alt="Logo" />
+    </a>
+
+    <!-- Fundo animado -->
+    <div class="wave-container">
+      <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- Container principal -->
+    <div class="container">
+      <h1>Games</h1>
+      <div class="grid">
+        <div class="card active">
+          <img src="pet 1.png" alt="Personagem 1" class="character" />
+          <div class="text">
+            <h2>Compliments</h2>
+            <p>Game 1</p>
+          </div>
+        </div>
+
+        <div class="card active right">
+          <div class="text">
+            <h2>Compliments</h2>
+            <p>Game 2</p>
+          </div>
+          <img src="pet 2.png" alt="Personagem 2" class="character" />
+        </div>
+
+        <div class="card locked">
+          <div class="lock">🔒</div>
+          <p>Conteúdo Bloqueado</p>
+        </div>
+
+        <div class="card locked">
+          <div class="lock">🔒</div>
+          <p>Conteúdo Bloqueado</p>
+        </div>
+
+        <div class="card locked">
+          <div class="lock">🔒</div>
+          <p>Conteúdo Bloqueado</p>
+        </div>
+
+        <div class="card locked">
+          <div class="lock">🔒</div>
+          <p>Conteúdo Bloqueado</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom-navbar">
+      <ul>
+        <li>
+          <a href="{{ url_for('home') }}">
+            <i class="fas fa-home"></i>
+            <span class="nav-text">Início</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span class="nav-text">Classes</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="fas fa-running"></i>
+            <span class="nav-text">Activities</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i class="fas fa-gamepad"></i>
+            <span class="nav-text">Games</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('configuracoes') }}">
+            <i class="fas fa-user-circle"></i>
+            <span class="nav-text">Perfil</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('configuracoes') }}">
+            <i class="fas fa-cog"></i>
+            <span class="nav-text">Configurações</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('apoiadores') }}">
+            <i class="fas fa-life-ring"></i>
+            <span class="nav-text">Apoio</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </body>
+</html>
