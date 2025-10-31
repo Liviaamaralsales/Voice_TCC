@@ -1,0 +1,294 @@
+/* ================== BODY ================== */
+body {
+  background-color: #e6d4f7;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  top: -60px; /* move container pra cima */
+  overflow: hidden;
+}
+
+/* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
+.logo-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: white;
+  border: 3px solid #8a2be2; /* borda roxa */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1002; /* acima de tudo */
+}
+
+.logo-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-button:hover {
+  transform: scale(1.07);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
+}
+
+/* ================== CONTAINER ================== */
+.container {
+    position: relative;
+    top: -80px;
+    background: rgba(255, 255, 255, 0.05); /* vidro embaçado */
+    border-radius: 16px;
+     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 1);
+
+    padding: 60px;
+    width: 1000px;
+    text-align: center;
+    color: #000;
+
+    transform: scale(1.25); /* aumenta só o container */
+    transform-origin: center top;
+}
+
+/* ================== TÍTULO ================== */
+h1 {
+  color: #7a3cf2;
+  font-size: 60px;
+  margin-bottom: 50px;
+}
+
+/* ================== GRID ================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* ================== CARDS ================== */
+.card {
+  background-color: white;
+  border-radius: 16px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.04);
+}
+
+/* Cards ativos */
+.card.active {
+  position: relative;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.card.active .character {
+  height: 100%;
+  border-radius: 12px 0 0 12px;
+}
+
+.card.active .text {
+  padding: 30px;
+  text-align: left;
+}
+
+.card.active h2 {
+  font-size: 28px;
+  color: #000;
+  margin: 0;
+}
+
+.card.active p {
+  font-size: 18px;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* Cards bloqueados */
+.card.locked {
+  background-color: #bbaaf9;
+  color: #fff;
+}
+
+.lock {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+/* Card com imagem à direita */
+.card.right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.card.right .text {
+  text-align: left;
+  padding: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card.right .character {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: 0 12px 12px 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* ================== FUNDO ANIMADO ================== */
+.wave-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.wave {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #9c65f5;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.wave span {
+  position: absolute;
+  width: 360vh;
+  height: 360vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  border-radius: 45%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: animate 5s linear infinite;
+}
+
+.wave span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: animate 10s linear infinite;
+}
+
+.wave span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: animate 15s linear infinite;
+}
+
+@keyframes animate {
+  0% { transform: translate(-50%, -75%) rotate(0deg); }
+  100% { transform: translate(-50%, -75%) rotate(180deg); }
+}
+
+
+/* ================== BOTTOM NAVBAR ================== */
+
+.bottom-navbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  width: 400px;
+  padding: 10px 0;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
+  z-index: 1001;
+}
+
+.bottom-navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.bottom-navbar li {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 50px;
+  transition: transform 0.4s ease;
+}
+
+.bottom-navbar a i {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.bottom-navbar a span {
+  opacity: 0;
+  width: 0px;
+  transform: translateX(-10px);
+  margin-left: 8px;
+  white-space: nowrap;
+  transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
+}
+
+.bottom-navbar:hover {
+  width: 70%;
+  padding: 10px 20px;
+}
+
+.bottom-navbar:hover a span {
+  opacity: 1;
+  width: auto;
+  transform: translateX(0);
+}
+
+.bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
+.bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
+.bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
+.bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
+.bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
+.bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
+.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
+
+
+/* ================== espaço para deixar responsivo ================== */

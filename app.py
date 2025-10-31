@@ -78,7 +78,16 @@ def jogo_memoria():
 def jogo_formar_frase():
     return render_template("PaginaJogoFormarFrase.html")
 
-    
+# ----------------- Pagina Escolhas -----------------
+@app.route("/activities")
+@login_required
+def activities():
+    return render_template("PaginaEscolhaAtividades.html")  
+
+@app.route("/games")
+@login_required
+def games():
+    return render_template("PaginaEscolhaGames.html") 
 
 # ----------------- Inicialização -----------------
 if __name__ == "__main__":
