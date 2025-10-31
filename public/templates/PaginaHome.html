@@ -11,6 +11,10 @@
 </head>
 <body>
 
+      <a href="{{ url_for('chatbot.chat') }}" class="logo-button">
+      <img src="../static/assets/botao-chat.jpeg" alt="Logo" />
+    </a>
+
      <!-- ONDAS -->
     <div class="wave">
         <span></span>
@@ -29,7 +33,6 @@
             <!-- Logo -->
             <div class="logo-container">
                 <img src="{{ url_for('static', filename='assets/polvo.png') }}" alt="Logo Polvo">
-                <a href="{{ url_for('chatbot.chat') }}">Teste Chatbot</a>
             </div>
 
             <!-- Calendário com container roxo -->
