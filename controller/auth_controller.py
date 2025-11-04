@@ -1,10 +1,9 @@
-
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from model import usuario_model
 from functools import wraps
 
-auth_bp = Blueprint('auth', __name__)
+auth_bp = Blueprint('auth', _name_)
 
 @auth_bp.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
@@ -36,8 +35,8 @@ def cadastro():
             flash("Usuário já cadastrado com este e-mail.")
             return redirect(url_for("auth.cadastro"))
 
-        # --- Cadastro ---
-        senha_hash = generate_password_hash(senha)
+        # --- Cadastro ----
+        senha_hash = generate_password_hash(senha) 
         usuario_model.cadastrar(nome, data_nascimento, email, senha_hash)
 
         flash("Usuário cadastrado com sucesso!")
@@ -56,14 +55,33 @@ def login():
 
         # Ajuste dependendo de como o model retorna os dados
         if usuario and check_password_hash(usuario["senha"], senha):  
+            session["usuario_id"] = usuario["id"]
             session["usuario"] = usuario["email"]
             flash("Login realizado com sucesso!")
-            return redirect(url_for("home"))  # redireciona para home
+            return redirect(url_for("home"))
         else:
             flash("E-mail ou senha inválidos")
             return redirect(url_for("auth.login"))
 
     return render_template("PaginaTelaLogin.html")
+
+@auth_bp.route("/excluir_conta", methods=["POST"])
+def excluir_conta():
+    if "usuario_id" not in session:
+        flash("Você precisa estar logado para excluir sua conta.")
+        return redirect(url_for("auth.login"))
+
+    user_id = session["usuario_id"]
+
+    sucesso = usuario_model.excluir_usuario(user_id)
+
+    if sucesso:
+        session.clear()
+        flash("Conta excluída com sucesso!")
+        return redirect(url_for("auth.login"))
+    else:
+        flash("Erro ao excluir a conta ou usuário não encontrado.")
+        return redirect(url_for("configuracoes"))
 
 
 # ROTA DE LOGOUT

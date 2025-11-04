@@ -76,7 +76,7 @@
           </div>
 
           <hr>
-          <H3>AREA DE RISCO</H3>
+          <H3>AREA DE RISCO </H3>
 
           <div class="danger-zone">
             <div>
@@ -85,10 +85,7 @@
               <button type="button" class="danger">Limpar dados</button>
             </div>
             <div>
-              <h4>Excluir Conta</h4>
-              <p>Atenção: ao excluir, todo o seu progresso será perdido e não poderá ser recuperado.</p>
-              <button type="button" class="danger">Excluir conta</button>
-            </div>
+              
           </div>
 
           <div class="form-actions">
@@ -96,6 +93,14 @@
             <button type="submit" class="success">Salvar as alterações</button>
           </div>
         </form>
+
+        <form method="POST" action="{{ url_for('auth.excluir_conta') }}" onsubmit="return confirm('Tem certeza que deseja excluir sua conta?')">
+              
+              <h4>Excluir Conta</h4>
+              <p>Atenção: ao excluir, todo o seu progresso será perdido e não poderá ser recuperado.</p>
+               <button type="submit" name="confirmar" value="1">Excluir minha conta</button>
+            </div>
+            </form>
       </div>
     </div>
 
