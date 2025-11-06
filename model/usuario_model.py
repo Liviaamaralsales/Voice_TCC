@@ -1,11 +1,11 @@
 
 import pymysql
 
-# Configuração da conexão
+# Configuração da conexãoo
 db_config = {
     "host": "localhost",
     "user": "root",
-    "password": "",   # ⚠️ Coloque sua senha do MySQL aqui
+    "password": "",   # ⚠ Coloque sua senha do MySQL aqui
     "database": "voice",
     "cursorclass": pymysql.cursors.DictCursor
 }
@@ -52,3 +52,16 @@ def buscar_usuario_por_email(email):
             return cursor.fetchone()
     finally:
         conn.close()
+
+
+  # ou onde quer que esteja sua função get_db_connection()
+
+def excluir_usuario(user_id):
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("DELETE FROM usuarios WHERE id = %s", (user_id,))
+            conn.commit()
+            return cursor.rowcount > 0  # True se deletou alguma linha
+    finally:
+        conn.close()

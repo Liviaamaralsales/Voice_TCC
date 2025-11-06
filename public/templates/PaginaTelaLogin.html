@@ -27,13 +27,13 @@
 
 
     <div class="form-space">
-
-      <!-- Toggle tema -->
+      
+      <!-- Toggle temaa -->
       <div class="theme-toggle">
         <input type="checkbox" class="checkbox" id="chk" />
         <label class="label-theme" for="chk">
-          <img src="img/lua.png" class="icone-lua" alt="Lua">
-          <img src="img/sol.png" class="icone-sol" alt="Sol">
+          <img src="../static/assets/lua.png" class="icone-lua" alt="Lua">
+          <img src="../static/assets/sol.png" class="icone-sol" alt="Sol">
           <div class="ball"></div>
         </label>
       </div>
@@ -41,9 +41,9 @@
       <form action="{{ url_for('auth.login') }}" method="POST" class="box">
         <h2>ENTRAR</h2>
         <label class="label">Email:</label>
-        <input name="email" type="text" placeholder="digite seu email ou nome de usuário" class="input" />
+        <input name="email" type="text" placeholder="Digite seu email " class="input" />
         <label class="label">SENHA:</label>
-        <input name="senha" type="password" placeholder="digite sua senha" class="input" />
+        <input name="senha" type="password" placeholder="Digite sua senha" class="input" />
 
         <!-- Botão animado com SVG de digital -->
         <button type="submit" class="button-container" onclick="this.classList.toggle('active')">

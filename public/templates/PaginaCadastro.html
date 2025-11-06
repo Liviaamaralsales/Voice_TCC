@@ -16,8 +16,8 @@
             <div class="theme-toggle">
                 <input type="checkbox" class="checkbox" id="chk">
                 <label class="label-theme" for="chk">
-                    <img src="{{ url_for('static', filename='sol.png') }}" class="icone-sol" alt="Sol">
-                    <img src="{{ url_for('static', filename='lua.png') }}" class="icone-lua" alt="Lua">
+                    <img src="{{ url_for('static', filename='assets/sol.png') }}" class="icone-sol" alt="Sol">
+                    <img src="{{ url_for('static', filename='assets/lua.png') }}" class="icone-lua" alt="Lua">
                     <div class="ball"></div>
                 </label>
             </div>
@@ -25,7 +25,7 @@
             <div class="box large">
                 <h2>Cadastro</h2>
                 <form method="POST" action="{{ url_for('auth.cadastro') }}">
-                    <label class="label" for="email">E-mail</label>
+                    <label class="label" for="email"> E-mail</label>
                     <input class="input" type="email" name="email" id="email" required>
 
                     <label class="label" for="rm">RM</label>
