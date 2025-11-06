@@ -64,4 +64,4 @@ def excluir_usuario(user_id):
             conn.commit()
             return cursor.rowcount > 0  # True se deletou alguma linha
     finally:
-        conn.close()
+        conn.close()
