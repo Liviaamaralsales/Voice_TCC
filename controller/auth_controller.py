@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from model import usuario_model
 from functools import wraps
 
-auth_bp = Blueprint('auth', _name_)
+auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
