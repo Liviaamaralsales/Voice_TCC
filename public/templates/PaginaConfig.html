@@ -105,26 +105,41 @@
     </div>
 
     <!-- Bloco direito -->
-    <div class="config-right">
-      <div class="avatar">
-        <div class="avatar-img">
-          <img src="../static/assets/gaviao.png" alt="Avatar atual">
-        </div>
-        <h3>Character:</h3>
-        <div class="characters">
-          <div class="icon"><img src="../static/assets/gaviao.png" alt=""></div>
-          <div class="icon"><img src="../static/assets/jacare.png" alt=""></div>
-          <div class="icon"><img src="../static/assets/onca-pintada.png" alt=""></div>
-          <div class="icon"><img src="../static/assets/raposa.png" alt=""></div>
-          <div class="icon"><img src="../static/assets/tucano.png" alt=""></div>
-          <div class="icon"><img src="../static/assets/urso.png" alt=""></div>
-          <div class="icon"></div>
-          <div class="icon"></div>
-          <div class="icon"></div>
-        </div>
-      </div>
+<div class="config-right">
+  <div class="avatar">
+    <!-- Mostra o avatar atual do usuário -->
+    <div class="avatar-img">
+<img src="{{ url_for('static', filename='assets/' + (usuario_avatar or 'raposa.png')) }}" alt="Avatar atual">
     </div>
+
+    <h3>Escolha seu personagem:</h3>
+
+    <!-- Formulário para atualizar o avatar -->
+    <form action="{{ url_for('avatar.atualizar_avatar') }}" method="POST">
+      <div class="characters">
+        <button type="submit" name="avatar" value="gaviao.png" class="icon">
+          <img src="{{ url_for('static', filename='assets/gaviao.png') }}" alt="Gavião">
+        </button>
+        <button type="submit" name="avatar" value="jacare.png" class="icon">
+          <img src="{{ url_for('static', filename='assets/jacare.png') }}" alt="Jacaré">
+        </button>
+        <button type="submit" name="avatar" value="onca-pintada.png" class="icon">
+          <img src="{{ url_for('static', filename='assets/onca-pintada.png') }}" alt="Onça-pintada">
+        </button>
+        <button type="submit" name="avatar" value="raposa.png" class="icon">
+          <img src="{{ url_for('static', filename='assets/raposa.png') }}" alt="Raposa">
+        </button>
+        <button type="submit" name="avatar" value="tucano.png" class="icon">
+          <img src="{{ url_for('static', filename='assets/tucano.png') }}" alt="Tucano">
+        </button>
+        <button type="submit" name="avatar" value="urso.png" class="icon">
+          <img src="{{ url_for('static', filename='assets/urso.png') }}" alt="Urso">
+        </button>
+      </div>
+    </form>
   </div>
+</div>
+
 
   <nav class="bottom-navbar">
     <ul>

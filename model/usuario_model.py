@@ -65,3 +65,31 @@ def excluir_usuario(user_id):
             return cursor.rowcount > 0  # True se deletou alguma linha
     finally:
         conn.close()
+
+def atualizar_avatar(usuario_id, avatar):
+    """Atualiza o avatar do usuário."""
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "UPDATE usuarios SET avatar = %s WHERE id = %s",
+                (avatar, usuario_id)
+            )
+            conn.commit()
+    finally:
+        conn.close()
+
+
+def buscar_avatar(usuario_id):
+    """Busca o avatar do usuário pelo ID."""
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "SELECT avatar FROM usuarios WHERE id = %s",
+                (usuario_id)
+            )
+            result = cursor.fetchone()
+            return result["avatar"] if result else None
+    finally:
+        conn.close()
