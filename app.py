@@ -71,6 +71,10 @@ def configuracoes():
 
 @app.route("/classes")
 def classes():
+    return render_template("PaginaEscolhaClasse.html")
+
+@app.route("/video")
+def video():
     return render_template("PaginaClassVideo.html")
 
 

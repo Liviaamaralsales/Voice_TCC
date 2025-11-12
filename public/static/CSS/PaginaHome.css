@@ -1,6 +1,5 @@
 /* Fonte */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
-
 /* ---- Corpo ---- */
 body {
   font-family: 'Katibeh', cursive;
@@ -13,11 +12,9 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
-
 .teste{
   font-size: 2rem;
 }
-
 /* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
 .logo-button {
   position: fixed;
@@ -36,19 +33,16 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   z-index: 1002; /* acima de tudo */
 }
-
 .logo-button img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .logo-button:hover {
   transform: scale(1.07);
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
 }
-
 /* ---- Layout principal ---- */
 .principal {
   display: flex;
@@ -61,7 +55,6 @@ body {
   z-index: 2;
   position: relative;
 }
-
 /* ---- Botões ---- */
 .button-container {
   display: flex;
@@ -71,7 +64,6 @@ body {
   align-items: center;
   width: 500px;
 }
-
 .button {
   background-color: #8B5FBF;
   color: white;
@@ -84,25 +76,29 @@ body {
   cursor: pointer;
   border: none;
   transition: background-color 0.3s;
+  text-decoration: none; /* Remove o sublinhado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2; /* Ajusta o espaçamento vertical do texto */
+  box-sizing: border-box;
+  height: auto; /* Altura automática para se ajustar ao conteúdo */
 }
-
 .button:hover {
   background-color: #7a4fa0;
 }
-
 /* ---- Logo ---- */
 .logo-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-
 .logo-container img {
   width: clamp(150px, 30vw, 300px);
   height: auto;
   object-fit: contain;
 }
-
 /* ---- Container do calendário ---- */
 .calendario-container {
   background: linear-gradient(135deg, #8B5FBF, #6d4799);
@@ -112,7 +108,6 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   animation: borderGlow 2.5s infinite alternate;
 }
-
 /* ---- Animação da borda brilhante ---- */
 @keyframes borderGlow {
   from {
@@ -122,7 +117,6 @@ body {
     box-shadow: 0 0 15px #6E00B3, 0 0 20px #b06cff, 0 0 35px #9f01ff;
   }
 }
-
 /* ---- Calendário ---- */
 .calendario {
   width: clamp(200px, 50vw, 300px);
@@ -134,40 +128,33 @@ body {
   text-align: center;
   gap: 15px;
 }
-
 .calendario header {
   font-size: clamp(16px, 2vw, 20px);
   font-weight: 600;
   margin-bottom: 20px;
 }
-
 .weekdays,
 .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
 }
-
 .weekdays div {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
 }
-
 .days div {
   padding: 10px 0;
   border-radius: 50%;
   transition: 0.3s;
 }
-
 .days div:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-
 .today {
   background: #a678d1;
   font-weight: bold;
 }
-
 /* ---- Navbar inferior ---- */
 /* NAVBAR */
 .bottom-navbar {
@@ -188,7 +175,6 @@ body {
   transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
   z-index: 1001; /* Garante que fique acima de tudo */
 }
-
 .bottom-navbar ul {
   list-style: none;
   margin: 0;
@@ -197,13 +183,11 @@ body {
   width: 100%;
   justify-content: space-around; /* ícones igualmente espaçados */
 }
-
 .bottom-navbar li {
   margin: 0;
   display: flex;
   align-items: center;
 }
-
 /* Links */
 .bottom-navbar a {
   display: flex;
@@ -215,13 +199,11 @@ body {
   border-radius: 50px;
   transition: transform 0.4s ease;
 }
-
 /* Ícone sempre visível */
 .bottom-navbar a i {
   font-size: 20px;
   transition: transform 0.3s ease;
 }
-
 /* Texto inicialmente escondido */
 .bottom-navbar a span {
   font-size: 15px;
@@ -232,20 +214,17 @@ body {
   white-space: nowrap;
   transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
 }
-
 /* Hover: barra expande */
 .bottom-navbar:hover {
   width: 70%;
   padding: 10px 20px;
 }
-
 /* Hover: texto aparece */
 .bottom-navbar:hover a span {
   opacity: 1;
   width: auto;
   transform: translateX(0);
 }
-
 /* Efeito cascata para os spans */
 .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
 .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
@@ -254,8 +233,6 @@ body {
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
-
-
 /* ---- ONDAS (mantidas como estão no seu código original) ---- */
 .wave {
   position: fixed;
@@ -267,7 +244,6 @@ body {
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
-
 .wave span {
   position: absolute;
   width: 360vh;
@@ -276,25 +252,21 @@ body {
   left: 50%;
   transform: translate(-50%, -75%);
 }
-
 .wave span:nth-child(1) {
   border-radius: 45%;
   background: rgba(255, 255, 255, 0.5);
   animation: animate 5s linear infinite;
 }
-
 .wave span:nth-child(2) {
   border-radius: 40%;
   background: rgba(255, 255, 255, 0.4);
   animation: animate 10s linear infinite;
 }
-
 .wave span:nth-child(3) {
   border-radius: 42.5%;
   background: rgba(255, 255, 255, 0.3);
   animation: animate 15s linear infinite;
 }
-
 @keyframes animate {
   0% {
     transform: translate(-50%, -75%) rotate(0deg);
@@ -303,38 +275,31 @@ body {
     transform: translate(-50%, -75%) rotate(180deg);
   }
 }
-
 /* ---- MEDIA QUERIES ---- */
 @media (max-width: 1024px) {
   .principal {
     flex-direction: column;
     text-align: center;
   }
-
   .button-container {
     padding: 20px 0;
   }
-
   .logo-container img {
     width: 220px;
   }
 }
-
 @media (max-width: 600px) {
   body {
     font-size: 16px;
   }
-
   .button {
     font-size: 30px;
     width: 80%;
     padding: 25px;
   }
-
   .calendario {
     width: 90%;
   }
-
   .bottom-navbar {
     width: 95%;
     border-radius: 40px;

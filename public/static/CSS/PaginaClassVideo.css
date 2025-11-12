@@ -1,11 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Katibeh', cursive;
     background-color: #E2D4F0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow-x: hidden;
 }
 
 .container {
@@ -15,197 +16,207 @@ body {
     max-width: 900px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .header {
     background-color: #8140C8;
     color: white;
-    padding: 15px;
+    padding: 20px;
     margin: 0;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
+    font-family: 'Katibeh', cursive;
 }
 
 .video-container {
-    padding: 50px;
+    padding: 30px;
     background-color: white;
+    display: flex;
+    justify-content: center;
 }
 
 .video-container video {
-    width: 100%;
-    border-radius: 2px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .finish-button {
     background-color: #511D70;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 50px;
     cursor: pointer;
-    width: 120px;
+    width: fit-content;
     display: block;
-    margin: 0 50px 18px auto;
+    margin: 20px auto;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Katibeh', cursive;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
+.finish-button:hover {
+    background-color: #6a3d9a;
+}
 
 /* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
 .logo-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: white;
-  border: 3px solid #8a2be2; /* borda roxa */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1002; /* acima de tudo */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    border: 3px solid #8a2be2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1002;
 }
 
 .logo-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .logo-button:hover {
-  transform: scale(1.07);
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
+    transform: scale(1.07);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
 }
-
-
-
 
 /* ================== FUNDO ANIMADO ================== */
 .wave-container {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .wave {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: #9c65f5;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #9c65f5;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .wave span {
-  position: absolute;
-  width: 360vh;
-  height: 360vh;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -75%);
-  border-radius: 45%;
-  background: rgba(255, 255, 255, 0.5);
-  animation: animate 5s linear infinite;
+    position: absolute;
+    width: 360vh;
+    height: 360vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -75%);
+    border-radius: 45%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: animate 5s linear infinite;
 }
 
 .wave span:nth-child(2) {
-  border-radius: 40%;
-  background: rgba(255, 255, 255, 0.4);
-  animation: animate 10s linear infinite;
+    border-radius: 40%;
+    background: rgba(255, 255, 255, 0.4);
+    animation: animate 10s linear infinite;
 }
 
 .wave span:nth-child(3) {
-  border-radius: 42.5%;
-  background: rgba(255, 255, 255, 0.3);
-  animation: animate 15s linear infinite;
+    border-radius: 42.5%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: animate 15s linear infinite;
 }
 
 @keyframes animate {
-  0% { transform: translate(-50%, -75%) rotate(0deg); }
-  100% { transform: translate(-50%, -75%) rotate(180deg); }
+    0% { transform: translate(-50%, -75%) rotate(0deg); }
+    100% { transform: translate(-50%, -75%) rotate(180deg); }
 }
 
-
-
-
 /* ================== BOTTOM NAVBAR ================== */
-
 .bottom-navbar {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  width: 400px;
-  padding: 10px 0;
-  border-radius: 50px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
-  z-index: 1001;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    width: 400px;
+    padding: 10px 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
+    z-index: 1001;
 }
 
 .bottom-navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }
 
 .bottom-navbar li {
-  margin: 0;
-  display: flex;
-  align-items: center;
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 .bottom-navbar a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-  border-radius: 50px;
-  transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 50px;
+    transition: transform 0.4s ease;
 }
 
 .bottom-navbar a i {
-  font-size: 20px;
-  transition: transform 0.3s ease;
+    font-size: 20px;
+    transition: transform 0.3s ease;
 }
 
 .bottom-navbar a span {
-  opacity: 0;
-  width: 0px;
-  transform: translateX(-10px);
-  margin-left: 8px;
-  white-space: nowrap;
-  transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    opacity: 0;
+    width: 0px;
+    transform: translateX(-10px);
+    margin-left: 8px;
+    white-space: nowrap;
+    transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
 }
 
 .bottom-navbar:hover {
-  width: 70%;
-  padding: 10px 20px;
+    width: 70%;
+    padding: 10px 20px;
 }
 
 .bottom-navbar:hover a span {
-  opacity: 1;
-  width: auto;
-  transform: translateX(0);
+    opacity: 1;
+    width: auto;
+    transform: translateX(0);
 }
 
 .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
@@ -214,4 +225,3 @@ body {
 .bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
-.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }

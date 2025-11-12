@@ -186,7 +186,48 @@
             </a>
         </li>
     </ul>
-  </nav>
+  </nav>  <!-- navbar -->
+
+       <nav class="bottom-navbar">
+    <ul>
+        <li>
+            <a href="{{ url_for('home') }}">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Início</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('classes') }}">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span class="nav-text">Classes</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('activities') }}">
+                <i class="fas fa-running"></i>
+                <span class="nav-text">Activities</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('games') }}">
+                <i class="fas fa-gamepad"></i>
+                <span class="nav-text">Games</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('configuracoes') }}">
+                <i class="fas fa-cog"></i>
+                <span class="nav-text">Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('apoiadores') }}">
+                <i class="fas fa-life-ring"></i>
+                <span class="nav-text">Apoio</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
   <script src="../static/JS/PaginaConfig.js"></script>
 </body>

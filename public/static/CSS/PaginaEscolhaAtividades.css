@@ -4,11 +4,13 @@ body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;
+  min-height: 100vh;
   position: relative;
-  top: -60px; /* move container pra cima */
-  overflow: hidden;
+  padding-bottom: 120px; /* espaço para a navbar */
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0;
 }
 
 /* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
@@ -24,10 +26,10 @@ body {
   border-radius: 50%;
   overflow: hidden;
   background-color: white;
-  border: 3px solid #8a2be2; /* borda roxa */
+  border: 3px solid #8a2be2;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1002; /* acima de tudo */
+  z-index: 1002;
 }
 
 .logo-button img {
@@ -44,22 +46,20 @@ body {
 
 /* ================== CONTAINER ================== */
 .container {
-    position: relative;
-    top: -80px;
-    background: rgba(255, 255, 255, 0.05); /* vidro embaçado */
-    border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-    border: 1px solid rgba(255, 255, 255, 1);
-
-    padding: 60px;
-    width: 1000px;
-    text-align: center;
-    color: #000;
-
-    transform: scale(1.25); /* aumenta só o container */
-    transform-origin: center top;
+  position: relative;
+  top: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 60px;
+  width: 1000px;
+  text-align: center;
+  color: #000;
+  transform: scale(1.15);
+  transform-origin: center top;
 }
 
 /* ================== TÍTULO ================== */
@@ -121,17 +121,6 @@ h1 {
   font-size: 18px;
   color: #555;
   margin-top: 8px;
-}
-
-/* Cards bloqueados */
-.card.locked {
-  background-color: #bbaaf9;
-  color: #fff;
-}
-
-.lock {
-  font-size: 50px;
-  margin-bottom: 15px;
 }
 
 /* Card com imagem à direita */
@@ -210,9 +199,7 @@ h1 {
   100% { transform: translate(-50%, -75%) rotate(180deg); }
 }
 
-
 /* ================== BOTTOM NAVBAR ================== */
-
 .bottom-navbar {
   position: fixed;
   bottom: 20px;
@@ -290,5 +277,28 @@ h1 {
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
 
+/* ================== RESPONSIVIDADE ================== */
+@media (max-width: 1024px) {
+  .container {
+    width: 90%;
+    transform: none;
+  }
 
-/* ================== espaço para deixar responsivo ================== */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-navbar {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+}
