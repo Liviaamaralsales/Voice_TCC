@@ -10,7 +10,7 @@ chatbot_bp = Blueprint('chatbot', __name__, template_folder='../public/templates
 genai.configure(api_key="AIzaSyAlPlQTdYzuJoRsqLZb5ec1dEAH0i2ABA0")
 
 # Inicializa o modelo Gemini 2.5 Flash
-model = genai.GenerativeModel(model_name="gemini-2.5-flash")
+model = genai.GenerativeModel(model_name="gemini-2.0-flash")
 
 # Função de tradução com API gratuita Lingva
 def traduzir_lingva(texto, source_lang, target_lang):
