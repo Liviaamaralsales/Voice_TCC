@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/PaginaRecuperarSenha.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Katibeh&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Botão chat -->
+    <a href="{{ url_for('chatbot.chat') }}" class="logo-button">
+        <img src="{{ url_for('static', filename='assets/botao-chat.jpeg') }}" alt="Chat" />
+    </a>
+
+    <!-- Fundo animado -->
+    <div class="wave-container">
+        <div class="wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            Recuperar Senha
+        </div>
+        <form class="form-container">
+            <p class="instruction">Digite seu e-mail para receber um link de recuperação:</p>
+            <input type="email" class="email-input" placeholder="Seu e-mail" required>
+            <a href="{{ url_for('redefinir_senha') }}" class="recover-button">Enviar Link</a>
+            <p class="login-link">Lembrou a senha? <a href="{{ url_for('index') }}">Faça login aqui</a>.</p>
+        </form>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bottom-navbar">
+        <ul>
+            <li>
+                <a href="{{ url_for('index') }}">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Início</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('classes') }}">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="nav-text">Classes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('activities') }}">
+                    <i class="fas fa-running"></i>
+                    <span class="nav-text">Activities</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('games') }}">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="nav-text">Games</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('configuracoes') }}">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="nav-text">Perfil</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('apoiadores') }}">
+                    <i class="fas fa-life-ring"></i>
+                    <span class="nav-text">Apoio</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
