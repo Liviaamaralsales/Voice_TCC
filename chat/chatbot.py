@@ -7,7 +7,7 @@ import requests
 chatbot_bp = Blueprint('chatbot', __name__, template_folder='../public/templates')
 
 # Configuração da chave da API
-genai.configure(api_key="AIzaSyBTwbdMooHgSjmgTK0M2e_8DTr6PxIrhGk")
+genai.configure(api_key="AIzaSyAlPlQTdYzuJoRsqLZb5ec1dEAH0i2ABA0")
 
 # Inicializa o modelo Gemini 2.5 Flash
 model = genai.GenerativeModel(model_name="gemini-2.5-flash")

@@ -21,3 +21,7 @@ BD:
 @login_required
 def configuracoes():
     return render_template("PaginaConfig.html")
+
+
+
+    chave api:"AIzaSyAlPlQTdYzuJoRsqLZb5ec1dEAH0i2ABA0"
