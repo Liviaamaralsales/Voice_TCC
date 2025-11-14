@@ -110,6 +110,13 @@ def jogo_memoria():
 def jogo_formar_frase():
     return render_template("PaginaJogoFormarFrase.html")
 
+@app.route("/jogo-vocabulario")
+@login_required
+def jogo_vocabulario():
+    return render_template("PaginaJogoVocabulario.html")
+
+
+
 # ----------------- Pagina Escolhas -----------------
 @app.route("/activities")
 @login_required

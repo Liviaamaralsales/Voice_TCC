@@ -1,4 +1,4 @@
-/* ===== RESET E CONFIGURAÇÕES GLOBAIS ===== */
+/* Reset e full screen */
 html, body {
   font-family: 'Katibeh', cursive;
   font-size: 30px;
@@ -11,19 +11,17 @@ html, body {
   align-items: center;
   transition: background 0.2s linear, color 0.2s linear;
 }
-
-/* ===== TEMA CLARO/ESCURO ===== */
+/* Tema Claro (padrão) */
 body.light {
   background: white;
   color: black;
 }
-
+/* Tema Escuro */
 body.dark {
   background: #121212;
   color: white;
 }
-
-/* ===== CONTAINER PRINCIPAL ===== */
+/* Container principal */
 .container {
   display: flex;
   width: 80vw;
@@ -32,8 +30,7 @@ body.dark {
   border-radius: 20px;
   overflow: hidden;
 }
-
-/* ===== ESPAÇO DA IMAGEM ===== */
+/* Espaço da imagem */
 .image-space {
   flex: 1;
   background: rgba(255, 255, 255, 0.09);
@@ -44,25 +41,19 @@ body.dark {
   justify-content: center;
   align-items: center;
 }
-
-/* ===== ESPAÇO DO FORMULÁRIO COM SCROLL ===== */
+/* Espaço do formulário */
 .form-space {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start; 
+  align-items: center;
   background: #7a5df1;
   position: relative;
-  overflow-y: auto; 
-  max-height: 80vh; 
-  padding: 20px 0; 
 }
 body.dark .form-space {
   background: #744E9D;
 }
-
-
-/* ===== CAIXA DO FORMULÁRIO ===== */
+/* Caixa do formulário */
 .box {
   background: #7a5df1;
   border-radius: 20px;
@@ -71,15 +62,13 @@ body.dark .form-space {
   max-width: 400px;
   box-sizing: border-box;
 }
-
 body.dark .box {
   background: #744E9D;
   color: white;
 }
-
-/* ===== TÍTULO ===== */
+/* Título */
 h2 {
-  color: black;
+  color: white;
   margin-bottom: 20px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -87,21 +76,19 @@ h2 {
   justify-content: center;
   align-items: center;
 }
-
 body.dark h2 {
   color: white;
 }
-
-/* ===== LABELS ===== */
+/* Labels */
 .label {
+  color: white;
   display: block;
   text-align: left;
   margin: 12px 0 6px 4px;
-  font-weight: bold;
+  font-weight: semi-bold;
   font-size: 20px;
 }
-
-/* ===== INPUTS ===== */
+/* Inputs */
 .input {
   width: 100%;
   padding: 12px 15px;
@@ -113,58 +100,22 @@ body.dark h2 {
   margin-bottom: 15px;
   transition: box-shadow 0.3s ease;
 }
-
 .input:focus {
   box-shadow: 0 0 8px #3d1ce4;
 }
-
-/* ===== CONTAINER DO CAMPO DE SENHA ===== */
-.password-container {
-  position: relative;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.password-container .input {
-  width: 100%;
-  padding: 12px 45px 12px 15px !important;
-  border: none;
-  border-radius: 20px;
-  font-size: 14px;
-  box-sizing: border-box;
-  outline: none;
-}
-
-/* ===== BOTÃO DE ALTERNAR SENHA ===== */
-.toggle-password {
-  position: absolute;
-  right: 2px;
-  top: 40%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  color: #555;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5px;
-}
-
-/* ===== BOTÃO DE TROCA DE TEMA ===== */
+/* Botão de troca de tema */
 .theme-toggle {
   position: absolute;
   top: 15px;
   right: 25px;
   z-index: 100;
 }
-
+/* Esconde o checkbox original */
 .checkbox {
   opacity: 0;
   position: absolute;
 }
-
+/* Estilo da área do interruptor */
 .label-theme {
   background-color: #111;
   border-radius: 50px;
@@ -178,7 +129,7 @@ body.dark h2 {
   width: 60px;
   box-sizing: border-box;
 }
-
+/* Ícones do sol e lua em lados opostos */
 .label-theme img {
   width: 16px;
   height: 16px;
@@ -186,15 +137,15 @@ body.dark h2 {
   opacity: 0.4;
   transition: opacity 0.3s ease;
 }
-
+/* Destacar a lua no modo escuro */
 body.dark .icone-lua {
   opacity: 1;
 }
-
+/* Destacar o sol no modo claro */
 body.light .icone-sol {
   opacity: 1;
 }
-
+/* Bolinha do botão */
 .label-theme .ball {
   background-color: white;
   border-radius: 50%;
@@ -206,12 +157,11 @@ body.light .icone-sol {
   transform: translateX(0px);
   transition: transform 0.3s ease;
 }
-
+/* Move a bolinha para a direita quando checado */
 .checkbox:checked + .label-theme .ball {
   transform: translateX(30px);
 }
-
-/* ===== BOTÃO DE LOGIN ===== */
+/* Estilo do botão de login */
 .button-container {
   align-items: center;
   background: #000;
@@ -224,7 +174,6 @@ body.light .icone-sol {
   width: 200px;
   margin: 20px auto;
 }
-
 .button-container .text {
   color: white;
   position: absolute;
@@ -232,7 +181,6 @@ body.light .icone-sol {
   user-select: none;
   -moz-user-select: none;
 }
-
 .button-container .fingerprint {
   left: -8px;
   opacity: 0;
@@ -241,83 +189,67 @@ body.light .icone-sol {
   top: -9px;
   transition: opacity 1ms;
 }
-
 .button-container .fingerprint-active {
   stroke: #fff;
 }
-
 .button-container .fingerprint-out {
   opacity: 1;
 }
-
 .button-container .odd {
   stroke-dasharray: 0px 50px;
   stroke-dashoffset: 1px;
   transition: stroke-dasharray 1ms;
 }
-
 .button-container .even {
   stroke-dasharray: 50px 50px;
   stroke-dashoffset: -41px;
   transition: stroke-dashoffset 1ms;
 }
-
 .button-container .ok {
   opacity: 0;
 }
-
 .button-container.active {
   animation: 6s Container;
 }
-
 .button-container.active .text {
   opacity: 0;
   animation: 6s Text forwards;
 }
-
 .button-container.active .fingerprint {
   opacity: 1;
   transition: opacity 300ms 200ms;
 }
-
 .button-container.active .fingerprint-base .odd {
   stroke-dasharray: 50px 50px;
   transition: stroke-dasharray 800ms 100ms;
 }
-
 .button-container.active .fingerprint-base .even {
   stroke-dashoffset: 0px;
   transition: stroke-dashoffset 800ms;
 }
-
 .button-container.active .fingerprint-active .odd {
   stroke-dasharray: 50px 50px;
   transition: stroke-dasharray 2000ms 1500ms;
 }
-
 .button-container.active .fingerprint-active .even {
   stroke-dashoffset: 0px;
   transition: stroke-dashoffset 2000ms 1300ms;
 }
-
 .button-container.active .fingerprint-out {
   opacity: 0;
   transition: opacity 300ms 4100ms;
 }
-
 .button-container.active .ok {
   opacity: 1;
   animation: 6s Ok forwards;
 }
-
-/* ===== EFEITO DE FLUTUAÇÃO DA LOGO ===== */
+/* Efeito de flutuação da logo */
 .floating-logo {
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 70%;
+  max-height: 70%;
   position: relative;
   animation: float 3s ease-in-out infinite;
 }
-
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -329,8 +261,7 @@ body.light .icone-sol {
     transform: translateY(0);
   }
 }
-
-/* ===== BOTÃO DE LOGIN COM GOOGLE ===== */
+/* Botão Google */
 .btn-google {
   width: 65%;
   display: flex;
@@ -348,18 +279,15 @@ body.light .icone-sol {
   color: #444;
   border: 2px solid #ccc;
 }
-
 .btn-google:hover {
   background: #f0f0f0;
   border-color: #888;
 }
-
 .google-icon {
   width: 40px;
   height: 20px;
 }
-
-/* ===== TEXTO DE CADASTRO ===== */
+/* Texto de cadastro */
 .signup-text {
   margin-top: 15px;
   font-size: 14px;
@@ -367,22 +295,19 @@ body.light .icone-sol {
   text-align: center;
   font-size: 18px;
 }
-
 .signup-link {
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: semi-bold;
   margin-left: 4px;
   transition: 0.3s;
   font-size: 18px;
 }
-
 .signup-link:hover {
   text-decoration: underline;
   color: black;
 }
-
-/* ===== DIVISOR ===== */
+/* Divisor */
 .divider {
   display: flex;
   align-items: center;
@@ -394,11 +319,9 @@ body.light .icone-sol {
   user-select: none;
   color: black;
 }
-
 body.dark .divider {
   color: white;
 }
-
 .divider::before,
 .divider::after {
   content: "";
@@ -406,56 +329,48 @@ body.dark .divider {
   border-bottom: 1px solid #ccc;
   margin: 0 10px;
 }
-
-/* ===== ONDAS DE FUNDO ===== */
+/* ---- Ondas de fundo ---- */
 .wave {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #9c65f5;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-  z-index: -1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #9c65f5;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    z-index: -1;
 }
-
 .wave span {
-  position: absolute;
-  width: 360vh;
-  height: 360vh;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -75%);
+    position: absolute;
+    width: 360vh;
+    height: 360vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -75%);
 }
-
 .wave span:nth-child(1) {
-  border-radius: 45%;
-  background: rgba(255, 255, 255, 0.5);
-  animation: animate 5s linear infinite;
+    border-radius: 45%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: animate 5s linear infinite;
 }
-
 .wave span:nth-child(2) {
-  border-radius: 40%;
-  background: rgba(255, 255, 255, 0.4);
-  animation: animate 10s linear infinite;
+    border-radius: 40%;
+    background: rgba(255, 255, 255, 0.4);
+    animation: animate 10s linear infinite;
 }
-
 .wave span:nth-child(3) {
-  border-radius: 42.5%;
-  background: rgba(255, 255, 255, 0.3);
-  animation: animate 15s linear infinite;
+    border-radius: 42.5%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: animate 15s linear infinite;
 }
-
 @keyframes animate {
-  0% {
-    transform: translate(-50%, -75%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -75%) rotate(180deg);
-  }
+    0% {
+        transform: translate(-50%, -75%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -75%) rotate(180deg);
+    }
 }
-
-/* ===== ANIMAÇÕES DO BOTÃO ===== */
 @keyframes Container {
   0% { width: 200px }
   6% { width: 80px }
@@ -465,14 +380,12 @@ body.dark .divider {
   94% { width: 80px }
   100% { width: 200px }
 }
-
 @keyframes Text {
   0% { opacity: 1; transform: scale(1); }
   6% { opacity: 0; transform: scale(0.5); }
   94% { opacity: 0; transform: scale(0.5); }
   100% { opacity: 1; transform: scale(1); }
 }
-
 @keyframes Ok {
   0% { opacity: 0 }
   70% { opacity: 0; transform: scale(0); }
@@ -483,14 +396,22 @@ body.dark .divider {
   100% { opacity: 0 }
 }
 
-/* ===== NAVBAR ===== */
+
+/* Fundo das ondas no tema escuro */
+/* Tema Escuro */
+body.dark {
+  background: #000; /* fundo totalmente preto */
+  color: white;
+}
+
+/* NAVBAR */
 .bottom-navbar {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   background: white;
-  width: 400px;
+  width: 400px; /* Barra fechada */
   padding: 10px 0;
   border-radius: 50px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
@@ -499,7 +420,7 @@ body.dark .divider {
   align-items: center;
   overflow: hidden;
   transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
-  z-index: 1001;
+  z-index: 1001; /* Garante que fique acima de tudo */
 }
 
 .bottom-navbar ul {
@@ -508,7 +429,7 @@ body.dark .divider {
   padding: 0;
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-around; /* ícones igualmente espaçados */
 }
 
 .bottom-navbar li {
@@ -517,6 +438,7 @@ body.dark .divider {
   align-items: center;
 }
 
+/* Links */
 .bottom-navbar a {
   display: flex;
   align-items: center;
@@ -528,11 +450,13 @@ body.dark .divider {
   transition: transform 0.4s ease;
 }
 
+/* Ícone sempre visível */
 .bottom-navbar a i {
   font-size: 20px;
   transition: transform 0.3s ease;
 }
 
+/* Texto inicialmente escondido */
 .bottom-navbar a span {
   opacity: 0;
   width: 0px;
@@ -542,17 +466,20 @@ body.dark .divider {
   transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
 }
 
+/* Hover: barra expande */
 .bottom-navbar:hover {
   width: 70%;
   padding: 10px 20px;
 }
 
+/* Hover: texto aparece */
 .bottom-navbar:hover a span {
   opacity: 1;
   width: auto;
   transform: translateX(0);
 }
 
+/* Efeito cascata para os spans */
 .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
 .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
 .bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
@@ -560,6 +487,3 @@ body.dark .divider {
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
-
-
-

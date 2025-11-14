@@ -1,4 +1,4 @@
-/* ===== RESET E CONFIGURAÇÕES GLOBAIS ===== */
+/* Reset e full screen */
 html, body {
   font-family: 'Katibeh', cursive;
   font-size: 30px;
@@ -11,31 +11,33 @@ html, body {
   align-items: center;
   transition: background 0.2s linear, color 0.2s linear;
 }
-
-/* ===== TEMA CLARO/ESCURO ===== */
+/* Tema Claro (padrão) */
 body.light {
   background: white;
   color: black;
 }
-
+/* Tema Escuro */
 body.dark {
   background: #121212;
   color: white;
 }
-
-/* ===== CONTAINER PRINCIPAL ===== */
+/* Container principal */
 .container {
   display: flex;
-  width: 80vw;
-  height: 80vh;
+  /* AJUSTE: Aumenta a largura e altura em relação à viewport, mas adiciona limites máximos. */
+  width: 90vw;
+  height: 90vh;
+  max-width: 1200px; /* Limite máximo para telas grandes */
+  max-height: 800px; /* Limite máximo para telas grandes */
   box-shadow: 0 0 15px rgba(122, 93, 241, 0.6);
   border-radius: 20px;
   overflow: hidden;
+  flex-direction: row; /* Padrão: Imagem ao lado do formulário */
 }
-
-/* ===== ESPAÇO DA IMAGEM ===== */
+/* Espaço da imagem */
 .image-space {
   flex: 1;
+  min-width: 300px; /* Garante um tamanho mínimo se houver espaço */
   background: rgba(255, 255, 255, 0.09);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5.6px);
@@ -44,35 +46,47 @@ body.dark {
   justify-content: center;
   align-items: center;
 }
-
-/* ===== ESPAÇO DO FORMULÁRIO ===== */
+/* Espaço do formulário - ADICIONADO ROLAGEM AQUI */
 .form-space {
   flex: 1;
+  min-width: 300px;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Altere para flex-start para permitir o scroll */
+  /* AJUSTE: Em telas grandes, centraliza o formulário verticalmente. */
+  align-items: center; 
   background: #7a5df1;
   position: relative;
-  overflow-y: auto; /* Adicione o scroll vertical */
-  max-height: 80vh; /* Defina uma altura máxima para o container */
-  padding: 20px 0; /* Adicione um padding para evitar que o conteúdo grude nas bordas */
+  
+  /* ADIÇÃO DE ROLAGEM: Permite rolagem vertical se o conteúdo for maior que a altura do container */
+  overflow-y: auto; 
+  /* AJUSTE: Padding vertical para evitar que a rolagem corte o formulário diretamente nas bordas do container. */
+  padding: 20px 0; 
 }
-
-/* ===== CAIXA DO FORMULÁRIO ===== */
+body.dark .form-space {
+  background: #744E9D;
+}
+/* Caixa do formulário */
 .box {
   background: #7a5df1;
   border-radius: 20px;
   padding: 30px 25px;
-  width: 100%;
+  /* AJUSTE: Define a largura como porcentagem para melhor adaptação */
+  width: 90%; 
   max-width: 450px;
   box-sizing: border-box;
-  margin: 0 auto; /* Centralize o box */
+  /* AJUSTE: Centraliza o formulário horizontalmente dentro do form-space */
+  margin: auto; 
 }
-
-
-/* ===== TÍTULO ===== */
+.box.large {
+  max-width: 450px;
+}
+body.dark .box {
+  background: #744E9D;
+  color: white;
+}
+/* Título */
 h2 {
-  color: black;
+  color: white;
   margin-bottom: 20px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -80,21 +94,19 @@ h2 {
   justify-content: center;
   align-items: center;
 }
-
 body.dark h2 {
   color: white;
 }
-
-/* ===== LABELS ===== */
+/* Labels */
 .label {
+color: white;
   display: block;
   text-align: left;
   margin: 12px 0 6px 4px;
-  font-weight: bold;
+  font-weight: semi-bold;
   font-size: 20px;
 }
-
-/* ===== INPUTS ===== */
+/* Inputs */
 .input {
   width: 100%;
   padding: 12px 15px;
@@ -106,58 +118,22 @@ body.dark h2 {
   margin-bottom: 15px;
   transition: box-shadow 0.3s ease;
 }
-
 .input:focus {
   box-shadow: 0 0 8px #3d1ce4;
 }
-
-/* ===== CONTAINER DO CAMPO DE SENHA ===== */
-.password-container {
-  position: relative;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.password-container .input {
-  width: 100%;
-  padding: 12px 45px 12px 15px !important;
-  border: none;
-  border-radius: 20px;
-  font-size: 14px;
-  box-sizing: border-box;
-  outline: none;
-}
-
-/* ===== BOTÃO DE ALTERNAR SENHA ===== */
-.toggle-password {
-  position: absolute;
-  right: 2px;
-  top: 40%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  color: #555;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5px;
-}
-
-/* ===== BOTÃO DE TROCA DE TEMA ===== */
+/* Botão de troca de tema */
 .theme-toggle {
   position: absolute;
   top: 15px;
   right: 25px;
   z-index: 100;
 }
-
+/* Esconde o checkbox original */
 .checkbox {
   opacity: 0;
   position: absolute;
 }
-
+/* Estilo da área do interruptor */
 .label-theme {
   background-color: #111;
   border-radius: 50px;
@@ -171,7 +147,7 @@ body.dark h2 {
   width: 60px;
   box-sizing: border-box;
 }
-
+/* Ícones do sol e lua em lados opostos */
 .label-theme img {
   width: 16px;
   height: 16px;
@@ -179,15 +155,15 @@ body.dark h2 {
   opacity: 0.4;
   transition: opacity 0.3s ease;
 }
-
+/* Destacar a lua no modo escuro */
 body.dark .icone-lua {
   opacity: 1;
 }
-
+/* Destacar o sol no modo claro */
 body.light .icone-sol {
   opacity: 1;
 }
-
+/* Bolinha do botão */
 .label-theme .ball {
   background-color: white;
   border-radius: 50%;
@@ -199,12 +175,11 @@ body.light .icone-sol {
   transform: translateX(0px);
   transition: transform 0.3s ease;
 }
-
+/* Move a bolinha para a direita quando checado */
 .checkbox:checked + .label-theme .ball {
   transform: translateX(30px);
 }
-
-/* ===== BOTÃO DE CADASTRO ===== */
+/* Estilo do botão de cadastro */
 .button-container {
   align-items: center;
   background: #000;
@@ -217,7 +192,6 @@ body.light .icone-sol {
   width: 200px;
   margin: 20px auto;
 }
-
 .button-container .text {
   color: white;
   position: absolute;
@@ -225,7 +199,6 @@ body.light .icone-sol {
   user-select: none;
   -moz-user-select: none;
 }
-
 .button-container .fingerprint {
   left: -8px;
   opacity: 0;
@@ -234,96 +207,79 @@ body.light .icone-sol {
   top: -9px;
   transition: opacity 1ms;
 }
-
 .button-container .fingerprint-active {
   stroke: #fff;
 }
-
 .button-container .fingerprint-out {
   opacity: 1;
 }
-
 .button-container .odd {
   stroke-dasharray: 0px 50px;
   stroke-dashoffset: 1px;
   transition: stroke-dasharray 1ms;
 }
-
 .button-container .even {
   stroke-dasharray: 50px 50px;
   stroke-dashoffset: -41px;
   transition: stroke-dashoffset 1ms;
 }
-
 .button-container .ok {
   opacity: 0;
 }
-
 .button-container.active {
   animation: 6s Container;
 }
-
 .button-container.active .text {
   opacity: 0;
   animation: 6s Text forwards;
 }
-
 .button-container.active .fingerprint {
   opacity: 1;
   transition: opacity 300ms 200ms;
 }
-
 .button-container.active .fingerprint-base .odd {
   stroke-dasharray: 50px 50px;
   transition: stroke-dasharray 800ms 100ms;
 }
-
 .button-container.active .fingerprint-base .even {
   stroke-dashoffset: 0px;
   transition: stroke-dashoffset 800ms;
 }
-
 .button-container.active .fingerprint-active .odd {
   stroke-dasharray: 50px 50px;
   transition: stroke-dasharray 2000ms 1500ms;
 }
-
 .button-container.active .fingerprint-active .even {
   stroke-dashoffset: 0px;
   transition: stroke-dashoffset 2000ms 1300ms;
 }
-
 .button-container.active .fingerprint-out {
   opacity: 0;
   transition: opacity 300ms 4100ms;
 }
-
 .button-container.active .ok {
   opacity: 1;
   animation: 6s Ok forwards;
 }
-
-/* ===== EFEITO DE FLUTUAÇÃO DA LOGO ===== */
+/* Efeito de flutuação da logo */
 .floating-logo {
   max-width: 50%;
   max-height: 50%;
   position: relative;
   animation: float 3s ease-in-out infinite;
 }
-
 @keyframes float {
   0% {
-    transform: translateY(0);
+      transform: translateY(0);
   }
   50% {
-    transform: translateY(-15px);
+      transform: translateY(-15px);
   }
   100% {
-    transform: translateY(0);
+      transform: translateY(0);
   }
 }
-
-/* ===== ONDAS DE FUNDO ===== */
+/* ---- Ondas de fundo ---- */
 .wave {
   position: fixed;
   left: 0;
@@ -334,7 +290,6 @@ body.light .icone-sol {
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
-
 .wave span {
   position: absolute;
   width: 360vh;
@@ -343,35 +298,29 @@ body.light .icone-sol {
   left: 50%;
   transform: translate(-50%, -75%);
 }
-
 .wave span:nth-child(1) {
   border-radius: 45%;
   background: rgba(255, 255, 255, 0.5);
   animation: animate 5s linear infinite;
 }
-
 .wave span:nth-child(2) {
   border-radius: 40%;
   background: rgba(255, 255, 255, 0.4);
   animation: animate 10s linear infinite;
 }
-
 .wave span:nth-child(3) {
   border-radius: 42.5%;
   background: rgba(255, 255, 255, 0.3);
   animation: animate 15s linear infinite;
 }
-
 @keyframes animate {
   0% {
-    transform: translate(-50%, -75%) rotate(0deg);
+      transform: translate(-50%, -75%) rotate(0deg);
   }
   100% {
-    transform: translate(-50%, -75%) rotate(180deg);
+      transform: translate(-50%, -75%) rotate(180deg);
   }
 }
-
-/* ===== ANIMAÇÕES DO BOTÃO ===== */
 @keyframes Container {
   0% { width: 200px }
   6% { width: 80px }
@@ -381,14 +330,12 @@ body.light .icone-sol {
   94% { width: 80px }
   100% { width: 200px }
 }
-
 @keyframes Text {
   0% { opacity: 1; transform: scale(1); }
   6% { opacity: 0; transform: scale(0.5); }
   94% { opacity: 0; transform: scale(0.5); }
   100% { opacity: 1; transform: scale(1); }
 }
-
 @keyframes Ok {
   0% { opacity: 0 }
   70% { opacity: 0; transform: scale(0); }
@@ -397,4 +344,51 @@ body.light .icone-sol {
   92% { opacity: 1; transform: scale(1); }
   96% { opacity: 0; transform: scale(0.5); }
   100% { opacity: 0 }
+}
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY PARA RESPONSIVIDADE (Telas de 768px ou menores) */
+/* ---------------------------------------------------- */
+@media (max-width: 768px) {
+  /* AJUSTE: Reduz o tamanho da fonte para melhor leitura em celulares */
+  html, body {
+      font-size: 20px; 
+  }
+
+  /* AJUSTE: Empilha os elementos (imagem e formulário) verticalmente */
+  .container {
+      width: 95vw; /* Aumenta a largura em telas menores */
+      height: auto; /* Permite que a altura se ajuste ao conteúdo */
+      min-height: 90vh; /* Garante que o container ocupe a maior parte da tela */
+      flex-direction: column; /* Coloca a imagem em cima do formulário */
+      max-height: none; /* Remove a altura máxima para telas pequenas */
+  }
+
+  /* AJUSTE: Reduz a altura da área da imagem para dar mais espaço ao formulário */
+  .image-space {
+      flex: 0 0 auto;
+      height: 150px; 
+      min-width: auto;
+  }
+  
+  /* AJUSTE: Reduz o tamanho da logo */
+  .floating-logo {
+      max-width: 30%;
+      max-height: 100px;
+  }
+
+  /* AJUSTE: Altera o alinhamento para o topo e garante que ocupe todo o espaço restante */
+  .form-space {
+      min-width: auto;
+      flex: 1 1 auto;
+      /* Altera o alinhamento para iniciar de cima, o que funciona melhor com rolagem */
+      align-items: flex-start; 
+  }
+  
+  /* AJUSTE: O formulário ocupa toda a largura disponível no form-space */
+  .box {
+      width: 100%;
+      padding: 20px 15px; /* Reduz o padding interno */
+      margin: 0 auto; /* Centraliza horizontalmente */
+  }
 }
