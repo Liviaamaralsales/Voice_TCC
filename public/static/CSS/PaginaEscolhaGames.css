@@ -7,7 +7,7 @@ body {
   align-items: center;
   height: 100vh;
   position: relative;
-  top: -60px; /* move container pra cima */
+  top: -60px;
   overflow: hidden;
 }
 
@@ -24,10 +24,10 @@ body {
   border-radius: 50%;
   overflow: hidden;
   background-color: white;
-  border: 3px solid #8a2be2; /* borda roxa */
+  border: 3px solid #8a2be2;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1002; /* acima de tudo */
+  z-index: 1002;
 }
 
 .logo-button img {
@@ -44,22 +44,20 @@ body {
 
 /* ================== CONTAINER ================== */
 .container {
-    position: relative;
-    top: -80px;
-    background: rgba(255, 255, 255, 0.05); /* vidro embaçado */
-    border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-    border: 1px solid rgba(255, 255, 255, 1);
-
-    padding: 60px;
-    width: 1000px;
-    text-align: center;
-    color: #000;
-
-    transform: scale(1.25); /* aumenta só o container */
-    transform-origin: center top;
+  position: relative;
+  top: -80px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 60px;
+  width: 1000px;
+  text-align: center;
+  color: #000;
+  transform: scale(1.25);
+  transform-origin: center top;
 }
 
 /* ================== TÍTULO ================== */
@@ -74,6 +72,17 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+}
+
+/* ================== CARD-LINK ================== */
+.card-link {
+  display: block;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.card-link * {
+  text-decoration: none !important;
 }
 
 /* ================== CARDS ================== */
@@ -123,17 +132,6 @@ h1 {
   margin-top: 8px;
 }
 
-/* Cards bloqueados */
-.card.locked {
-  background-color: #bbaaf9;
-  color: #fff;
-}
-
-.lock {
-  font-size: 50px;
-  margin-bottom: 15px;
-}
-
 /* Card com imagem à direita */
 .card.right {
   display: flex;
@@ -160,6 +158,64 @@ h1 {
   margin: 0;
   padding: 0;
   display: block;
+}
+
+/* ================== CARDS BLOQUEADOS ================== */
+.card.locked {
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  cursor: not-allowed;
+  opacity: 0.85;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.card.locked .lock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  color: rgba(122, 60, 242, 0.7);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card.locked .text {
+  padding: 30px;
+  text-align: center;
+  width: 100%;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card.locked h2 {
+  font-size: 28px;
+  color: #999;
+  margin: 0;
+}
+
+.card.locked p {
+  font-size: 18px;
+  color: #ccc;
+  margin-top: 8px;
+}
+
+.card.locked:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
 }
 
 /* ================== FUNDO ANIMADO ================== */
@@ -210,9 +266,7 @@ h1 {
   100% { transform: translate(-50%, -75%) rotate(180deg); }
 }
 
-
 /* ================== BOTTOM NAVBAR ================== */
-
 .bottom-navbar {
   position: fixed;
   bottom: 20px;
@@ -290,9 +344,8 @@ h1 {
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
 
-
-
-
-
-
-/* ================== espaço para deixar responsivo ================== */
+.card-link,
+.card-link * {
+  text-decoration: none !important;
+  color: inherit !important;
+}

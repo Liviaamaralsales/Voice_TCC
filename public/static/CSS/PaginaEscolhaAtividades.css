@@ -12,7 +12,6 @@ body {
   overflow-x: hidden;
   margin: 0;
 }
-
 /* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
 .logo-button {
   position: fixed;
@@ -31,19 +30,16 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   z-index: 1002;
 }
-
 .logo-button img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .logo-button:hover {
   transform: scale(1.07);
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
 }
-
 /* ================== CONTAINER ================== */
 .container {
   position: relative;
@@ -61,21 +57,18 @@ body {
   transform: scale(1.15);
   transform-origin: center top;
 }
-
 /* ================== TÍTULO ================== */
 h1 {
   color: #7a3cf2;
   font-size: 60px;
   margin-bottom: 50px;
 }
-
 /* ================== GRID ================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
-
 /* ================== CARDS ================== */
 .card {
   background-color: white;
@@ -87,11 +80,9 @@ h1 {
   flex-direction: column;
   transition: transform 0.2s ease;
 }
-
 .card:hover {
   transform: scale(1.04);
 }
-
 /* Cards ativos */
 .card.active {
   position: relative;
@@ -100,29 +91,24 @@ h1 {
   align-items: flex-start;
   flex-direction: row;
 }
-
 .card.active .character {
   height: 100%;
   border-radius: 12px 0 0 12px;
 }
-
 .card.active .text {
   padding: 30px;
   text-align: left;
 }
-
 .card.active h2 {
   font-size: 28px;
   color: #000;
   margin: 0;
 }
-
 .card.active p {
   font-size: 18px;
   color: #555;
   margin-top: 8px;
 }
-
 /* Card com imagem à direita */
 .card.right {
   display: flex;
@@ -131,7 +117,6 @@ h1 {
   align-items: stretch;
   overflow: hidden;
 }
-
 .card.right .text {
   text-align: left;
   padding: 30px;
@@ -140,7 +125,6 @@ h1 {
   flex-direction: column;
   justify-content: center;
 }
-
 .card.right .character {
   height: 100%;
   width: auto;
@@ -149,6 +133,73 @@ h1 {
   margin: 0;
   padding: 0;
   display: block;
+}
+/* ================== CARDS BLOQUEADOS ================== */
+.card.locked {
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.card.locked .lock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  color: rgba(122, 60, 242, 0.7);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card.locked .text {
+  padding: 30px;
+  text-align: center;
+  width: 100%;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card.locked h2 {
+  font-size: 28px;
+  color: #999;
+  margin: 0;
+}
+
+.card.locked p {
+  font-size: 18px;
+  color: #ccc;
+  margin-top: 8px;
+}
+
+.card.locked:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+.card.locked.right {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.card.locked.right .text {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
 }
 
 /* ================== FUNDO ANIMADO ================== */
@@ -161,7 +212,6 @@ h1 {
   pointer-events: none;
   z-index: -1;
 }
-
 .wave {
   position: relative;
   width: 100%;
@@ -169,7 +219,6 @@ h1 {
   background: #9c65f5;
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
-
 .wave span {
   position: absolute;
   width: 360vh;
@@ -181,24 +230,20 @@ h1 {
   background: rgba(255, 255, 255, 0.5);
   animation: animate 5s linear infinite;
 }
-
 .wave span:nth-child(2) {
   border-radius: 40%;
   background: rgba(255, 255, 255, 0.4);
   animation: animate 10s linear infinite;
 }
-
 .wave span:nth-child(3) {
   border-radius: 42.5%;
   background: rgba(255, 255, 255, 0.3);
   animation: animate 15s linear infinite;
 }
-
 @keyframes animate {
   0% { transform: translate(-50%, -75%) rotate(0deg); }
   100% { transform: translate(-50%, -75%) rotate(180deg); }
 }
-
 /* ================== BOTTOM NAVBAR ================== */
 .bottom-navbar {
   position: fixed;
@@ -217,7 +262,6 @@ h1 {
   transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
   z-index: 1001;
 }
-
 .bottom-navbar ul {
   list-style: none;
   margin: 0;
@@ -226,13 +270,11 @@ h1 {
   width: 100%;
   justify-content: space-around;
 }
-
 .bottom-navbar li {
   margin: 0;
   display: flex;
   align-items: center;
 }
-
 .bottom-navbar a {
   display: flex;
   align-items: center;
@@ -243,12 +285,10 @@ h1 {
   border-radius: 50px;
   transition: transform 0.4s ease;
 }
-
 .bottom-navbar a i {
   font-size: 20px;
   transition: transform 0.3s ease;
 }
-
 .bottom-navbar a span {
   opacity: 0;
   width: 0px;
@@ -257,18 +297,15 @@ h1 {
   white-space: nowrap;
   transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
 }
-
 .bottom-navbar:hover {
   width: 70%;
   padding: 10px 20px;
 }
-
 .bottom-navbar:hover a span {
   opacity: 1;
   width: auto;
   transform: translateX(0);
 }
-
 .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
 .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
 .bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
@@ -276,28 +313,23 @@ h1 {
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
-
 /* ================== RESPONSIVIDADE ================== */
 @media (max-width: 1024px) {
   .container {
     width: 90%;
     transform: none;
   }
-
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 700px) {
   .grid {
     grid-template-columns: 1fr;
   }
-
   .bottom-navbar {
     width: 90%;
   }
-
   h1 {
     font-size: 42px;
   }

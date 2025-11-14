@@ -4,70 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercícios de Correção de Erros em Inglês</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .exercise {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #eee;
-            border-radius: 5px;
-        }
-        .sentence {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-        button {
-            background-color: #5cb85c;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            margin: 20px auto;
-        }
-        button:hover {
-            background-color: #4cae4c;
-        }
-        .feedback {
-            color: #5cb85c;
-            font-weight: bold;
-            text-align: center;
-        }
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/CSS/PaginaCorrecaoErros.css">
 </head>
 <body>
+   
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
     <div class="container">
         <h1>Exercícios de Correção de Erros em Inglês</h1>
 
@@ -87,30 +33,12 @@
 
     <script>
         const exercises = [
-            {
-                incorrect: "She don't like apples.",
-                correct: "She doesn't like apples."
-            },
-            {
-                incorrect: "He go to school every day.",
-                correct: "He goes to school every day."
-            },
-            {
-                incorrect: "They is happy.",
-                correct: "They are happy."
-            },
-            {
-                incorrect: "We has a dog.",
-                correct: "We have a dog."
-            },
-            {
-                incorrect: "It were a great day.",
-                correct: "It was a great day."
-            },
-            {
-                incorrect: "I can to swim.",
-                correct: "I can swim."
-            }
+            { incorrect: "She don't like apples.", correct: "She doesn't like apples" },
+            { incorrect: "He go to school every day.", correct: "He goes to school every day" },
+            { incorrect: "They is happy.", correct: "They are happy" },
+            { incorrect: "We has a dog.", correct: "We have a dog" },
+            { incorrect: "It were a great day.", correct: "It was a great day" },
+            { incorrect: "I can to swim.", correct: "I can swim" }
         ];
 
         let currentExercise = 0;

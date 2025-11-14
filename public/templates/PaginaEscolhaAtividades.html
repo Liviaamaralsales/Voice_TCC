@@ -69,64 +69,75 @@
       </div>
     </div>
 
-    <!-- Container principal -->
-    <div class="container">
-      <h1>Activities</h1>
-     <div class="grid">
-  <!-- Card 1 -->
-  <div class="card active">
-    <img src="../static/assets/lateral-esquerda-card.jpeg" alt="Personagem 1" class="character" />
+<!-- Container principal -->
+<div class="container">
+  <h1>Activities</h1>
+  <div class="grid">
+    
+
+  <!-- Card 1 — Desbloqueado -->
+  <a href="{{ url_for('exercicio_lacunas') }}" class="card-link">
+    <div class="card active">
+      <img src="{{ url_for('static', filename='assets/lateral-esquerda-card.jpeg') }}" alt="Preencher Lacunas" class="character" />
+      <div class="text">
+        <h2>Fill in the Blanks</h2>
+        <p>Exercício 1</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 2 — Desbloqueado -->
+  <a href="{{ url_for('exercicio_erros') }}" class="card-link">
+    <div class="card active right">
+      <div class="text">
+        <h2>Error Correction</h2>
+        <p>Exercício 2</p>
+      </div>
+      <img src="{{ url_for('static', filename='assets/lateral-direita-card.jpeg') }}" alt="Correção de Erros" class="character" />
+    </div>
+  </a>
+
+  <!-- Card 3 — Desbloqueado -->
+  <a href="{{ url_for('exercicio_escuta') }}" class="card-link">
+    <div class="card active right">
+      <div class="text">
+        <h2>Listening</h2>
+        <p>Exercício 3</p>
+      </div>
+      <img src="{{ url_for('static', filename='assets/lateral-direita2-card.png') }}" alt="Exercício de Escuta" class="character" />
+    </div>
+  </a>
+
+  <!-- Card 4 — Desbloqueado -->
+  <a href="{{ url_for('exercicios') }}" class="card-link">
+    <div class="card active">
+      <img src="{{ url_for('static', filename='assets/lateral-esquerda2-card.png') }}" alt="Exercícios de Idiomas" class="character" />
+      <div class="text">
+        <h2>Language Exercises</h2>
+        <p>Exercício 4</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 5 — Bloqueado -->
+  <div class="card locked right">
+    <div class="lock-overlay">🔒</div>
     <div class="text">
       <h2>Compliments</h2>
-      <p>Activity 1</p>
+      <p>Exercício 5</p>
     </div>
   </div>
 
-  <!-- Card 2 -->
-  <div class="card active right">
+  <!-- Card 6 — Bloqueado -->
+  <div class="card locked right">
+    <div class="lock-overlay">🔒</div>
     <div class="text">
       <h2>Compliments</h2>
-      <p>Activity 2</p>
+      <p>Exercício 6</p>
     </div>
-    <img src="../static/assets/lateral-direita-card.jpeg" alt="Personagem 2" class="character" />
-  </div>
-
-  <!-- Card 3 -->
-  <div class="card active right">
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Activity 3</p>
-    </div>
-    <img src="../static/assets/lateral-direita2-card.png" alt="Personagem 3" class="character" />
-  </div>
-
-  <!-- Card 4 -->
-  <div class="card active">
-    <img src="../static/assets/lateral-esquerda2-card.png" alt="Personagem 4" class="character" />
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Activity 4</p>
-    </div>
-  </div>
-
-  <!-- Card 5 -->
-  <div class="card active right">
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Activity 5</p>
-    </div>
-    <img src="../static/assets/lateral-direita-card.jpeg" alt="Personagem 5" class="character" />
-  </div>
-
-  <!-- Card 6 -->
-  <div class="card active right">
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Activity 6</p>
-    </div>
-    <img src="../static/assets/lateral-direita2-card.png" alt="Personagem 6" class="character" />
   </div>
 </div>
+
 
 
     
