@@ -50,13 +50,12 @@ body.dark {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Altere para flex-start para permitir o scroll */
   background: #7a5df1;
   position: relative;
-}
-
-body.dark .form-space {
-  background: #744E9D;
+  overflow-y: auto; /* Adicione o scroll vertical */
+  max-height: 80vh; /* Defina uma altura máxima para o container */
+  padding: 20px 0; /* Adicione um padding para evitar que o conteúdo grude nas bordas */
 }
 
 /* ===== CAIXA DO FORMULÁRIO ===== */
@@ -67,16 +66,9 @@ body.dark .form-space {
   width: 100%;
   max-width: 450px;
   box-sizing: border-box;
+  margin: 0 auto; /* Centralize o box */
 }
 
-.box.large {
-  max-width: 450px;
-}
-
-body.dark .box {
-  background: #744E9D;
-  color: white;
-}
 
 /* ===== TÍTULO ===== */
 h2 {
