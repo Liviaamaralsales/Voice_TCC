@@ -25,3 +25,5 @@ def configuracoes():
 
 
     chave api:"AIzaSyAlPlQTdYzuJoRsqLZb5ec1dEAH0i2ABA0"
+
+ALTER TABLE usuarios ADD COLUMN avatar VARCHAR (100);

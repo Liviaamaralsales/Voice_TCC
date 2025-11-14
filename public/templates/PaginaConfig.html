@@ -29,31 +29,18 @@
 
       <!-- Conteúdo da aba Pessoais -->
       <div class="tab-content active" id="personal">
-        <form>
-          <div class="acessibilidade">
-            <div class="form-row">
-              <label for="child-name">Nome da criança:</label>
-              <input type="text" id="child-name" placeholder="Digite o nome completo da criança">
+        <form action="{{ url_for('auth.redefinir') }}" method="POST" class="redefinir_senha">
+            <div>
+              <label for="email">Digite seu E-mail</label>
+              <input type="text" name="email">
+              <br>
+              <label for="senha">Digite sua nova senha</label>
+              <input type="text" name="senha">
+              <br>
+              <div>
+                <button type="submit">Redefinir Senha</button>
+              </div>
             </div>
-            <div class="form-column">
-              <label for="birthdate">Data de nascimento:</label>
-              <input type="date" id="birthdate">
-            </div>
-          </div>
-          
-          <div class="form-actions">
-            <button type="submit" class="success">Salvar alterações</button>
-          </div>
-          <hr>
-          <!-- Recuperar Senha -->
-          <div class="recover-password">
-            <h4>Recuperar Senha</h4>
-            <p>Digite seu e-mail para receber um link de recuperação:</p>
-            <input type="email" class="email-input" placeholder="Seu e-mail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-            <button type="button" class="recover-button">Enviar Link</button>
-            <p class="success-message" style="display: none; color: green;">Link enviado com sucesso!</p>
-            <p class="error-message" style="display: none; color: red;">Por favor, insira um e-mail válido.</p>
-          </div>
         </form>
       </div>
 

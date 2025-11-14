@@ -93,3 +93,16 @@ def buscar_avatar(usuario_id):
             return result["avatar"] if result else None
     finally:
         conn.close()
+
+def atualizar_senha(id_usuario, nova_senha_hash):
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "UPDATE usuarios SET senha = %s WHERE id = %s",
+                (nova_senha_hash, id_usuario)
+            )
+            conn.commit()
+            return True
+    finally:
+        conn.close()

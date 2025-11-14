@@ -99,3 +99,24 @@ def login_required(f):
             return redirect(url_for("auth.login"))
         return f(*args, **kwargs)
     return decorated_function
+
+@auth_bp.route("/redefinir", methods=["POST"])
+def redefinir():
+    email = request.form.get("email")
+    nova_senha = request.form.get("senha")
+
+    # Busca usuário pelo e-mail
+    usuario = usuario_model.buscar_usuario_por_email(email)
+
+    if not usuario:
+        flash("E-mail não encontrado.")
+        return redirect(url_for("configuracoes"))
+
+    # Gera hash da nova senha
+    nova_senha_hash = generate_password_hash(nova_senha)
+
+    # Atualiza no banco de dados
+    usuario_model.atualizar_senha(usuario["id"], nova_senha_hash)
+
+    flash("Senha redefinida com sucesso! Faça login.")
+    return redirect(url_for("auth.login"))

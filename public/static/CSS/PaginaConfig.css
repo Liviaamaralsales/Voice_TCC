@@ -423,3 +423,44 @@ h3 {
     width: 90%;
   }
 }
+
+
+/* css do angelinho */
+.redefinir_senha{
+    width: 30vw;
+    height: 30vh;
+}
+
+.redefinir_senha > div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.redefinir_senha > div > label{
+    font-size: clamp(1.5rem, 1.2vw, 3rem);
+}
+
+.redefinir_senha > div > input{
+    width: 50%;
+    font-size: clamp(1rem, 1vw, 3rem);
+    padding: 0.5rem 0.8rem;
+}
+
+.redefinir_senha > div > div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.redefinir_senha > div > div > button{
+    width: 30%;
+    font-size: clamp(1rem, 1vw, 3rem);
+    padding: 0.5rem;
+    background-color: #9c65f5;
+    color: #ddd;
+    border: none;
+    border-radius: 15px;
+}
