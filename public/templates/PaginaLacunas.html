@@ -14,12 +14,25 @@
             color: #333;
         }
         .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.21);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 75vw;
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+            justify-content: center;
+            align-items: center;
+            
         }
         h1 {
             text-align: center;
@@ -40,7 +53,7 @@
             text-align: center;
         }
         button {
-            background-color: #5cb85c;
+            background-color: #a241da;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -50,42 +63,93 @@
             margin: 20px auto;
         }
         button:hover {
-            background-color: #4cae4c;
+            background-color: #8f41e9;
         }
         .feedback {
             color: #5cb85c;
             font-weight: bold;
             text-align: center;
         }
+        /* ---- ONDAS (mantidas como estão no seu código original) ---- */
+.wave {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #9c65f5;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+.wave span {
+  position: absolute;
+  width: 360vh;
+  height: 360vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}
+.wave span:nth-child(1) {
+  border-radius: 45%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: animate 5s linear infinite;
+}
+.wave span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: animate 10s linear infinite;
+}
+.wave span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: animate 15s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(180deg);
+  }
+}
+
     </style>
 </head>
 <body>
+  
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="principal">
+
     <div class="container">
         <h1>Exercícios de Preencher Lacunas</h1>
 
         <div class="exercise">
-            <p class="sentence">I ___ to the store yesterday. <input type="text" id="answer1">(word/word)</p>
+            <p class="sentence">I ___ to the store yesterday. <input type="text" id="answer1">(goed/went)</p>
         </div>
 
         <div class="exercise">
-            <p class="sentence">She ___ reading a book. <input type="text" id="answer2">(word/word)</p>
+            <p class="sentence">She ___ reading a book. <input type="text" id="answer2">(is/are)</p>
         </div>
 
         <div class="exercise">
-            <p class="sentence">They ___ happy with the results. <input type="text" id="answer3"> (word/word)</p>
+            <p class="sentence">They ___ happy with the results. <input type="text" id="answer3"> (to be/are)</p>
         </div>
 
         <div class="exercise">
-            <p class="sentence">We ___ a great time at the party. <input type="text" id="answer4">(word/word)</p>
+            <p class="sentence">We ___ a great time at the party. <input type="text" id="answer4">(had/has)</p>
         </div>
 
         <div class="exercise">
-            <p class="sentence">He ___ to school every day. <input type="text" id="answer5">(word/word)</p>
+            <p class="sentence">He ___ to school every day. <input type="text" id="answer5">(goed/goes)</p>
         </div>
 
         <button onclick="checkAnswers()">Verificar Respostas</button>
 
-        <p id="feedback" class="feedback"></p>
+        <p id="feedback" class="feedback"></p> 
     </div>
 
     <script>
