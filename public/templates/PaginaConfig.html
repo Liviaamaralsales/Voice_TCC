@@ -2,6 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página de configurações do aplicativo">
   <title>Configurações</title>
   <link rel="stylesheet" href="../static/CSS/PaginaConfig.css">
   <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
@@ -14,7 +16,6 @@
     <span></span>
     <span></span>
   </div>
-
 
   <!-- CONTEÚDO PRINCIPAL -->
   <div class="config-page">
@@ -30,30 +31,28 @@
       <div class="tab-content active" id="personal">
         <form>
           <div class="acessibilidade">
-            <label>Nome da criança:</label>
-            <input type="text" placeholder="Digite o nome completo da criança">
-
-            <label>Data de nascimento:</label>
-            <input type="date">
+            <div class="form-row">
+              <label for="child-name">Nome da criança:</label>
+              <input type="text" id="child-name" placeholder="Digite o nome completo da criança">
+            </div>
+            <div class="form-column">
+              <label for="birthdate">Data de nascimento:</label>
+              <input type="date" id="birthdate">
+            </div>
           </div>
-
-          <hr>
-          <h3>Área do Responsável</h3>
-
-          <label>Nome completo:</label>
-          <input type="nome" placeholder="Digite o nome completo do responsável">
-
-          <label>E-mail:</label>
-          <input type="email" placeholder="Digite o e-mail do responsável">
-
-          <div class="form-inline">
-            <input type="password" placeholder="Digite a nova senha">
-            <button type="button" class="confirm-btn">Confirmar</button>
-          </div>
-
+          
           <div class="form-actions">
-            <button type="reset" class="danger">Descartar as alterações</button>
-            <button type="submit" class="success">Salvar as alterações</button>
+            <button type="submit" class="success">Salvar alterações</button>
+          </div>
+          <hr>
+          <!-- Recuperar Senha -->
+          <div class="recover-password">
+            <h4>Recuperar Senha</h4>
+            <p>Digite seu e-mail para receber um link de recuperação:</p>
+            <input type="email" class="email-input" placeholder="Seu e-mail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            <button type="button" class="recover-button">Enviar Link</button>
+            <p class="success-message" style="display: none; color: green;">Link enviado com sucesso!</p>
+            <p class="error-message" style="display: none; color: red;">Por favor, insira um e-mail válido.</p>
           </div>
         </form>
       </div>
@@ -67,17 +66,14 @@
               <button type="button" class="toggle active">Claro</button>
               <button type="button" class="toggle">Escuro</button>
             </div>
-
             <label>Efeitos sonoros:</label>
             <div class="toggle-group">
               <button type="button" class="toggle active">Ativar</button>
               <button type="button" class="toggle">Desativar</button>
             </div>
           </div>
-
           <hr>
-          <H3>AREA DE RISCO </H3>
-
+          <h3>ÁREA DE RISCO</h3>
           <div class="danger-zone">
             <div>
               <h4>Reiniciar progresso</h4>
@@ -85,150 +81,82 @@
               <button type="button" class="danger">Limpar dados</button>
             </div>
             <div>
-              
+              <form method="POST" action="{{ url_for('auth.excluir_conta') }}" onsubmit="return confirm('Tem certeza que deseja excluir sua conta?')">
+                <h4>Excluir Conta</h4>
+                <p>Atenção: ao excluir, todo o seu progresso será perdido e não poderá ser recuperado.</p>
+                <button type="submit" name="confirmar" value="1">Excluir minha conta</button>
+              </form>
+            </div>
           </div>
-
           <div class="form-actions">
             <button type="reset" class="danger">Descartar as alterações</button>
             <button type="submit" class="success">Salvar as alterações</button>
           </div>
         </form>
-
-        <form method="POST" action="{{ url_for('auth.excluir_conta') }}" onsubmit="return confirm('Tem certeza que deseja excluir sua conta?')">
-              
-              <h4>Excluir Conta</h4>
-              <p>Atenção: ao excluir, todo o seu progresso será perdido e não poderá ser recuperado.</p>
-               <button type="submit" name="confirmar" value="1">Excluir minha conta</button>
-            </div>
-            </form>
       </div>
     </div>
 
     <!-- Bloco direito -->
-<div class="config-right">
-  <div class="avatar">
-    <!-- Mostra o avatar atual do usuário -->
-    <div class="avatar-img">
-<img src="{{ url_for('static', filename='assets/' + (usuario_avatar or 'raposa.png')) }}" alt="Avatar atual">
-    </div>
-
-    <h3>Escolha seu personagem:</h3>
-
-    <!-- Formulário para atualizar o avatar -->
-    <form action="{{ url_for('avatar.atualizar_avatar') }}" method="POST">
-      <div class="characters">
-        <button type="submit" name="avatar" value="gaviao.png" class="icon">
-          <img src="{{ url_for('static', filename='assets/gaviao.png') }}" alt="Gavião">
-        </button>
-        <button type="submit" name="avatar" value="jacare.png" class="icon">
-          <img src="{{ url_for('static', filename='assets/jacare.png') }}" alt="Jacaré">
-        </button>
-        <button type="submit" name="avatar" value="onca-pintada.png" class="icon">
-          <img src="{{ url_for('static', filename='assets/onca-pintada.png') }}" alt="Onça-pintada">
-        </button>
-        <button type="submit" name="avatar" value="raposa.png" class="icon">
-          <img src="{{ url_for('static', filename='assets/raposa.png') }}" alt="Raposa">
-        </button>
-        <button type="submit" name="avatar" value="tucano.png" class="icon">
-          <img src="{{ url_for('static', filename='assets/tucano.png') }}" alt="Tucano">
-        </button>
-        <button type="submit" name="avatar" value="urso.png" class="icon">
-          <img src="{{ url_for('static', filename='assets/urso.png') }}" alt="Urso">
-        </button>
+    <div class="config-right">
+      <div class="avatar">
+        <div class="avatar-img">
+          <img src="{{ url_for('static', filename='assets/' + (usuario_avatar or 'raposa.png')) }}" alt="Avatar atual">
+        </div>
+        <h3>Escolha seu personagem:</h3>
+        <form action="{{ url_for('avatar.atualizar_avatar') }}" method="POST">
+          <div class="characters">
+            <button type="submit" name="avatar" value="gaviao.png" class="icon">
+              <img src="{{ url_for('static', filename='assets/gaviao.png') }}" alt="Gavião">
+            </button>
+            <button type="submit" name="avatar" value="jacare.png" class="icon">
+              <img src="{{ url_for('static', filename='assets/jacare.png') }}" alt="Jacaré">
+            </button>
+            <button type="submit" name="avatar" value="onca-pintada.png" class="icon">
+              <img src="{{ url_for('static', filename='assets/onca-pintada.png') }}" alt="Onça-pintada">
+            </button>
+            <button type="submit" name="avatar" value="raposa.png" class="icon">
+              <img src="{{ url_for('static', filename='assets/raposa.png') }}" alt="Raposa">
+            </button>
+            <button type="submit" name="avatar" value="tucano.png" class="icon">
+              <img src="{{ url_for('static', filename='assets/tucano.png') }}" alt="Tucano">
+            </button>
+            <button type="submit" name="avatar" value="urso.png" class="icon">
+              <img src="{{ url_for('static', filename='assets/urso.png') }}" alt="Urso">
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
-</div>
 
-
+  <!-- Navbar -->
   <nav class="bottom-navbar">
     <ul>
-        <li>
-            <a href="{{ url_for('home') }}">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">Início</span>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span class="nav-text">Classes</span>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <i class="fas fa-running"></i>
-                <span class="nav-text">Activities</span>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-text">Games</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-user-circle"></i>
-                <span class="nav-text">Perfil</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Configurações</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('apoiadores') }}">
-                <i class="fas fa-life-ring"></i>
-                <span class="nav-text">Apoio</span>
-            </a>
-        </li>
+      <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i><span class="nav-text">Início</span></a></li>
+      <li><a href="{{ url_for('classes') }}"><i class="fas fa-chalkboard-teacher"></i><span class="nav-text">Classes</span></a></li>
+      <li><a href="{{ url_for('activities') }}"><i class="fas fa-running"></i><span class="nav-text">Activities</span></a></li>
+      <li><a href="{{ url_for('games') }}"><i class="fas fa-gamepad"></i><span class="nav-text">Games</span></a></li>
+      <li><a href="{{ url_for('configuracoes') }}"><i class="fas fa-user-circle"></i><span class="nav-text">Perfil</span></a></li>
+      <li><a href="{{ url_for('apoiadores') }}"><i class="fas fa-life-ring"></i><span class="nav-text">Apoio</span></a></li>
     </ul>
-  </nav>  <!-- navbar -->
-
-       <nav class="bottom-navbar">
-    <ul>
-        <li>
-            <a href="{{ url_for('home') }}">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">Início</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('classes') }}">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span class="nav-text">Classes</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('activities') }}">
-                <i class="fas fa-running"></i>
-                <span class="nav-text">Activities</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('games') }}">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-text">Games</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Configurações</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('apoiadores') }}">
-                <i class="fas fa-life-ring"></i>
-                <span class="nav-text">Apoio</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+  </nav>
 
   <script src="../static/JS/PaginaConfig.js"></script>
+  <script>
+    document.querySelector('.recover-button').addEventListener('click', function() {
+      const email = document.querySelector('.recover-password .email-input').value;
+      const successMsg = document.querySelector('.success-message');
+      const errorMsg = document.querySelector('.error-message');
+      const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
+      if (emailRegex.test(email)) {
+        successMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+      } else {
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
 </body>
 </html>
