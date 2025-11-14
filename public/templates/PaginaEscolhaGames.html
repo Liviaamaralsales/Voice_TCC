@@ -8,14 +8,59 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-
-    <link rel="stylesheet" href="../static/CSS/PaginaEscolhaAtividades.css" />
+  <link rel="stylesheet" href="../static/CSS/PaginaEscolhaAtividades.css" />
   </head>
   <body>
     <!-- Botão no canto superior direito -->
     <a href="{{ url_for('chatbot.chat') }}" class="logo-button">
       <img src="../static/assets/botao-chat.jpeg" alt="Logo" />
     </a>
+
+
+
+    <!-- navbar --> 
+
+       
+    <nav class="bottom-navbar">
+      <ul>
+          <li>
+              <a href="{{ url_for('home') }}">
+                  <i class="fas fa-home"></i>
+                  <span class="nav-text">Início</span>
+              </a>
+          </li>
+          <li>
+              <a href="{{ url_for('classes') }}">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                  <span class="nav-text">Classes</span>
+              </a>
+          </li>
+          <li>
+              <a href="{{ url_for('activities') }}">
+                  <i class="fas fa-running"></i>
+                  <span class="nav-text">Activities</span>
+              </a>
+          </li>
+          <li>
+              <a href="{{ url_for('games') }}">
+                  <i class="fas fa-gamepad"></i>
+                  <span class="nav-text">Games</span>
+              </a>
+          </li>
+          <li>
+              <a href="{{ url_for('configuracoes') }}">
+                  <i class="fas fa-cog"></i>
+                  <span class="nav-text">Configurações</span>
+              </a>
+          </li>
+          <li>
+              <a href="{{ url_for('apoiadores') }}">
+                  <i class="fas fa-life-ring"></i>
+                  <span class="nav-text">Apoio</span>
+              </a>
+          </li>
+      </ul>
+  </nav>
 
     <!-- Fundo animado -->
     <div class="wave-container">
@@ -30,106 +75,86 @@
     <div class="container">
       <h1>Games</h1>
      <div class="grid">
-  <!-- Card 1 -->
-  <div class="card active">
-    <img src="../static/assets/lateral-esquerda-card.jpeg" alt="Personagem 1" class="character" />
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Game 1</p>
-    </div>
-  </div>
+      <div class="grid">
 
-  <!-- Card 2 -->
-  <div class="card active right">
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Game 2</p>
-    </div>
-    <img src="../static/assets/lateral-direita-card.jpeg" alt="Personagem 2" class="character" />
-  </div>
+        <div class="grid">
 
-  <!-- Card 3 -->
-  <div class="card active right">
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Game 3</p>
-    </div>
-    <img src="../static/assets/lateral-direita2-card.png" alt="Personagem 3" class="character" />
-  </div>
+          <div class="grid">
 
-  <!-- Card 4 -->
-  <div class="card active">
-    <img src="../static/assets/lateral-esquerda2-card.png" alt="Personagem 4" class="character" />
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Game 4</p>
-    </div>
-  </div>
-
-  <!-- Card 5 -->
-  <div class="card active right">
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Game 5</p>
-    </div>
-    <img src="../static/assets/lateral-direita-card.jpeg" alt="Personagem 5" class="character" />
-  </div>
-
-  <!-- Card 6 -->
-  <div class="card active right">
-    <div class="text">
-      <h2>Compliments</h2>
-      <p>Game 6</p>
-    </div>
-    <img src="../static/assets/lateral-direita2-card.png" alt="Personagem 6" class="character" />
-  </div>
-</div>
-
-
-      <!-- navbar --> 
-
-        <!-- navbar -->
-
-       <nav class="bottom-navbar">
-    <ul>
-        <li>
-            <a href="{{ url_for('home') }}">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">Início</span>
+            <!-- Card 1 — Jogo da Memória -->
+            <a href="{{ url_for('jogo_memoria') }}" class="card-link">
+              <div class="card active">
+                <img src="../static/assets/lateral-esquerda-card.jpeg" alt="Jogo Memória" class="character">
+                <div class="text">
+                  <h2>Memory Game</h2>
+                  <p>Jogo 1</p>
+                </div>
+              </div>
             </a>
-        </li>
-        <li>
-            <a href="{{ url_for('classes') }}">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span class="nav-text">Classes</span>
+          
+            <!-- Card 2 — Formar Frase -->
+            <a href="{{ url_for('jogo_formar_frase') }}" class="card-link">
+              <div class="card active right">
+                <div class="text">
+                  <h2>Sentence Builder</h2>
+                  <p>Jogo 2</p>
+                </div>
+                <img src="../static/assets/lateral-direita-card.jpeg" alt="Jogo Formar Frase" class="character">
+              </div>
             </a>
-        </li>
-        <li>
-            <a href="{{ url_for('activities') }}">
-                <i class="fas fa-running"></i>
-                <span class="nav-text">Activities</span>
+          
+            <!-- Card 3 — Vocabulário -->
+            <a href="{{ url_for('jogo_vocabulario') }}" class="card-link">
+              <div class="card active right">
+                <div class="text">
+                  <h2>Vocabulary Game</h2>
+                  <p>Jogo 3</p>
+                </div>
+                <img src="../static/assets/lateral-direita2-card.png" alt="Jogo Vocabulário" class="character">
+              </div>
             </a>
-        </li>
-        <li>
-            <a href="{{ url_for('games') }}">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-text">Games</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Configurações</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('apoiadores') }}">
-                <i class="fas fa-life-ring"></i>
-                <span class="nav-text">Apoio</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+
+        
+          <!-- Card 4 -->
+          <a href="" class="card-link">
+            <div class="card active">
+              <img src="../static/assets/lateral-esquerda2-card.png" alt="Personagem 4" class="character">
+              <div class="text">
+                <h2>Compliments</h2>
+                <p>Game 4</p>
+              </div>
+            </div>
+          </a>
+        
+          <!-- Card 5 -->
+          <a href="" class="card-link">
+            <div class="card active right">
+              <div class="text">
+                <h2>Compliments</h2>
+                <p>Game 5</p>
+              </div>
+              <img src="../static/assets/lateral-direita-card.jpeg" alt="Personagem 5" class="character">
+            </div>
+          </a>
+        
+          <!-- Card 6 -->
+          <a href="" class="card-link">
+            <div class="card active right">
+              <div class="text">
+                <h2>Compliments</h2>
+                <p>Game 6</p>
+              </div>
+              <img src="../static/assets/lateral-direita2-card.png" alt="Personagem 6" class="character">
+            </div>
+          </a>
+        
+        </div>
+        
+        
+      
+
+
+      
 
   </body>
 </html>
