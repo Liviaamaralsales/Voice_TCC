@@ -360,9 +360,16 @@ body.dark .divider {
 }
 .wave span:nth-child(3) {
     border-radius: 42.5%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgb(0, 0, 0);
     animation: animate 15s linear infinite;
+    transition: all 0.4s ease-in-out;
 }
+
+/*  QUANDO ATIVAR O TEMA ESCURO, MUDA A COR DO SPAN 3 */
+body.dark .wave span:nth-child(3) {
+    background: #ffffff;
+}
+
 @keyframes animate {
     0% {
         transform: translate(-50%, -75%) rotate(0deg);

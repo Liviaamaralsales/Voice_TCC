@@ -109,33 +109,34 @@
   </div>
 
 <script>
-  const container = document.querySelector('.button-container');
-  container.addEventListener('animationend', () => {
-    container.classList.remove('active');
-  });
+// Remove animação após terminar
+const container = document.querySelector('.button-container');
+container.addEventListener('animationend', () => {
+  container.classList.remove('active');
+});
 
-  const chk = document.getElementById('chk');
-  chk.addEventListener('change', () => {
-    document.body.classList.toggle('dark');
-    document.body.classList.toggle('light');
-  });
+// Controle do tema
+const chk = document.getElementById('chk');
+chk.addEventListener('change', () => {
+  document.body.classList.toggle('dark');
+  document.body.classList.toggle('light');
+});
 
-  // Ajuste do delay e envio do formulário
-  const form = document.querySelector('form');
-  const button = document.querySelector('.button-container');
+// Envio do formulário com delay da animação
+const form = document.querySelector('form');
+const button = document.querySelector('.button-container');
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault(); // impede envio imediato
-    button.classList.add('active'); // inicia animação
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // impede envio imediato
+  button.classList.add('active'); // inicia animação
 
-    // Aguarda a animação terminar antes de enviar
-    setTimeout(() => {
-      // Remove a classe para resetar a animação
-      button.classList.remove('active');
-      // Envia o formulário
-      e.target.submit();
-    }, 5000); // Ajuste o tempo conforme a duração da sua animação
-  });
+  // Aguarda a animação terminar antes de enviar
+  setTimeout(() => {
+    button.classList.remove('active'); // reseta animação
+    e.target.submit(); // envia formulário
+  }, 5000); // Ajuste se necessário
+});
+
 </script>
 
 
