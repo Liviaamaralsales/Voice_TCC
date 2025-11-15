@@ -271,3 +271,42 @@ section {
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
+
+
+/* Tema escuro para a página de apoiadores */
+body.dark-theme {
+    background: #222;
+    color: #f0f0f0;
+}
+
+body.dark-theme .apoiadores {
+    color: #f0f0f0;
+}
+
+body.dark-theme .apoiador {
+    background-color: #333;
+    color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .apoiador button {
+    background-color: #7d0dac;
+    color: white;
+}
+
+body.dark-theme .apoiador button:hover {
+    background-color: #5a0b7d;
+}
+
+body.dark-theme .bottom-navbar {
+    background: #333;
+    color: #f0f0f0;
+}
+
+body.dark-theme .bottom-navbar a {
+    color: #f0f0f0;
+}
+
+body.dark-theme .wave span:nth-child(3) {
+    background: rgb(0, 0, 0) !important;
+}

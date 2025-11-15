@@ -37,11 +37,12 @@ h1 {
     color: #6b26eb;
 }
 
+
 /* ================== EXERCISE ================== */
 .exercise {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #e4c9ec;
+    background-color: #6b26eb;
     border-radius: 40px;
     width: 100%;
     text-align: center;
@@ -134,3 +135,124 @@ button:hover {
     0% { transform: translate(-50%, -75%) rotate(0deg); }
     100% { transform: translate(-50%, -75%) rotate(180deg); }
 }
+
+
+
+ /* Tema escuro (deve estar em todas as páginas) */
+body.dark-theme {
+    background: #222;
+    color: #f0f0f0;
+}
+body.dark-theme .config-left,
+body.dark-theme .config-right {
+    background: #333;
+    color: #f0f0f0;
+}
+body.dark-theme input,
+body.dark-theme select {
+    background: #444;
+    color: #f0f0f0;
+    border-color: #555;
+}
+body.dark-theme .toggle-group .toggle {
+    background: #444;
+    color: #f0f0f0;
+    border-color: #555;
+}
+body.dark-theme .toggle-group .toggle.active {
+    background: #7d0dac;
+    color: white;
+}
+body.dark-theme .bottom-navbar {
+    background: #333;
+    color: #f0f0f0;
+}
+body.dark-theme .bottom-navbar a {
+    color: #f0f0f0;
+}
+body.dark-theme .wave span:nth-child(3) {
+    background: rgb(0, 0, 0) !important;
+}
+
+
+
+
+
+
+/* NAVBAR */
+.bottom-navbar {
+  position: fixed;
+  font-family: "Poppins";
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  width: 400px; /* Barra fechada */
+  padding: 10px 0;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
+  z-index: 1001; /* Garante que fique acima de tudo */
+}
+.bottom-navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-around; /* ícones igualmente espaçados */
+}
+.bottom-navbar li {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+/* Links */
+.bottom-navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 50px;
+  transition: transform 0.4s ease;
+}
+/* Ícone sempre visível */
+.bottom-navbar a i {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+/* Texto inicialmente escondido */
+.bottom-navbar a span {
+  font-size: 15px;
+  opacity: 0;
+  width: 0px;
+  transform: translateX(-10px);
+  margin-left: 8px;
+  white-space: nowrap;
+  transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
+}
+/* Hover: barra expande */
+.bottom-navbar:hover {
+  width: 70%;
+  padding: 10px 20px;
+}
+/* Hover: texto aparece */
+.bottom-navbar:hover a span {
+  opacity: 1;
+  width: auto;
+  transform: translateX(0);
+}
+/* Efeito cascata para os spans */
+.bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
+.bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
+.bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
+.bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
+.bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
+.bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
+.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }

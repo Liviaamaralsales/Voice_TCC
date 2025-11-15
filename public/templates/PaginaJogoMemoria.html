@@ -3,138 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/CSS/PaginaJogoMemoria.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Jogo da Memória - Inglês com Imagens</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #9554ff;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: rgb(255, 255, 255);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #6410ff;
-        }
-        .game-board {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .card {
-            height: 120px;
-            background-color: #5900ff;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            perspective: 1000px;
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-            position: relative;
-        }
-        .card.flipped {
-            transform: rotateY(180deg);
-        }
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-        }
-        .card-front {
-            background-color: #5900ff;
-        }
-        .card-back {
-            background-color: #920eff;
-            transform: rotateY(180deg);
-            flex-direction: column;
-        }
-        .card-back img {
-            max-width: 80%;
-            max-height: 60%;
-            object-fit: contain;
-        }
-        .score-panel {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-        .controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        button {
-            background-color: #9200cc;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 0 10px;
-        }
-        button:hover {
-            background-color: #0b7dda;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 500px;
-            text-align: center;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close:hover {
-            color: black;
-        }
-    </style>
 </head>
+
 <body>
+
+      <!-- ONDAS -->
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
     <div class="container">
-        <h1>Jogo da Memória - Inglês com Imagens</h1>
+        <h1>Jogo da Memória - Frases</h1>
+
         <div class="score-panel">
             <div>Pares encontrados: <span id="pairs-found">0</span></div>
             <div>Tentativas: <span id="attempts">0</span></div>
         </div>
-        <div class="game-board" id="game-board">
-            <!-- Cartas serão inseridas aqui -->
-        </div>
+
+        <div class="game-board" id="game-board"></div>
+
         <div class="controls">
             <button id="restart-btn">Reiniciar Jogo</button>
             <button id="new-game-btn">Novo Jogo</button>
@@ -150,8 +43,50 @@
         </div>
     </div>
 
+     <!-- navbar -->
+
+       <nav class="bottom-navbar">
+    <ul>
+        <li>
+            <a href="{{ url_for('home') }}">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Início</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('classes') }}">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span class="nav-text">Classes</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('activities') }}">
+                <i class="fas fa-running"></i>
+                <span class="nav-text">Activities</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('games') }}">
+                <i class="fas fa-gamepad"></i>
+                <span class="nav-text">Games</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('configuracoes') }}">
+                <i class="fas fa-cog"></i>
+                <span class="nav-text">Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('apoiadores') }}">
+                <i class="fas fa-life-ring"></i>
+                <span class="nav-text">Apoio</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
     <script>
-        // Palavras em inglês e URLs das imagens correspondentes
         const words = [
             { english: "Apple", image: "https://example.com/apple.jpg" },
             { english: "Book", image: "https://example.com/book.jpg" },
@@ -163,7 +98,6 @@
             { english: "Sun", image: "https://example.com/sun.jpg" }
         ];
 
-        // Variáveis do jogo
         let cards = [];
         let hasFlippedCard = false;
         let lockBoard = false;
@@ -171,14 +105,12 @@
         let pairsFound = 0;
         let attempts = 0;
 
-        // Inicializar o jogo
         function initGame() {
             pairsFound = 0;
             attempts = 0;
             document.getElementById('pairs-found').textContent = pairsFound;
             document.getElementById('attempts').textContent = attempts;
 
-            // Criar pares de cartas
             cards = [...words, ...words]
                 .sort(() => 0.5 - Math.random())
                 .map((word, index) => ({
@@ -189,11 +121,9 @@
                     isMatched: false
                 }));
 
-            // Renderizar o tabuleiro
             renderBoard();
         }
 
-        // Renderizar o tabuleiro
         function renderBoard() {
             const gameBoard = document.getElementById('game-board');
             gameBoard.innerHTML = '';
@@ -221,7 +151,6 @@
             });
         }
 
-        // Virar uma carta
         function flipCard(cardId) {
             if (lockBoard) return;
             if (cards[cardId].isFlipped || cards[cardId].isMatched) return;
@@ -229,11 +158,9 @@
             cards[cardId].isFlipped = true;
 
             if (!hasFlippedCard) {
-                // Primeira carta virada
                 hasFlippedCard = true;
                 firstCard = cardId;
             } else {
-                // Segunda carta virada
                 hasFlippedCard = false;
                 secondCard = cardId;
                 attempts++;
@@ -245,26 +172,18 @@
             renderBoard();
         }
 
-        // Verificar se as cartas formam um par
         function checkForMatch() {
-            const firstWord = cards[firstCard].english;
-            const secondWord = cards[secondCard].english;
-
-            if (firstWord === secondWord) {
-                // Encontrou um par
+            if (cards[firstCard].english === cards[secondCard].english) {
                 cards[firstCard].isMatched = true;
                 cards[secondCard].isMatched = true;
+
                 pairsFound++;
                 document.getElementById('pairs-found').textContent = pairsFound;
 
                 if (pairsFound === words.length) {
-                    // Todos os pares foram encontrados
-                    setTimeout(() => {
-                        showWinModal();
-                    }, 500);
+                    setTimeout(showWinModal, 500);
                 }
             } else {
-                // Não é um par, desvirar as cartas
                 lockBoard = true;
                 setTimeout(() => {
                     cards[firstCard].isFlipped = false;
@@ -275,19 +194,16 @@
             }
         }
 
-        // Mostrar modal de vitória
         function showWinModal() {
             const modal = document.getElementById('win-modal');
             document.getElementById('final-attempts').textContent = attempts;
             modal.style.display = 'block';
         }
 
-        // Fechar modal
         function closeModal() {
             document.getElementById('win-modal').style.display = 'none';
         }
 
-        // Event listeners
         document.getElementById('restart-btn').addEventListener('click', initGame);
         document.getElementById('new-game-btn').addEventListener('click', () => {
             closeModal();
@@ -298,13 +214,12 @@
 
         window.addEventListener('click', (event) => {
             const modal = document.getElementById('win-modal');
-            if (event.target === modal) {
-                closeModal();
-            }
+            if (event.target === modal) closeModal();
         });
 
-        // Iniciar o jogo
         initGame();
     </script>
+
+    <script src="../static/JS/tema.js"></script>
 </body>
 </html>

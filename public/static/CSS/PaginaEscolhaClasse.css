@@ -263,3 +263,66 @@ h1 {
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
 
 
+/* Tema escuro para a página "Classes" */
+body.dark-theme {
+    background-color: #222;
+    color: #f0f0f0;
+}
+
+/* Container principal */
+body.dark-theme .container {
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(122, 60, 242, 0.5);
+    color: #f0f0f0;
+}
+
+/* Título */
+body.dark-theme h1 {
+    color: #a882ff; /* Roxo claro para contraste */
+}
+
+/* Cards */
+body.dark-theme .card {
+    background-color: #333;
+    color: #f0f0f0;
+    border: 1px solid rgba(122, 60, 242, 0.3);
+}
+
+/* Cards bloqueados */
+body.dark-theme .card.locked {
+    background-color: #444;
+}
+
+body.dark-theme .card.locked {
+    color: #f0f0f0;
+}
+
+body.dark-theme .lock {
+    color: rgba(122, 60, 242, 0.7);
+}
+
+/* Fundo animado (ondas) */
+body.dark-theme .wave-container .wave {
+    background: #2d1b47; /* Roxo escuro */
+}
+
+body.dark-theme .wave-container .wave span:nth-child(1) {
+    background: rgba(100, 100, 100, 0.5);
+}
+
+body.dark-theme .wave-container .wave span:nth-child(2) {
+    background: rgba(100, 100, 100, 0.4);
+}
+
+body.dark-theme .wave-container .wave span:nth-child(3) {
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Navbar */
+body.dark-theme .bottom-navbar {
+    background: #333;
+}
+
+body.dark-theme .bottom-navbar a {
+    color: #f0f0f0;
+}

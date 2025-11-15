@@ -489,3 +489,40 @@ button {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
   }
+
+
+  /* Tema escuro (deve estar em todas as páginas) */
+body.dark-theme {
+    background: #222;
+    color: #f0f0f0;
+}
+body.dark-theme .config-left,
+body.dark-theme .config-right {
+    background: #333;
+    color: #f0f0f0;
+}
+body.dark-theme input,
+body.dark-theme select {
+    background: #444;
+    color: #f0f0f0;
+    border-color: #555;
+}
+body.dark-theme .toggle-group .toggle {
+    background: #444;
+    color: #f0f0f0;
+    border-color: #555;
+}
+body.dark-theme .toggle-group .toggle.active {
+    background: #7d0dac;
+    color: white;
+}
+body.dark-theme .bottom-navbar {
+    background: #333;
+    color: #f0f0f0;
+}
+body.dark-theme .bottom-navbar a {
+    color: #f0f0f0;
+}
+body.dark-theme .wave span:nth-child(3) {
+    background: rgb(0, 0, 0) !important;
+}

@@ -349,3 +349,83 @@ h1 {
   text-decoration: none !important;
   color: inherit !important;
 }
+
+
+/* Tema escuro para a página "Games" */
+body.dark-theme {
+    background-color: #222;
+    color: #f0f0f0;
+}
+
+/* Container principal */
+body.dark-theme .container {
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(122, 60, 242, 0.5);
+    color: #f0f0f0;
+}
+
+/* Título */
+body.dark-theme h1 {
+    color: #a882ff; /* Roxo claro para contraste */
+}
+
+/* Cards */
+body.dark-theme .card {
+    background-color: #333;
+    color: #f0f0f0;
+    border: 1px solid rgba(122, 60, 242, 0.3);
+}
+
+/* Cards ativos */
+body.dark-theme .card.active h2 {
+    color: #f0f0f0;
+}
+
+body.dark-theme .card.active p {
+    color: #ccc;
+}
+
+/* Cards bloqueados */
+body.dark-theme .card.locked {
+    background-color: #444;
+}
+
+body.dark-theme .card.locked h2 {
+    color: #aaa;
+}
+
+body.dark-theme .card.locked p {
+    color: #ccc;
+}
+
+/* Botão no canto superior direito */
+body.dark-theme .logo-button {
+    background-color: #333;
+    border: 3px solid #7a3cf2;
+}
+
+/* Fundo animado (ondas) */
+body.dark-theme .wave-container .wave {
+    background: #2d1b47; /* Roxo escuro */
+}
+
+body.dark-theme .wave-container .wave span:nth-child(1) {
+    background: rgba(100, 100, 100, 0.5);
+}
+
+body.dark-theme .wave-container .wave span:nth-child(2) {
+    background: rgba(100, 100, 100, 0.4);
+}
+
+body.dark-theme .wave-container .wave span:nth-child(3) {
+    background: rgb(0, 0, 0) !important;
+}
+
+/* Navbar */
+body.dark-theme .bottom-navbar {
+    background: #333;
+}
+
+body.dark-theme .bottom-navbar a {
+    color: #f0f0f0;
+}

@@ -261,3 +261,73 @@ section {
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
 
+
+/* Tema escuro para o chatbot */
+body.dark-theme .chat-container {
+    background: rgba(70, 40, 100, 0.8); /* Fundo roxo escuro com transparência */
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.7); /* Sombra roxa clara */
+}
+
+body.dark-theme .chat-box {
+    background: transparent; /* Fundo transparente para manter o estilo */
+}
+
+body.dark-theme .message.user {
+    background-color: #7d0dac; /* Roxo escuro para mensagens do usuário */
+    color: #ffffff;
+}
+
+body.dark-theme .message.bot {
+    background-color: #333; /* Fundo escuro para mensagens do bot */
+    color: #f0f0f0; /* Texto claro */
+}
+
+body.dark-theme .message.bot::after {
+    border-color: transparent #333 transparent transparent; /* Rabinho do balão ajustado para o fundo escuro */
+}
+
+body.dark-theme .input-form {
+    border-top: 1px solid rgba(233, 70, 211, 0.4); /* Borda superior com transparência */
+}
+
+body.dark-theme .input-form input[type="text"] {
+    background: #444; /* Fundo escuro para o input */
+    color: #f0f0f0; /* Texto claro */
+    border: none;
+}
+
+body.dark-theme .input-form button {
+    background-color: #7d0dac; /* Botão roxo escuro */
+    color: white;
+}
+
+body.dark-theme .input-form button:hover {
+    background-color: #5a0b7d; /* Tom mais escuro ao passar o mouse */
+    color: white; /* Texto branco no hover */
+}
+
+/* Ajuste para as ondas no tema escuro */
+body.dark-theme .wave {
+    background: #2d1b47; /* Fundo roxo escuro para as ondas */
+}
+
+body.dark-theme .wave span:nth-child(1) {
+    background: rgba(50, 50, 50, 0.3); /* Ondas com tons escuros */
+}
+
+body.dark-theme .wave span:nth-child(2) {
+    background: rgba(50, 50, 50, 0.2);
+}
+
+body.dark-theme .wave span:nth-child(3) {
+    background: rgb(0, 0, 0) !important; /* Terceira onda preta */
+}
+
+/* Ajuste para a navbar no tema escuro */
+body.dark-theme .bottom-navbar {
+    background: #333;
+}
+
+body.dark-theme .bottom-navbar a {
+    color: #f0f0f0;
+}

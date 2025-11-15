@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercícios de Idiomas</title>
     <link rel="stylesheet" href="../static/CSS/PaginaExercicios.css">
+     <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
     <div class="wave">
@@ -12,6 +15,50 @@
         <span></span>
         <span></span>
     </div>  
+
+    <!-- navbar -->
+
+       <nav class="bottom-navbar">
+    <ul>
+        <li>
+            <a href="{{ url_for('home') }}">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Início</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('classes') }}">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span class="nav-text">Classes</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('activities') }}">
+                <i class="fas fa-running"></i>
+                <span class="nav-text">Activities</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('games') }}">
+                <i class="fas fa-gamepad"></i>
+                <span class="nav-text">Games</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('configuracoes') }}">
+                <i class="fas fa-cog"></i>
+                <span class="nav-text">Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('apoiadores') }}">
+                <i class="fas fa-life-ring"></i>
+                <span class="nav-text">Apoio</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 
     <div class="container">
         <h1>Exercícios de Idiomas</h1>
@@ -125,5 +172,8 @@
 
         loadExercise(currentExercise);
     </script>
+
+    <script src="../static/JS/tema.js"></script>
+
 </body>
 </html>

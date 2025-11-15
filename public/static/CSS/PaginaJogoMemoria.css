@@ -1,146 +1,139 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #9554ff;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 75vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 100px auto;
-    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 h1 {
     text-align: center;
-    color: #6613eb;
-    margin-bottom: 30px;
+    color: black;
 }
 
-.exercise {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #6613eb;
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card {
+    height: 120px;
+    background-color: #5900ff;
     border-radius: 5px;
-    background-color: #a086ca;
-    width: 600px;
-}
-
-.question {
-    color: #7d0dac;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.options {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    position: relative;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.card-front {
+    background-color: #7d0dac;
+}
+
+.card-back {
+    background-color: #920eff;
+    transform: rotateY(180deg);
     flex-direction: column;
 }
 
-.option {
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #5f12ec;
-    border: 1px solid #ddd;
-    border-radius:  10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+.card-back img {
+    max-width: 80%;
+    max-height: 60%;
+    object-fit: contain;
 }
 
-.option:hover {
-    background-color: #7f0aad;
-}
-
-.option.correct {
-    background-color: green;
-    color: white;
-}
-
-.option.incorrect {
-    background-color: #f44336;
-    color: white;
-}
-
-.feedback {
-    margin-top: 10px;
-    font-style: italic;
-}
-
-.progress {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.progress-bar {
+.score-panel {
+    color: black;
     display: flex;
-    height: 20px;
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
-.progress-fill {
-    height: 100%;
-    background-color: #641fd3;
-    width: 0%;
-    transition: width 0.3s;
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-/* ----------------- Ondas ----------------- */
-.wave {
+button {
+    background-color: #9200cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+button:hover {
+    background-color: #0b7dda;
+}
+
+.modal {
+    display: none;
     position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background: #9c65f5;
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.wave span {
-    position: absolute;
-    width: 360vh;
-    height: 360vh;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -75%);
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
 }
 
-.wave span:nth-child(1) {
-    border-radius: 45%;
-    background: rgba(255, 255, 255, 0.5);
-    animation: animate 5s linear infinite;
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.wave span:nth-child(2) {
-    border-radius: 40%;
-    background: rgba(255, 255, 255, 0.4);
-    animation: animate 10s linear infinite;
+.close:hover {
+    color: black;
 }
-
-.wave span:nth-child(3) {
-    border-radius: 42.5%;
-    background: rgba(255, 255, 255, 0.3);
-    animation: animate 15s linear infinite;
-}
-
-@keyframes animate {
-    0% { transform: translate(-50%, -75%) rotate(0deg); }
-    100% { transform: translate(-50%, -75%) rotate(180deg); }
-}
-
 
 /* NAVBAR */
 .bottom-navbar {
@@ -219,10 +212,50 @@ h1 {
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
+/* ---- ONDAS (mantidas como estão no seu código original) ---- */
+.wave {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #9c65f5;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+.wave span {
+  position: absolute;
+  width: 360vh;
+  height: 360vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}
+.wave span:nth-child(1) {
+  border-radius: 45%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: animate 5s linear infinite;
+}
+.wave span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: animate 10s linear infinite;
+}
+.wave span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: animate 15s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(180deg);
+  }
+}
 
-
-
- /* Tema escuro (deve estar em todas as páginas) */
+/* Tema escuro (deve estar em todas as páginas) */
 body.dark-theme {
     background: #222;
     color: #f0f0f0;
@@ -257,4 +290,3 @@ body.dark-theme .bottom-navbar a {
 body.dark-theme .wave span:nth-child(3) {
     background: rgb(0, 0, 0) !important;
 }
-

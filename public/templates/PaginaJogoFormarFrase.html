@@ -4,199 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Formar Frases em Inglês</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .game-container {
-            max-width: 1000px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .title {
-            color: white;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .instruction {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .sentence-target {
-            color: white;
-            font-size: 1.3rem;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .game-area {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            min-height: 450px;
-            height: 450px;
-            position: relative;
-            margin: 30px 0;
-            overflow: hidden;
-        }
-
-        .word-block {
-            position: absolute;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            cursor: grab;
-            user-select: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            z-index: 1;
-        }
-
-        .word-block:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .word-block:active {
-            cursor: grabbing;
-            transform: scale(1.1);
-        }
-
-        .word-block.dragging {
-            z-index: 1000;
-            transform: rotate(5deg) scale(1.1);
-            animation-play-state: paused;
-        }
-
-        .drop-zone {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            min-height: 80px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .drop-zone.highlight {
-            background: rgba(76, 175, 80, 0.3);
-            border-color: #4caf50;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #4caf50, #45a049);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn.secondary {
-            background: linear-gradient(45deg, #ff9800, #f57c00);
-        }
-
-        .feedback {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            min-height: 30px;
-        }
-
-        .success {
-            color: #4caf50;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .error {
-            color: #f44336;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .score {
-            color: white;
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .floating {
-            transition: all 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2rem;
-            }
-            
-            .game-container {
-                padding: 20px;
-            }
-            
-            .word-block {
-                font-size: 1rem;
-                padding: 10px 16px;
-            }
-        }
-    </style>
+    <!-- Importando o CSS separado -->
+    <link rel="stylesheet" href="../static/CSS/PaginaJogoFormarFrase.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
+    
+    <!-- Ondas de fundo -->
+    <section>
+        <div class="wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        
+
+
     <div class="game-container">
         <div class="header">
             <h1 class="title">🎯 Jogo de Formar Frases</h1>
@@ -222,6 +48,50 @@
 
         <div class="feedback" id="feedback"></div>
     </div>
+
+     <!-- navbar -->
+
+       <nav class="bottom-navbar">
+    <ul>
+        <li>
+            <a href="{{ url_for('home') }}">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Início</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('classes') }}">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span class="nav-text">Classes</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('activities') }}">
+                <i class="fas fa-running"></i>
+                <span class="nav-text">Activities</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('games') }}">
+                <i class="fas fa-gamepad"></i>
+                <span class="nav-text">Games</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('configuracoes') }}">
+                <i class="fas fa-cog"></i>
+                <span class="nav-text">Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('apoiadores') }}">
+                <i class="fas fa-life-ring"></i>
+                <span class="nav-text">Apoio</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+      
 
     <script>
         let currentLevel = 1;
@@ -264,7 +134,6 @@
             const targetSentence = document.getElementById('target-sentence');
             const dropZone = document.getElementById('drop-zone');
             
-            // Parar animação anterior
             if (animationId) {
                 cancelAnimationFrame(animationId);
             }
@@ -277,7 +146,6 @@
             const currentSentence = sentences[(currentLevel - 1) % sentences.length];
             targetSentence.textContent = `"${currentSentence.correct}" (${currentSentence.translation})`;
             
-            // Embaralhar palavras e criar blocos
             const shuffledWords = [...currentSentence.words].sort(() => Math.random() - 0.5);
             
             shuffledWords.forEach((word, index) => {
@@ -286,7 +154,6 @@
                 wordBlock.textContent = word;
                 wordBlock.draggable = true;
                 
-                // Posição aleatória inicial
                 const gameAreaRect = gameArea.getBoundingClientRect();
                 const maxX = Math.max(200, gameAreaRect.width - 180);
                 const maxY = Math.max(100, gameAreaRect.height - 80);
@@ -296,20 +163,17 @@
                 wordBlock.style.left = x + 'px';
                 wordBlock.style.top = y + 'px';
                 
-                // Propriedades de movimento aleatório
                 wordBlock.moveData = {
                     x: x,
                     y: y,
-                    vx: (Math.random() - 0.5) * 2, // velocidade X
-                    vy: (Math.random() - 0.5) * 2, // velocidade Y
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
                     isDragging: false
                 };
                 
-                // Event listeners para drag and drop
                 wordBlock.addEventListener('dragstart', handleDragStart);
                 wordBlock.addEventListener('dragend', handleDragEnd);
                 
-                // Event listeners para touch (mobile)
                 wordBlock.addEventListener('touchstart', handleTouchStart);
                 wordBlock.addEventListener('touchmove', handleTouchMove);
                 wordBlock.addEventListener('touchend', handleTouchEnd);
@@ -318,13 +182,10 @@
                 floatingWords.push(wordBlock);
             });
             
-            // Setup drop zone
             dropZone.addEventListener('dragover', handleDragOver);
             dropZone.addEventListener('drop', handleDrop);
             
             document.getElementById('feedback').textContent = '';
-            
-            // Iniciar animação de movimento
             startFloatingAnimation();
         }
 
@@ -337,11 +198,9 @@
                 
                 floatingWords.forEach(word => {
                     if (!word.moveData.isDragging && word.parentElement) {
-                        // Atualizar posição
                         word.moveData.x += word.moveData.vx;
                         word.moveData.y += word.moveData.vy;
                         
-                        // Verificar colisões com bordas e inverter direção
                         if (word.moveData.x <= 20 || word.moveData.x >= maxX) {
                             word.moveData.vx *= -1;
                             word.moveData.x = Math.max(20, Math.min(maxX, word.moveData.x));
@@ -352,16 +211,13 @@
                             word.moveData.y = Math.max(20, Math.min(maxY, word.moveData.y));
                         }
                         
-                        // Adicionar pequenas variações aleatórias na direção
                         word.moveData.vx += (Math.random() - 0.5) * 0.1;
                         word.moveData.vy += (Math.random() - 0.5) * 0.1;
                         
-                        // Limitar velocidade máxima
                         const maxSpeed = 1.5;
                         word.moveData.vx = Math.max(-maxSpeed, Math.min(maxSpeed, word.moveData.vx));
                         word.moveData.vy = Math.max(-maxSpeed, Math.min(maxSpeed, word.moveData.vy));
                         
-                        // Aplicar posição
                         word.style.left = word.moveData.x + 'px';
                         word.style.top = word.moveData.y + 'px';
                     }
@@ -403,7 +259,6 @@
             }
         }
 
-        // Touch events para dispositivos móveis
         let touchOffset = { x: 0, y: 0 };
 
         function handleTouchStart(e) {
@@ -439,7 +294,6 @@
                     touch.clientY >= dropRect.top && touch.clientY <= dropRect.bottom) {
                     addWordToDropZone(draggedElement);
                 } else {
-                    // Retornar à posição original
                     draggedElement.style.position = 'absolute';
                     draggedElement.style.zIndex = '1';
                     if (draggedElement.moveData) {
@@ -458,25 +312,21 @@
         function addWordToDropZone(wordElement) {
             const dropZone = document.getElementById('drop-zone');
             
-            // Remover da lista de palavras flutuantes
             const index = floatingWords.indexOf(wordElement);
             if (index > -1) {
                 floatingWords.splice(index, 1);
             }
             
-            // Limpar placeholder se existir
             if (dropZone.children.length === 1 && dropZone.children[0].tagName === 'SPAN') {
                 dropZone.innerHTML = '';
             }
             
-            // Criar nova palavra na drop zone
             const newWord = document.createElement('div');
             newWord.className = 'word-block';
             newWord.textContent = wordElement.textContent;
             newWord.style.position = 'static';
             newWord.style.cursor = 'pointer';
             
-            // Permitir remover palavra clicando nela
             newWord.addEventListener('click', function() {
                 this.remove();
                 droppedWords = Array.from(dropZone.children).map(child => child.textContent);
@@ -489,7 +339,6 @@
             dropZone.appendChild(newWord);
             wordElement.remove();
             
-            // Atualizar array de palavras
             droppedWords = Array.from(dropZone.children).map(child => child.textContent);
         }
 
@@ -526,12 +375,13 @@
             initLevel();
         }
 
-        // Inicializar jogo
         window.addEventListener('load', initLevel);
-        
-        // Prevenir comportamento padrão de drag em toda a página
+
         document.addEventListener('dragover', e => e.preventDefault());
         document.addEventListener('drop', e => e.preventDefault());
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'974da028c415f183',t:'MTc1NjE1MTUwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+    <script src="../static/JS/tema.js"></script>
+
+</body>
 </html>
