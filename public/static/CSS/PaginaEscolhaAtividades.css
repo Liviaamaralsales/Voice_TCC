@@ -414,3 +414,10 @@ body.dark-theme .bottom-navbar {
 body.dark-theme .bottom-navbar a {
     color: #f0f0f0;
 }
+
+
+
+/* Remove o sublinhado de todos os links */
+a {
+    text-decoration: none !important;
+}

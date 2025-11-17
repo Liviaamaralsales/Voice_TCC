@@ -111,12 +111,13 @@ body {
 /* ---- Animação da borda brilhante ---- */
 @keyframes borderGlow {
   from {
-    box-shadow: 0 0 10px #6E00B3, 0 0 20px #b06cff, 0 0 30px #9f01ff;
+    box-shadow: 0 0 10px #6E00B3, 0 0 20px #b06cff;
   }
   to {
-    box-shadow: 0 0 15px #6E00B3, 0 0 20px #b06cff, 0 0 35px #9f01ff;
+    box-shadow: 0 0 15px #6E00B3, 0 0 20px #b06cff;
   }
 }
+
 /* ---- Calendário ---- */
 .calendario {
   width: clamp(200px, 50vw, 300px);

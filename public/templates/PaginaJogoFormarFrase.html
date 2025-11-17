@@ -4,384 +4,366 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo de Formar Frases em Inglês</title>
-
-    <!-- Importando o CSS separado -->
+    <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../static/CSS/PaginaJogoFormarFrase.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+
+   </head>
 <body>
-
-    
-    <!-- Ondas de fundo -->
-    <section>
-        <div class="wave">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        
-
-
+    <!-- ONDAS -->
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <div class="game-container">
         <div class="header">
-            <h1 class="title">🎯 Jogo de Formar Frases</h1>
-            <p class="instruction">Arraste as palavras para formar a frase correta em inglês!</p>
             <div class="score">Pontuação: <span id="score">0</span> | Nível: <span id="level">1</span></div>
         </div>
-
         <div class="sentence-target">
             <strong>Forme a frase:</strong> <span id="target-sentence"></span>
         </div>
-
         <div class="game-area" id="game-area"></div>
-
         <div class="drop-zone" id="drop-zone">
-            <span style="color: rgba(255,255,255,0.7); font-style: italic;">Solte as palavras aqui na ordem correta...</span>
+            <span style="color: rgba(118, 75, 162);font-style: italic;">Solte as palavras aqui na ordem correta...</span>
         </div>
-
         <div class="controls">
             <button class="btn" onclick="checkAnswer()">✓ Verificar Resposta</button>
             <button class="btn secondary" onclick="resetLevel()">🔄 Reiniciar Nível</button>
             <button class="btn secondary" onclick="nextLevel()">➡️ Próximo Nível</button>
         </div>
-
         <div class="feedback" id="feedback"></div>
     </div>
+    <nav class="bottom-navbar">
+        <ul>
+            <li>
+                <a href="{{ url_for('home') }}">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Início</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('classes') }}">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="nav-text">Classes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('activities') }}">
+                    <i class="fas fa-running"></i>
+                    <span class="nav-text">Activities</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('games') }}">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="nav-text">Games</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('configuracoes') }}">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">Configurações</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('apoiadores') }}">
+                    <i class="fas fa-life-ring"></i>
+                    <span class="nav-text">Apoio</span>
+                </a>
+            </li>
+        </ul>
+    </nav> 
+  <script>
+    let currentLevel = 1;
+    let score = 0;
+    let draggedElement = null;
+    let droppedWords = [];
+    let floatingWords = [];
+    let animationId;
 
-     <!-- navbar -->
+    const sentences = [
+        {
+            correct: "I love learning English",
+            words: ["English", "love", "learning", "I"],
+            translation: "Eu amo aprender inglês"
+        },
+        {
+            correct: "The cat is sleeping peacefully",
+            words: ["peacefully", "cat", "The", "sleeping", "is"],
+            translation: "O gato está dormindo pacificamente"
+        },
+        {
+            correct: "We are going to the park",
+            words: ["to", "going", "We", "the", "park", "are"],
+            translation: "Nós estamos indo para o parque"
+        },
+        {
+            correct: "She reads books every day",
+            words: ["every", "reads", "She", "day", "books"],
+            translation: "Ela lê livros todos os dias"
+        },
+        {
+            correct: "The weather is beautiful today",
+            words: ["beautiful", "The", "today", "weather", "is"],
+            translation: "O tempo está lindo hoje"
+        }
+    ];
 
-       <nav class="bottom-navbar">
-    <ul>
-        <li>
-            <a href="{{ url_for('home') }}">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">Início</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('classes') }}">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span class="nav-text">Classes</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('activities') }}">
-                <i class="fas fa-running"></i>
-                <span class="nav-text">Activities</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('games') }}">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-text">Games</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Configurações</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('apoiadores') }}">
-                <i class="fas fa-life-ring"></i>
-                <span class="nav-text">Apoio</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-      
+    function initLevel() {
+        const gameArea = document.getElementById('game-area');
+        const targetSentence = document.getElementById('target-sentence');
+        const dropZone = document.getElementById('drop-zone');
 
-    <script>
-        let currentLevel = 1;
-        let score = 0;
-        let draggedElement = null;
-        let droppedWords = [];
-        let floatingWords = [];
-        let animationId;
+        // Parar animação anterior
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
 
-        const sentences = [
-            {
-                correct: "I love learning English",
-                words: ["English", "love", "learning", "I"],
-                translation: "Eu amo aprender inglês"
-            },
-            {
-                correct: "The cat is sleeping peacefully",
-                words: ["peacefully", "cat", "The", "sleeping", "is"],
-                translation: "O gato está dormindo pacificamente"
-            },
-            {
-                correct: "We are going to the park",
-                words: ["to", "going", "We", "the", "park", "are"],
-                translation: "Nós estamos indo para o parque"
-            },
-            {
-                correct: "She reads books every day",
-                words: ["every", "reads", "She", "day", "books"],
-                translation: "Ela lê livros todos os dias"
-            },
-            {
-                correct: "The weather is beautiful today",
-                words: ["beautiful", "The", "today", "weather", "is"],
-                translation: "O tempo está lindo hoje"
-            }
-        ];
+        gameArea.innerHTML = '';
 
-        function initLevel() {
+        // ✅ COR CORRIGIDA AQUI
+        dropZone.innerHTML = '<span style="color: rgba(118, 75, 162); font-style: italic;">Solte as palavras aqui na ordem correta...</span>';
+
+        droppedWords = [];
+        floatingWords = [];
+
+        const currentSentence = sentences[(currentLevel - 1) % sentences.length];
+        targetSentence.textContent = `"${currentSentence.correct}" (${currentSentence.translation})`;
+
+        // Embaralhar palavras
+        const shuffledWords = [...currentSentence.words].sort(() => Math.random() - 0.5);
+
+        shuffledWords.forEach((word, index) => {
+            const wordBlock = document.createElement('div');
+            wordBlock.className = 'word-block floating';
+            wordBlock.textContent = word;
+            wordBlock.draggable = true;
+
+            // Posição aleatória
+            const gameAreaRect = gameArea.getBoundingClientRect();
+            const maxX = Math.max(200, gameAreaRect.width - 180);
+            const maxY = Math.max(100, gameAreaRect.height - 80);
+
+            const x = 20 + Math.random() * maxX;
+            const y = 20 + Math.random() * maxY;
+
+            wordBlock.style.left = x + 'px';
+            wordBlock.style.top = y + 'px';
+
+            wordBlock.moveData = {
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                isDragging: false
+            };
+
+            wordBlock.addEventListener('dragstart', handleDragStart);
+            wordBlock.addEventListener('dragend', handleDragEnd);
+
+            wordBlock.addEventListener('touchstart', handleTouchStart);
+            wordBlock.addEventListener('touchmove', handleTouchMove);
+            wordBlock.addEventListener('touchend', handleTouchEnd);
+
+            gameArea.appendChild(wordBlock);
+            floatingWords.push(wordBlock);
+        });
+
+        dropZone.addEventListener('dragover', handleDragOver);
+        dropZone.addEventListener('drop', handleDrop);
+
+        document.getElementById('feedback').textContent = '';
+
+        startFloatingAnimation();
+    }
+
+    function startFloatingAnimation() {
+        function animate() {
             const gameArea = document.getElementById('game-area');
-            const targetSentence = document.getElementById('target-sentence');
-            const dropZone = document.getElementById('drop-zone');
-            
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-            
-            gameArea.innerHTML = '';
-            dropZone.innerHTML = '<span style="color: rgba(255,255,255,0.7); font-style: italic;">Solte as palavras aqui na ordem correta...</span>';
-            droppedWords = [];
-            floatingWords = [];
-            
-            const currentSentence = sentences[(currentLevel - 1) % sentences.length];
-            targetSentence.textContent = `"${currentSentence.correct}" (${currentSentence.translation})`;
-            
-            const shuffledWords = [...currentSentence.words].sort(() => Math.random() - 0.5);
-            
-            shuffledWords.forEach((word, index) => {
-                const wordBlock = document.createElement('div');
-                wordBlock.className = 'word-block floating';
-                wordBlock.textContent = word;
-                wordBlock.draggable = true;
-                
-                const gameAreaRect = gameArea.getBoundingClientRect();
-                const maxX = Math.max(200, gameAreaRect.width - 180);
-                const maxY = Math.max(100, gameAreaRect.height - 80);
-                
-                const x = 20 + Math.random() * maxX;
-                const y = 20 + Math.random() * maxY;
-                wordBlock.style.left = x + 'px';
-                wordBlock.style.top = y + 'px';
-                
-                wordBlock.moveData = {
-                    x: x,
-                    y: y,
-                    vx: (Math.random() - 0.5) * 2,
-                    vy: (Math.random() - 0.5) * 2,
-                    isDragging: false
-                };
-                
-                wordBlock.addEventListener('dragstart', handleDragStart);
-                wordBlock.addEventListener('dragend', handleDragEnd);
-                
-                wordBlock.addEventListener('touchstart', handleTouchStart);
-                wordBlock.addEventListener('touchmove', handleTouchMove);
-                wordBlock.addEventListener('touchend', handleTouchEnd);
-                
-                gameArea.appendChild(wordBlock);
-                floatingWords.push(wordBlock);
-            });
-            
-            dropZone.addEventListener('dragover', handleDragOver);
-            dropZone.addEventListener('drop', handleDrop);
-            
-            document.getElementById('feedback').textContent = '';
-            startFloatingAnimation();
-        }
+            const gameAreaRect = gameArea.getBoundingClientRect();
+            const maxX = gameAreaRect.width - 150;
+            const maxY = gameAreaRect.height - 60;
 
-        function startFloatingAnimation() {
-            function animate() {
-                const gameArea = document.getElementById('game-area');
-                const gameAreaRect = gameArea.getBoundingClientRect();
-                const maxX = gameAreaRect.width - 150;
-                const maxY = gameAreaRect.height - 60;
-                
-                floatingWords.forEach(word => {
-                    if (!word.moveData.isDragging && word.parentElement) {
-                        word.moveData.x += word.moveData.vx;
-                        word.moveData.y += word.moveData.vy;
-                        
-                        if (word.moveData.x <= 20 || word.moveData.x >= maxX) {
-                            word.moveData.vx *= -1;
-                            word.moveData.x = Math.max(20, Math.min(maxX, word.moveData.x));
-                        }
-                        
-                        if (word.moveData.y <= 20 || word.moveData.y >= maxY) {
-                            word.moveData.vy *= -1;
-                            word.moveData.y = Math.max(20, Math.min(maxY, word.moveData.y));
-                        }
-                        
-                        word.moveData.vx += (Math.random() - 0.5) * 0.1;
-                        word.moveData.vy += (Math.random() - 0.5) * 0.1;
-                        
-                        const maxSpeed = 1.5;
-                        word.moveData.vx = Math.max(-maxSpeed, Math.min(maxSpeed, word.moveData.vx));
-                        word.moveData.vy = Math.max(-maxSpeed, Math.min(maxSpeed, word.moveData.vy));
-                        
-                        word.style.left = word.moveData.x + 'px';
-                        word.style.top = word.moveData.y + 'px';
+            floatingWords.forEach(word => {
+                if (!word.moveData.isDragging && word.parentElement) {
+                    word.moveData.x += word.moveData.vx;
+                    word.moveData.y += word.moveData.vy;
+
+                    if (word.moveData.x <= 20 || word.moveData.x >= maxX) {
+                        word.moveData.vx *= -1;
+                        word.moveData.x = Math.max(20, Math.min(maxX, word.moveData.x));
                     }
-                });
-                
-                animationId = requestAnimationFrame(animate);
-            }
-            
-            animate();
+
+                    if (word.moveData.y <= 20 || word.moveData.y >= maxY) {
+                        word.moveData.vy *= -1;
+                        word.moveData.y = Math.max(20, Math.min(maxY, word.moveData.y));
+                    }
+
+                    word.moveData.vx += (Math.random() - 0.5) * 0.1;
+                    word.moveData.vy += (Math.random() - 0.5) * 0.1;
+
+                    const maxSpeed = 1.5;
+                    word.moveData.vx = Math.max(-maxSpeed, Math.min(maxSpeed, word.moveData.vx));
+                    word.moveData.vy = Math.max(-maxSpeed, Math.min(maxSpeed, word.moveData.vy));
+
+                    word.style.left = word.moveData.x + 'px';
+                    word.style.top = word.moveData.y + 'px';
+                }
+            });
+
+            animationId = requestAnimationFrame(animate);
         }
 
-        function handleDragStart(e) {
-            draggedElement = e.target;
-            e.target.classList.add('dragging');
-            if (e.target.moveData) {
-                e.target.moveData.isDragging = true;
-            }
-        }
+        animate();
+    }
 
-        function handleDragEnd(e) {
-            e.target.classList.remove('dragging');
-            if (e.target.moveData) {
-                e.target.moveData.isDragging = false;
+    function handleDragStart(e) {
+        draggedElement = e.target;
+        e.target.classList.add('dragging');
+        if (e.target.moveData) e.target.moveData.isDragging = true;
+    }
+
+    function handleDragEnd(e) {
+        e.target.classList.remove('dragging');
+        if (e.target.moveData) e.target.moveData.isDragging = false;
+        draggedElement = null;
+    }
+
+    function handleDragOver(e) {
+        e.preventDefault();
+        e.currentTarget.classList.add('highlight');
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        e.currentTarget.classList.remove('highlight');
+        if (draggedElement) addWordToDropZone(draggedElement);
+    }
+
+    // TOUCH MOBILE
+    let touchOffset = { x: 0, y: 0 };
+
+    function handleTouchStart(e) {
+        const touch = e.touches[0];
+        const rect = e.target.getBoundingClientRect();
+        touchOffset.x = touch.clientX - rect.left;
+        touchOffset.y = touch.clientY - rect.top;
+        e.target.classList.add('dragging');
+        if (e.target.moveData) e.target.moveData.isDragging = true;
+        draggedElement = e.target;
+    }
+
+    function handleTouchMove(e) {
+        e.preventDefault();
+        if (draggedElement) {
+            const touch = e.touches[0];
+            draggedElement.style.position = 'fixed';
+            draggedElement.style.left = (touch.clientX - touchOffset.x) + 'px';
+            draggedElement.style.top = (touch.clientY - touchOffset.y) + 'px';
+            draggedElement.style.zIndex = '1000';
+        }
+    }
+
+    function handleTouchEnd(e) {
+        if (draggedElement) {
+            const touch = e.changedTouches[0];
+            const dropZone = document.getElementById('drop-zone');
+            const dropRect = dropZone.getBoundingClientRect();
+
+            if (
+                touch.clientX >= dropRect.left && touch.clientX <= dropRect.right &&
+                touch.clientY >= dropRect.top && touch.clientY <= dropRect.bottom
+            ) {
+                addWordToDropZone(draggedElement);
+            } else {
+                draggedElement.style.position = 'absolute';
+                draggedElement.style.zIndex = '1';
+                if (draggedElement.moveData) draggedElement.moveData.isDragging = false;
             }
+
+            draggedElement.classList.remove('dragging');
+            if (draggedElement.moveData) draggedElement.moveData.isDragging = false;
             draggedElement = null;
         }
+    }
 
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.currentTarget.classList.add('highlight');
+    function addWordToDropZone(wordElement) {
+        const dropZone = document.getElementById('drop-zone');
+
+        const index = floatingWords.indexOf(wordElement);
+        if (index > -1) floatingWords.splice(index, 1);
+
+        // Tirar placeholder se existir
+        if (dropZone.children.length === 1 && dropZone.children[0].tagName === 'SPAN') {
+            dropZone.innerHTML = '';
         }
 
-        function handleDrop(e) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('highlight');
-            
-            if (draggedElement) {
-                addWordToDropZone(draggedElement);
-            }
-        }
+        // Nova palavra na drop zone
+        const newWord = document.createElement('div');
+        newWord.className = 'word-block';
+        newWord.textContent = wordElement.textContent;
+        newWord.style.position = 'static';
+        newWord.style.cursor = 'pointer';
 
-        let touchOffset = { x: 0, y: 0 };
-
-        function handleTouchStart(e) {
-            const touch = e.touches[0];
-            const rect = e.target.getBoundingClientRect();
-            touchOffset.x = touch.clientX - rect.left;
-            touchOffset.y = touch.clientY - rect.top;
-            e.target.classList.add('dragging');
-            if (e.target.moveData) {
-                e.target.moveData.isDragging = true;
-            }
-            draggedElement = e.target;
-        }
-
-        function handleTouchMove(e) {
-            e.preventDefault();
-            if (draggedElement) {
-                const touch = e.touches[0];
-                draggedElement.style.position = 'fixed';
-                draggedElement.style.left = (touch.clientX - touchOffset.x) + 'px';
-                draggedElement.style.top = (touch.clientY - touchOffset.y) + 'px';
-                draggedElement.style.zIndex = '1000';
-            }
-        }
-
-        function handleTouchEnd(e) {
-            if (draggedElement) {
-                const touch = e.changedTouches[0];
-                const dropZone = document.getElementById('drop-zone');
-                const dropRect = dropZone.getBoundingClientRect();
-                
-                if (touch.clientX >= dropRect.left && touch.clientX <= dropRect.right &&
-                    touch.clientY >= dropRect.top && touch.clientY <= dropRect.bottom) {
-                    addWordToDropZone(draggedElement);
-                } else {
-                    draggedElement.style.position = 'absolute';
-                    draggedElement.style.zIndex = '1';
-                    if (draggedElement.moveData) {
-                        draggedElement.moveData.isDragging = false;
-                    }
-                }
-                
-                draggedElement.classList.remove('dragging');
-                if (draggedElement.moveData) {
-                    draggedElement.moveData.isDragging = false;
-                }
-                draggedElement = null;
-            }
-        }
-
-        function addWordToDropZone(wordElement) {
-            const dropZone = document.getElementById('drop-zone');
-            
-            const index = floatingWords.indexOf(wordElement);
-            if (index > -1) {
-                floatingWords.splice(index, 1);
-            }
-            
-            if (dropZone.children.length === 1 && dropZone.children[0].tagName === 'SPAN') {
-                dropZone.innerHTML = '';
-            }
-            
-            const newWord = document.createElement('div');
-            newWord.className = 'word-block';
-            newWord.textContent = wordElement.textContent;
-            newWord.style.position = 'static';
-            newWord.style.cursor = 'pointer';
-            
-            newWord.addEventListener('click', function() {
-                this.remove();
-                droppedWords = Array.from(dropZone.children).map(child => child.textContent);
-                
-                if (droppedWords.length === 0) {
-                    dropZone.innerHTML = '<span style="color: rgba(255,255,255,0.7); font-style: italic;">Solte as palavras aqui na ordem correta...</span>';
-                }
-            });
-            
-            dropZone.appendChild(newWord);
-            wordElement.remove();
-            
+        // Remover palavra clicando
+        newWord.addEventListener('click', function () {
+            this.remove();
             droppedWords = Array.from(dropZone.children).map(child => child.textContent);
-        }
 
-        function checkAnswer() {
-            const currentSentence = sentences[(currentLevel - 1) % sentences.length];
-            const userAnswer = droppedWords.join(' ');
-            const feedback = document.getElementById('feedback');
-            
-            if (userAnswer === currentSentence.correct) {
-                feedback.textContent = '🎉 Perfeito! Frase correta!';
-                feedback.className = 'feedback success';
-                score += 10 * currentLevel;
-                document.getElementById('score').textContent = score;
-                
-                setTimeout(() => {
-                    nextLevel();
-                }, 2000);
-            } else if (droppedWords.length === 0) {
-                feedback.textContent = '⚠️ Arraste as palavras para a área de resposta primeiro!';
-                feedback.className = 'feedback error';
-            } else {
-                feedback.textContent = '❌ Não está correto. Tente novamente!';
-                feedback.className = 'feedback error';
+            if (droppedWords.length === 0) {
+                // ✅ COR CORRIGIDA AQUI TAMBÉM
+                dropZone.innerHTML = '<span style="color: rgba(118, 75, 162); font-style: italic;">Solte as palavras aqui na ordem correta...</span>';
             }
+        });
+
+        dropZone.appendChild(newWord);
+        wordElement.remove();
+
+        droppedWords = Array.from(dropZone.children).map(child => child.textContent);
+    }
+
+    function checkAnswer() {
+        const currentSentence = sentences[(currentLevel - 1) % sentences.length];
+        const userAnswer = droppedWords.join(' ');
+        const feedback = document.getElementById('feedback');
+
+        if (userAnswer === currentSentence.correct) {
+            feedback.textContent = '🎉 Perfeito! Frase correta!';
+            feedback.className = 'feedback success';
+            score += 10 * currentLevel;
+            document.getElementById('score').textContent = score;
+
+            setTimeout(() => nextLevel(), 2000);
+
+        } else if (droppedWords.length === 0) {
+            feedback.textContent = '⚠️ Arraste as palavras para a área de resposta primeiro!';
+            feedback.className = 'feedback error';
+
+        } else {
+            feedback.textContent = '❌ Não está correto. Tente novamente!';
+            feedback.className = 'feedback error';
         }
+    }
 
-        function resetLevel() {
-            initLevel();
-        }
+    function resetLevel() {
+        initLevel();
+    }
 
-        function nextLevel() {
-            currentLevel++;
-            document.getElementById('level').textContent = currentLevel;
-            initLevel();
-        }
+    function nextLevel() {
+        currentLevel++;
+        document.getElementById('level').textContent = currentLevel;
+        initLevel();
+    }
 
-        window.addEventListener('load', initLevel);
+    window.addEventListener('load', initLevel);
 
-        document.addEventListener('dragover', e => e.preventDefault());
-        document.addEventListener('drop', e => e.preventDefault());
-    </script>
+    document.addEventListener('dragover', e => e.preventDefault());
+    document.addEventListener('drop', e => e.preventDefault());
+</script>
 
-    <script src="../static/JS/tema.js"></script>
+
+<script src="../static/JS/tema.js"></script>
 
 </body>
 </html>

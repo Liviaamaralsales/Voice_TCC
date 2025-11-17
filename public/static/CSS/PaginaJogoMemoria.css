@@ -260,6 +260,10 @@ body.dark-theme {
     background: #222;
     color: #f0f0f0;
 }
+body.dark-theme .container {
+    background: #a678d1;
+    color: #f0f0f0;
+}
 body.dark-theme .config-left,
 body.dark-theme .config-right {
     background: #333;
@@ -277,7 +281,7 @@ body.dark-theme .toggle-group .toggle {
     border-color: #555;
 }
 body.dark-theme .toggle-group .toggle.active {
-    background: #7d0dac;
+    background:  #a678d1 ;
     color: white;
 }
 body.dark-theme .bottom-navbar {
