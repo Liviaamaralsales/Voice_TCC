@@ -5,62 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercícios de Idiomas</title>
     <link rel="stylesheet" href="../static/CSS/PaginaExercicios.css">
-     <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
+    <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 </head>
 <body>
     <div class="wave">
         <span></span>
         <span></span>
         <span></span>
-    </div>  
-
-    <!-- navbar -->
-
-       <nav class="bottom-navbar">
-    <ul>
-        <li>
-            <a href="{{ url_for('home') }}">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">Início</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('classes') }}">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span class="nav-text">Classes</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('activities') }}">
-                <i class="fas fa-running"></i>
-                <span class="nav-text">Activities</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('games') }}">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-text">Games</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Configurações</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('apoiadores') }}">
-                <i class="fas fa-life-ring"></i>
-                <span class="nav-text">Apoio</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
+    </div>
 
     <div class="container">
+        <button class="purple-gradient-button back-button" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
         <h1>Exercícios de Idiomas</h1>
         <div id="exercise-container">
             <!-- Exercícios serão inseridos aqui -->
@@ -73,99 +31,138 @@
         </div>
     </div>
 
+    <!-- navbar -->
+    <nav class="bottom-navbar">
+        <ul>
+            <li>
+                <a href="{{ url_for('home') }}">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Início</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('classes') }}">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="nav-text">Classes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('activities') }}">
+                    <i class="fas fa-running"></i>
+                    <span class="nav-text">Activities</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('games') }}">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="nav-text">Games</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('configuracoes') }}">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">Configurações</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('apoiadores') }}">
+                    <i class="fas fa-life-ring"></i>
+                    <span class="nav-text">Apoio</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
     <script>
         const exercises = [
-    { question: "Como se diz 'hello' em português?", options: ["Olá", "Adeus", "Obrigado", "Por favor"], correctAnswer: 0 },
-    { question: "Qual é a tradução de 'thank you'?", options: ["Por favor", "Desculpe", "Obrigado", "Adeus"], correctAnswer: 2 },
-    { question: "Como se diz 'goodbye' em português?", options: ["Olá", "Adeus", "Bom dia", "Boa noite"], correctAnswer: 1 },
-    { question: "Qual é a tradução de 'please'?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 1 },
-    { question: "Como se diz 'sorry' em português?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 2 }
-];
+            { question: "Como se diz 'hello' em português?", options: ["Olá", "Adeus", "Obrigado", "Por favor"], correctAnswer: 0 },
+            { question: "Qual é a tradução de 'thank you'?", options: ["Por favor", "Desculpe", "Obrigado", "Adeus"], correctAnswer: 2 },
+            { question: "Como se diz 'goodbye' em português?", options: ["Olá", "Adeus", "Bom dia", "Boa noite"], correctAnswer: 1 },
+            { question: "Qual é a tradução de 'please'?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 1 },
+            { question: "Como se diz 'sorry' em português?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 2 }
+        ];
 
-let currentExercise = 0;
-let score = 0;
+        let currentExercise = 0;
+        let score = 0;
 
-function loadExercise(index) {
-    const exerciseContainer = document.getElementById('exercise-container');
-    const exercise = exercises[index];
-    let exerciseHTML = `
-        <div class="exercise">
-            <div class="question">${exercise.question}</div>
-            <div class="options">
-    `;
-    exercise.options.forEach((option, i) => {
-        exerciseHTML += `<div class="option" onclick="checkAnswer(${i}, ${exercise.correctAnswer})">${option}</div>`;
-    });
-    exerciseHTML += `
-            </div>
-            <div class="feedback" id="feedback"></div>
-        </div>
-    `;
-    exerciseContainer.innerHTML = exerciseHTML;
-    updateProgress();
-}
-
-function checkAnswer(selectedIndex, correctIndex) {
-    const options = document.querySelectorAll('.option');
-    const feedback = document.getElementById('feedback');
-    options.forEach(option => option.style.pointerEvents = 'none');
-
-    if (selectedIndex === correctIndex) {
-        options[selectedIndex].classList.add('correct');
-        feedback.innerHTML = '<span class="correct">Correto!</span>';
-        score++;
-    } else {
-        options[selectedIndex].classList.add('incorrect');
-        options[correctIndex].classList.add('correct');
-        feedback.innerHTML = `<span class="incorrect">Incorreto. A resposta correta é: ${exercises[currentExercise].options[correctIndex]}</span>`;
-    }
-
-    setTimeout(() => {
-        currentExercise++;
-        if (currentExercise < exercises.length) {
-            loadExercise(currentExercise);
-        } else {
-            showResults();
+        function loadExercise(index) {
+            const exerciseContainer = document.getElementById('exercise-container');
+            const exercise = exercises[index];
+            let exerciseHTML = `
+                <div class="exercise">
+                    <div class="question">${exercise.question}</div>
+                    <div class="options">
+            `;
+            exercise.options.forEach((option, i) => {
+                exerciseHTML += `<div class="option" onclick="checkAnswer(${i}, ${exercise.correctAnswer})">${option}</div>`;
+            });
+            exerciseHTML += `
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            `;
+            exerciseContainer.innerHTML = exerciseHTML;
+            updateProgress();
         }
-    }, 1500);
-}
 
-function updateProgress() {
-    const progressFill = document.getElementById('progress-fill');
-    const progressText = document.getElementById('progress-text');
-    const progress = (currentExercise / exercises.length) * 100;
-    progressFill.style.width = progress + '%';
-    progressText.textContent = Math.round(progress) + '%';
-}
+        function checkAnswer(selectedIndex, correctIndex) {
+            const options = document.querySelectorAll('.option');
+            const feedback = document.getElementById('feedback');
+            options.forEach(option => option.style.pointerEvents = 'none');
 
-function showResults() {
-    const exerciseContainer = document.getElementById('exercise-container');
-    const percentage = (score / exercises.length) * 100;
-    let resultHTML = `
-        <div class="exercise">
-            <h2>Parabéns! Você completou os exercícios.</h2>
-            <p>Você acertou ${score} de ${exercises.length} questões.</p>
-            <p>Pontuação: ${Math.round(percentage)}%</p>
-    `;
-    if (percentage >= 80) {
-        resultHTML += `<p>Excelente trabalho!</p>`;
-    } else if (percentage >= 50) {
-        resultHTML += `<p>Bom trabalho, mas você pode melhorar!</p>`;
-    } else {
-        resultHTML += `<p>Continue praticando para melhorar.</p>`;
-    }
-    resultHTML += `</div>`;
-    exerciseContainer.innerHTML = resultHTML;
-    document.getElementById('progress-fill').style.width = '100%';
-    document.getElementById('progress-text').textContent = '100%';
-}
+            if (selectedIndex === correctIndex) {
+                options[selectedIndex].classList.add('correct');
+                feedback.innerHTML = '<span class="correct">Correto!</span>';
+                score++;
+            } else {
+                options[selectedIndex].classList.add('incorrect');
+                options[correctIndex].classList.add('correct');
+                feedback.innerHTML = `<span class="incorrect">Incorreto. A resposta correta é: ${exercises[currentExercise].options[correctIndex]}</span>`;
+            }
 
-// Carrega o primeiro exercício
-loadExercise(currentExercise);
+            setTimeout(() => {
+                currentExercise++;
+                if (currentExercise < exercises.length) {
+                    loadExercise(currentExercise);
+                } else {
+                    showResults();
+                }
+            }, 1500);
+        }
 
+        function updateProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const progress = (currentExercise / exercises.length) * 100;
+            progressFill.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
+        }
+
+        function showResults() {
+            const exerciseContainer = document.getElementById('exercise-container');
+            const percentage = (score / exercises.length) * 100;
+            let resultHTML = `
+                <div class="exercise">
+                    <h2>Parabéns! Você completou os exercícios.</h2>
+                    <p>Você acertou ${score} de ${exercises.length} questões.</p>
+                    <p>Pontuação: ${Math.round(percentage)}%</p>
+            `;
+            if (percentage >= 80) {
+                resultHTML += `<p>Excelente trabalho!</p>`;
+            } else if (percentage >= 50) {
+                resultHTML += `<p>Bom trabalho, mas você pode melhorar!</p>`;
+            } else {
+                resultHTML += `<p>Continue praticando para melhorar.</p>`;
+            }
+            resultHTML += `</div>`;
+            exerciseContainer.innerHTML = resultHTML;
+            document.getElementById('progress-fill').style.width = '100%';
+            document.getElementById('progress-text').textContent = '100%';
+        }
+
+        // Carrega o primeiro exercício
+        loadExercise(currentExercise);
     </script>
-
     <script src="../static/JS/tema.js"></script>
-
 </body>
 </html>

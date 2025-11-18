@@ -6,164 +6,150 @@
     <title>Exercícios de Tradução de Escuta em Inglês</title>
     <link rel="stylesheet" href="../static/CSS/PaginaEscuta.css">
     <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
-     <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-
-   
+    <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
     <!-- ONDAS -->
     <div class="wave">
         <span></span>
         <span></span>
         <span></span>
     </div>
-    <div class="container">
-        <h1>Exercícios de Tradução de Escuta em Inglês</h1>
 
+    <div class="container">
+        <button class="purple-gradient-button back-button" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+        <h1>Exercícios de Tradução de Escuta em Inglês</h1>
         <div class="audio-player">
             <audio controls id="audioPlayer">
-    <source id="audioSource" src="{{ url_for('static', filename='assets/listening1.mp3') }}" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-</audio>
-
+                <source id="audioSource" src="{{ url_for('static', filename='assets/listening1.mp3') }}" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
         </div>
-
         <div class="question">
             <p id="instruction">Ouça a frase em inglês e traduza para o português:</p>
             <textarea id="translation" placeholder="Digite sua tradução aqui..."></textarea>
         </div>
-
-        <button onclick="checkTranslation()">Verificar Tradução</button>
+        <button class="purple-gradient-button" onclick="checkTranslation()">Verificar Tradução</button>
         <p id="feedback" class="feedback"></p>
-
         <div class="navigation">
             <button onclick="prevExercise()">Anterior</button>
             <button onclick="nextExercise()">Próximo</button>
         </div>
     </div>
 
-
-
-     <!-- navbar -->
-
-       <nav class="bottom-navbar">
-    <ul>
-        <li>
-            <a href="{{ url_for('home') }}">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">Início</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('classes') }}">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span class="nav-text">Classes</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('activities') }}">
-                <i class="fas fa-running"></i>
-                <span class="nav-text">Activities</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('games') }}">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-text">Games</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Configurações</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('apoiadores') }}">
-                <i class="fas fa-life-ring"></i>
-                <span class="nav-text">Apoio</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
+    <!-- navbar -->
+    <nav class="bottom-navbar">
+        <ul>
+            <li>
+                <a href="{{ url_for('home') }}">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Início</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('classes') }}">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="nav-text">Classes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('activities') }}">
+                    <i class="fas fa-running"></i>
+                    <span class="nav-text">Activities</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('games') }}">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="nav-text">Games</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('configuracoes') }}">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">Configurações</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('apoiadores') }}">
+                    <i class="fas fa-life-ring"></i>
+                    <span class="nav-text">Apoio</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <script>
-    const exercises = [
-    {
-        audio: "/static/assets/listening6.mp3",
-        sentence: "Hello, how are you?",
-        translation: "Olá, como você está?"
-    },
-    {
-        audio: "/static/assets/listening2.mp3",
-        sentence: "What is your name?",
-        translation: "Qual é o seu nome?"
-    },
-    {
-        audio: "/static/assets/listening3.mp3",
-        sentence: "I am fine, thank you.",
-        translation: "Estou bem, obrigado."
-    },
-    {
-        audio: "/static/assets/listening1.mp3",
-        sentence: "Where do you live?",
-        translation: "Onde você mora?"
-    },
-    {
-        audio: "/static/assets/listening4.mp3",
-        sentence: "Good morning!",
-        translation: "Bom dia!"
-    },
-    {
-        audio: "/static/assets/listening5.mp3",
-        sentence: "See you later.",
-        translation: "Até mais tarde."
-    }
-];
+        const exercises = [
+            {
+                audio: "/static/assets/listening6.mp3",
+                sentence: "Hello, how are you?",
+                translation: "Olá, como você está?"
+            },
+            {
+                audio: "/static/assets/listening2.mp3",
+                sentence: "What is your name?",
+                translation: "Qual é o seu nome?"
+            },
+            {
+                audio: "/static/assets/listening3.mp3",
+                sentence: "I am fine, thank you.",
+                translation: "Estou bem, obrigado."
+            },
+            {
+                audio: "/static/assets/listening1.mp3",
+                sentence: "Where do you live?",
+                translation: "Onde você mora?"
+            },
+            {
+                audio: "/static/assets/listening4.mp3",
+                sentence: "Good morning!",
+                translation: "Bom dia!"
+            },
+            {
+                audio: "/static/assets/listening5.mp3",
+                sentence: "See you later.",
+                translation: "Até mais tarde."
+            }
+        ];
+        let currentExercise = 0;
 
-let currentExercise = 0;
+        function loadExercise(index) {
+            const exercise = exercises[index];
+            document.getElementById("audioSource").src = exercise.audio;
+            document.getElementById("instruction").textContent = `Ouça a frase: "${exercise.sentence}" e traduza para o português:`;
+            document.getElementById("audioPlayer").load();
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("translation").value = "";
+        }
 
-function loadExercise(index) {
-    const exercise = exercises[index];
-    document.getElementById("audioSource").src = exercise.audio;
-    document.getElementById("instruction").textContent = `Ouça a frase: "${exercise.sentence}" e traduza para o português:`;
-    document.getElementById("audioPlayer").load();
-    document.getElementById("feedback").textContent = "";
-    document.getElementById("translation").value = "";
-}
+        function checkTranslation() {
+            const userTranslation = document.getElementById("translation").value.trim();
+            const correctTranslation = exercises[currentExercise].translation;
+            const feedbackElement = document.getElementById("feedback");
+            if (userTranslation.toLowerCase() === correctTranslation.toLowerCase()) {
+                feedbackElement.innerHTML = '<span class="correct">Parabéns! Sua tradução está correta.</span>';
+            } else {
+                feedbackElement.innerHTML = `<span class="incorrect">Sua tradução está incorreta. A tradução correta é: "${correctTranslation}"</span>`;
+            }
+        }
 
-function checkTranslation() {
-    const userTranslation = document.getElementById("translation").value.trim();
-    const correctTranslation = exercises[currentExercise].translation;
-    const feedbackElement = document.getElementById("feedback");
+        function nextExercise() {
+            currentExercise = (currentExercise + 1) % exercises.length;
+            loadExercise(currentExercise);
+        }
 
-    if (userTranslation.toLowerCase() === correctTranslation.toLowerCase()) {
-        feedbackElement.innerHTML = '<span class="correct">Parabéns! Sua tradução está correta.</span>';
-    } else {
-        feedbackElement.innerHTML = `<span class="incorrect">Sua tradução está incorreta. A tradução correta é: "${correctTranslation}"</span>`;
-    }
-}
+        function prevExercise() {
+            currentExercise = (currentExercise - 1 + exercises.length) % exercises.length;
+            loadExercise(currentExercise);
+        }
 
-function nextExercise() {
-    currentExercise = (currentExercise + 1) % exercises.length;
-    loadExercise(currentExercise);
-}
-
-function prevExercise() {
-    currentExercise = (currentExercise - 1 + exercises.length) % exercises.length;
-    loadExercise(currentExercise);
-}
-
-// Carrega o primeiro exercício
-loadExercise(currentExercise);
-
+        // Carrega o primeiro exercício
+        loadExercise(currentExercise);
     </script>
-
     <script src="../static/JS/tema.js"></script>
-    
 </body>
 </html>

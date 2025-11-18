@@ -8,48 +8,40 @@
     <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
+
 </head>
 <body>
-
     <div class="wave">
         <span></span>
         <span></span>
         <span></span>
     </div>
-
     <div class="principal">
         <div class="container">
+            <button class="purple-gradient-button back-button" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </button>
             <h1>Exercícios de Preencher Lacunas</h1>
-
             <div class="exercise">
                 <p class="sentence">I _ to the store yesterday. <input type="text" id="answer1"> (goed/went)</p>
             </div>
-
             <div class="exercise">
                 <p class="sentence">She _ reading a book. <input type="text" id="answer2"> (is/are)</p>
             </div>
-
             <div class="exercise">
                 <p class="sentence">They _ happy with the results. <input type="text" id="answer3"> (to be/are)</p>
             </div>
-
             <div class="exercise">
                 <p class="sentence">We _ a great time at the party. <input type="text" id="answer4"> (had/has)</p>
             </div>
-
             <div class="exercise">
                 <p class="sentence">He _ to school every day. <input type="text" id="answer5"> (goed/goes)</p>
             </div>
-
-            <button onclick="checkAnswers()">Verificar Respostas</button>
-
+            <button class="purple-gradient-button" style="display: block; margin: 20px auto;" onclick="checkAnswers()">Verificar Respostas</button>
             <p id="feedback" class="feedback"></p>
         </div>
     </div>
-
-
     <!-- navbar -->
-
     <nav class="bottom-navbar">
         <ul>
             <li>
@@ -90,7 +82,6 @@
             </li>
         </ul>
     </nav>
-
     <script>
         const correctAnswers = {
             answer1: "went",
@@ -103,25 +94,19 @@
         function checkAnswers() {
             let allCorrect = true;
             let feedbackMessage = "";
-
             for (let key in correctAnswers) {
                 const userAnswer = document.getElementById(key).value.trim().toLowerCase();
-
                 if (userAnswer !== correctAnswers[key]) {
                     allCorrect = false;
                     feedbackMessage += `A resposta para a frase ${key.replace('answer', '')} está incorreta. A resposta correta é "${correctAnswers[key]}".<br>`;
                 }
             }
-
             if (allCorrect) {
                 feedbackMessage = "Parabéns! Todas as respostas estão corretas.";
             }
-
             document.getElementById("feedback").innerHTML = feedbackMessage;
         }
     </script>
-
     <script src="../static/JS/tema.js"></script>
-
 </body>
 </html>

@@ -33,6 +33,7 @@ body {
     box-shadow: 0 20px 45px rgba(0,0,0,0.25);
     animation: drop 0.7s ease-out;
     box-sizing: border-box;
+    position: relative; /* Adicionado para posicionar o botão Voltar */
 }
 
 @keyframes drop {
@@ -46,8 +47,20 @@ body {
     }
 }
 
+/* Botão Voltar */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 /* Título */
 h1 {
+    margin-top: 45px;
     font-size: 30px;
     text-align: center;
     font-weight: 700;
@@ -103,7 +116,7 @@ input[type="text"]:focus {
 }
 
 /* Botões */
-button {
+.purple-gradient-button {
     background: linear-gradient(135deg, #8f72ff, #6d54f7);
     color: white;
     padding: 14px 25px;
@@ -112,15 +125,12 @@ button {
     border-radius: 14px;
     cursor: pointer;
     font-weight: 600;
-    margin: 10px auto;
-    display: block;
-    transition: 0.25s ease;
+    transition: all 0.25s ease;
     box-shadow: 0 10px 22px rgba(109, 84, 247, 0.35);
-    width: 80%;
-    max-width: 300px;
+    width: fit-content;
 }
 
-button:hover {
+.purple-gradient-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 30px rgba(109, 84, 247, 0.47);
 }
@@ -136,6 +146,15 @@ button:hover {
 .navigation button {
     width: 48%;
     background: linear-gradient(135deg, #8f72ff, #6d54f7);
+    color: white;
+    padding: 14px 25px;
+    font-size: 17px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s ease;
+    box-shadow: 0 10px 22px rgba(109, 84, 247, 0.35);
 }
 
 .navigation button:hover {
@@ -356,5 +375,10 @@ body.dark-theme .wave span:nth-child(3) {
 
     input[type="text"] {
         width: 90%;
+    }
+
+    .purple-gradient-button {
+        width: 100%;
+        max-width: 200px;
     }
 }
