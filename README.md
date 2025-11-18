@@ -42,7 +42,7 @@ Voice é uma plataforma educacional projetada para auxiliar crianças com Defici
 
 ### Kevin Rafael de Almeida
 [![Instagram](https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/kevi_n.07/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Kevin2007x)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KevinAllmeida)
 
 ### Lívia Amaral Sales Antonio
 [![Instagram](https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/yrfav.liv/)
