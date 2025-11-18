@@ -1,90 +1,147 @@
-/* -------------------- BODY -------------------- */
+/* Fonte mais elegante */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* Corpo da página */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: "Inter", sans-serif;
+    background: radial-gradient(circle at top, #8f72ff 0%, #5c4df2 45%, #2d287c 100%);
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;  /* centraliza horizontalmente */
-    align-items: center;      /* centraliza verticalmente */
-    min-height: 100vh;        /* altura total da tela */
+    justify-content: center;
+    align-items: flex-start;
+    color: #222;
+    animation: fadeBody 0.8s ease-out;
 }
 
-/* -------------------- CONTAINER PRINCIPAL -------------------- */
+@keyframes fadeBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Container principal */
 .principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-}
-
-/* -------------------- CONTAINER INTERNO -------------------- */
-.container {
-    background: rgba(255, 255, 255, 0.21);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 75vw;
-    max-width: 700px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding-top: 40px;
 }
 
-/* -------------------- TÍTULO -------------------- */
+/* Container interno */
+.container {
+    width: 90%;
+    max-width: 850px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    margin-top: 20px;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    animation: drop 0.7s ease-out;
+    box-sizing: border-box;
+}
+
+@keyframes drop {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Título */
 h1 {
+    font-size: 30px;
     text-align: center;
-    color: #8f41e9;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
 }
 
-/* -------------------- EXERCÍCIOS -------------------- */
+/* Exercícios */
 .exercise {
+    background: #f5f5ff;
+    border-left: 6px solid #8f72ff;
+    border-right: 6px solid #8f72ff;
+    padding: 20px;
+    border-radius: 16px;
     margin-bottom: 20px;
+    transition: 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.exercise:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
 .sentence {
-    margin-bottom: 10px;
     font-size: 18px;
-}
-
-input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 150px;
+    margin: 0;
     text-align: center;
 }
 
-/* -------------------- BOTÃO -------------------- */
-button {
-    background-color: #a241da;
-    color: white;
+.sentence input[type="text"] {
     padding: 10px 15px;
+    border: 2px solid #d6d6d6;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: center;
+    margin-left: 10px;
+    transition: 0.25s;
+    width: 120px;
+}
+
+.sentence input[type="text"]:focus {
+    border-color: #8f72ff;
+    box-shadow: 0 0 10px rgba(143,114,255,0.4);
+}
+
+/* Botão */
+button {
+    background: linear-gradient(135deg, #8f72ff, #6d54f7);
+    color: white;
+    padding: 14px 25px;
+    font-size: 17px;
     border: none;
-    border-radius: 4px;
+    border-radius: 14px;
     cursor: pointer;
-    display: block;
+    font-weight: 600;
     margin: 20px auto;
+    display: block;
+    transition: 0.25s ease;
+    box-shadow: 0 10px 22px rgba(109, 84, 247, 0.35);
 }
 
 button:hover {
-    background-color: #8f41e9;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(109, 84, 247, 0.47);
 }
 
-/* -------------------- FEEDBACK -------------------- */
+/* Feedback */
 .feedback {
-    color: #5cb85c;
-    font-weight: bold;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 600;
     text-align: center;
+    opacity: 0;
+    animation: fadeFeedback 0.4s forwards;
 }
 
-/* -------------------- ONDAS -------------------- */
+@keyframes fadeFeedback {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ONDAS */
 .wave {
     position: fixed;
     left: 0;
@@ -132,7 +189,7 @@ button:hover {
     }
 }
 
-/* -------------------- NAVBAR -------------------- */
+/* NAVBAR */
 .bottom-navbar {
     position: fixed;
     font-family: "Poppins";
@@ -212,40 +269,57 @@ button:hover {
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
 .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
 
-
- /* Tema escuro (deve estar em todas as páginas) */
+/* Tema escuro */
 body.dark-theme {
     background: #222;
     color: #f0f0f0;
 }
-body.dark-theme .config-left,
-body.dark-theme .config-right {
-    background: #333;
+
+body.dark-theme .container {
+    background: rgba(40, 40, 40, 0.92);
     color: #f0f0f0;
 }
-body.dark-theme input,
-body.dark-theme select {
+
+body.dark-theme .exercise {
+    background: rgba(60, 60, 60, 0.5);
+    border-color: #8f72ff;
+}
+
+body.dark-theme .sentence input[type="text"] {
     background: #444;
     color: #f0f0f0;
     border-color: #555;
 }
-body.dark-theme .toggle-group .toggle {
-    background: #444;
-    color: #f0f0f0;
-    border-color: #555;
-}
-body.dark-theme .toggle-group .toggle.active {
-    background: #7d0dac;
-    color: white;
-}
+
 body.dark-theme .bottom-navbar {
     background: #333;
     color: #f0f0f0;
 }
+
 body.dark-theme .bottom-navbar a {
     color: #f0f0f0;
 }
+
 body.dark-theme .wave span:nth-child(3) {
-    background: rgb(0, 0, 0) !important;
+    background: black!important;
 }
 
+body.dark-theme h1 {
+    color: #a678d1;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    button {
+        width: 100%;
+    }
+    .sentence input[type="text"] {
+        width: 100px;
+    }
+}

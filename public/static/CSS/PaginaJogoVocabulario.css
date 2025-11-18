@@ -526,3 +526,7 @@ body.dark-theme .bottom-navbar a {
 body.dark-theme .wave span:nth-child(3) {
     background: rgb(0, 0, 0) !important;
 }
+
+body.dark-theme .game-area {
+    background-color: #222;
+}

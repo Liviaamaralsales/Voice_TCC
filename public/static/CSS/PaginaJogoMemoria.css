@@ -261,7 +261,7 @@ body.dark-theme {
     color: #f0f0f0;
 }
 body.dark-theme .container {
-    background: #a678d1;
+    background: rgba(60, 60, 60, 0.5);
     color: #f0f0f0;
 }
 body.dark-theme .config-left,
@@ -293,4 +293,16 @@ body.dark-theme .bottom-navbar a {
 }
 body.dark-theme .wave span:nth-child(3) {
     background: rgb(0, 0, 0) !important;
+}
+
+body.dark-theme h1 {
+    color: #a678d1;
+}
+
+body.dark-theme .escrita1 {
+    color: #a678d1 ;
+}
+
+body.dark-theme .escrita2{
+    color: #a678d1 ;
 }

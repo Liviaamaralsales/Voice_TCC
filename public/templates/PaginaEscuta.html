@@ -4,71 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercícios de Tradução de Escuta em Inglês</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .audio-player {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .question {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #eee;
-            border-radius: 5px;
-        }
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            resize: vertical;
-            min-height: 50px;
-        }
-        button {
-            background-color: #5cb85c;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            margin: 20px auto;
-        }
-        button:hover {
-            background-color: #4cae4c;
-        }
-        .feedback {
-            color: #5cb85c;
-            font-weight: bold;
-            text-align: center;
-        }
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/CSS/PaginaEscuta.css">
+    <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
+     <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+   
 </head>
 <body>
+
+    <!-- ONDAS -->
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <div class="container">
         <h1>Exercícios de Tradução de Escuta em Inglês</h1>
 
@@ -93,6 +44,52 @@
             <button onclick="nextExercise()">Próximo</button>
         </div>
     </div>
+
+
+
+     <!-- navbar -->
+
+       <nav class="bottom-navbar">
+    <ul>
+        <li>
+            <a href="{{ url_for('home') }}">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Início</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('classes') }}">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span class="nav-text">Classes</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('activities') }}">
+                <i class="fas fa-running"></i>
+                <span class="nav-text">Activities</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('games') }}">
+                <i class="fas fa-gamepad"></i>
+                <span class="nav-text">Games</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('configuracoes') }}">
+                <i class="fas fa-cog"></i>
+                <span class="nav-text">Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('apoiadores') }}">
+                <i class="fas fa-life-ring"></i>
+                <span class="nav-text">Apoio</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 
     <script>
         const exercises = [
@@ -163,5 +160,8 @@
         // Load the first exercise
         loadExercise(currentExercise);
     </script>
+
+    <script src="../static/JS/tema.js"></script>
+    
 </body>
 </html>
