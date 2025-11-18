@@ -33,17 +33,26 @@
         </label>
       </div>
       <form action="{{ url_for('auth.cadastro') }}" method="POST" class="box large">
-        <h2>CRIAR CONTA</h2>
-        <label class="label">Nome</label>
-        <input name="nome" type="text" placeholder="digite seu nome completo" class="input" />
-        <label class="label">Data de nascimento</label>
-        <input name="dataNascimento" type="date" class="input" />
-        <label class="label">Email</label>
-        <input name="email" type="email" placeholder="digite seu email" class="input" />
-        <label class="label">Senha</label>
-        <input name="senha" type="password" placeholder="digite sua senha" class="input" />
-        <label class="label">Comfimar Senha</label>
-        <input name="confirmarSenha" type="password" placeholder="digite sua senha" class="input" />
+       <h2>CRIAR CONTA</h2>
+          <label class="label">Nome</label>
+          <input name="nome" type="text" placeholder="digite seu nome completo" class="input" />
+          <label class="label">Data de nascimento</label>
+          <input name="dataNascimento" type="date" class="input" />
+          <label class="label">Email</label>
+          <input name="email" type="email" placeholder="digite seu email" class="input" />
+
+          <label class="label">Senha</label>
+          <div class="password-container">
+            <input name="senha" type="password" placeholder="digite sua senha" class="input" id="password-input" />
+            <img src="{{ url_for('static', filename='assets/olhoFechado.png') }}" class="toggle-password" id="toggle-password" />
+          </div>
+
+          <label class="label">Confirmar Senha</label>
+          <div class="password-container">
+            <input name="confirmarSenha" type="password" placeholder="digite sua senha" class="input" id="confirm-password-input" />
+            <img src="{{ url_for('static', filename='assets/olhoFechado.png') }}" class="toggle-password" id="toggle-confirm-password" />
+          </div>
+
 
         <!-- Botão de Cadastro com Efeito de Biometria -->
         <button type="submit" class="button-container" onclick="this.classList.toggle('active')">
@@ -126,6 +135,38 @@ form.addEventListener('submit', (e) => {
     e.target.submit(); // envia
   }, 2000); // Seu delay definido
 });
+
+
+// Mostrar/esconder senha
+const togglePassword = document.querySelector('#toggle-password');
+const passwordInput = document.querySelector('#password-input');
+
+togglePassword.addEventListener('click', () => {
+  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordInput.setAttribute('type', type);
+
+  if (type === 'text') {
+    togglePassword.src = "{{ url_for('static', filename='assets/olhoAberto.png') }}";
+  } else {
+    togglePassword.src = "{{ url_for('static', filename='assets/olhoFechado.png') }}";
+  }
+});
+
+// Mostrar/esconder confirmação de senha
+const toggleConfirmPassword = document.querySelector('#toggle-confirm-password');
+const confirmPasswordInput = document.querySelector('#confirm-password-input');
+
+toggleConfirmPassword.addEventListener('click', () => {
+  const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  confirmPasswordInput.setAttribute('type', type);
+
+  if (type === 'text') {
+    toggleConfirmPassword.src = "{{ url_for('static', filename='assets/olhoAberto.png') }}";
+  } else {
+    toggleConfirmPassword.src = "{{ url_for('static', filename='assets/olhoFechado.png') }}";
+  }
+});
+
 
 </script>
 

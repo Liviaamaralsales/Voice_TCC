@@ -43,8 +43,17 @@
         <h2>ENTRAR</h2>
         <label class="label">Email:</label>
         <input name="email" type="text" placeholder="digite seu email ou nome de usuário" class="input" />
-        <label class="label">SENHA:</label>
-        <input name="senha" type="password" placeholder="digite sua senha" class="input" />
+
+
+
+
+
+
+       <label class="label">SENHA:</label>
+          <div class="password-container">
+            <input name="senha" type="password" placeholder="digite sua senha" class="input" id="password-input" />
+            <img src="../static/assets/olhoFechado.png" class="toggle-password" id="toggle-password" />
+          </div>
 
         <!-- Botão animado com SVG de digital -->
         <button type="submit" class="button-container" onclick="this.classList.toggle('active')">
@@ -135,6 +144,23 @@ form.addEventListener('submit', (e) => {
     button.classList.remove('active'); // reseta animação
     e.target.submit(); // envia formulário
   }, 5000); // Ajuste se necessário
+});
+
+
+// Mostrar/esconder senha
+const togglePassword = document.querySelector('#toggle-password');
+const passwordInput = document.querySelector('#password-input');
+
+togglePassword.addEventListener('click', () => {
+  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordInput.setAttribute('type', type);
+
+  // Alterna entre as imagens de olho aberto e fechado
+  if (type === 'text') {
+    togglePassword.src = "{{ url_for('static', filename='assets/olhoAberto.png') }}";
+  } else {
+    togglePassword.src = "{{ url_for('static', filename='assets/olhoFechado.png') }}";
+  }
 });
 
 </script>

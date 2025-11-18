@@ -27,7 +27,7 @@ app.register_blueprint(avatar_bp, url_prefix="/avatar")
 # ----------------- Rotas principais -----------------
 @app.route("/")
 def index():
-    return render_template("PaginaTelaLogin.html")
+    return render_template("index.html")
 
 @app.route("/cadastro")
 def cadastro():

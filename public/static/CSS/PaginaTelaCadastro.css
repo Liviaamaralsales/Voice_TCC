@@ -399,3 +399,22 @@ body.dark .wave span:nth-child(3) {
       margin: 0 auto; /* Centraliza horizontalmente */
   }
 }
+
+
+
+/* Container para o input e o ícone de olho */
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Estilo para a imagem do olho */
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 45%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
