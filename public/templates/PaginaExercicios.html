@@ -75,102 +75,94 @@
 
     <script>
         const exercises = [
-            { question: "Como se diz 'hello' em português?", options: ["Olá", "Adeus", "Obrigado", "Por favor"], correctAnswer: 0 },
-            { question: "Qual é a tradução de 'thank you'?", options: ["Por favor", "Desculpe", "Obrigado", "Adeus"], correctAnswer: 2 },
-            { question: "Como se diz 'goodbye' em português?", options: ["Olá", "Adeus", "Bom dia", "Boa noite"], correctAnswer: 1 },
-            { question: "Qual é a tradução de 'please'?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 1 },
-            { question: "Como se diz 'sorry' em português?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 2 }
-        ];
+    { question: "Como se diz 'hello' em português?", options: ["Olá", "Adeus", "Obrigado", "Por favor"], correctAnswer: 0 },
+    { question: "Qual é a tradução de 'thank you'?", options: ["Por favor", "Desculpe", "Obrigado", "Adeus"], correctAnswer: 2 },
+    { question: "Como se diz 'goodbye' em português?", options: ["Olá", "Adeus", "Bom dia", "Boa noite"], correctAnswer: 1 },
+    { question: "Qual é a tradução de 'please'?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 1 },
+    { question: "Como se diz 'sorry' em português?", options: ["Obrigado", "Por favor", "Desculpe", "Adeus"], correctAnswer: 2 }
+];
 
-        let currentExercise = 0;
-        let score = 0;
+let currentExercise = 0;
+let score = 0;
 
-        function loadExercise(index) {
-            const exerciseContainer = document.getElementById('exercise-container');
-            const exercise = exercises[index];
+function loadExercise(index) {
+    const exerciseContainer = document.getElementById('exercise-container');
+    const exercise = exercises[index];
+    let exerciseHTML = `
+        <div class="exercise">
+            <div class="question">${exercise.question}</div>
+            <div class="options">
+    `;
+    exercise.options.forEach((option, i) => {
+        exerciseHTML += `<div class="option" onclick="checkAnswer(${i}, ${exercise.correctAnswer})">${option}</div>`;
+    });
+    exerciseHTML += `
+            </div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    `;
+    exerciseContainer.innerHTML = exerciseHTML;
+    updateProgress();
+}
 
-            let exerciseHTML = `
-                <div class="exercise">
-                    <div class="question">${exercise.question}</div>
-                    <div class="options">
-            `;
+function checkAnswer(selectedIndex, correctIndex) {
+    const options = document.querySelectorAll('.option');
+    const feedback = document.getElementById('feedback');
+    options.forEach(option => option.style.pointerEvents = 'none');
 
-            exercise.options.forEach((option, i) => {
-                exerciseHTML += `<div class="option" onclick="checkAnswer(${i}, ${exercise.correctAnswer})">${option}</div>`;
-            });
+    if (selectedIndex === correctIndex) {
+        options[selectedIndex].classList.add('correct');
+        feedback.innerHTML = '<span class="correct">Correto!</span>';
+        score++;
+    } else {
+        options[selectedIndex].classList.add('incorrect');
+        options[correctIndex].classList.add('correct');
+        feedback.innerHTML = `<span class="incorrect">Incorreto. A resposta correta é: ${exercises[currentExercise].options[correctIndex]}</span>`;
+    }
 
-            exerciseHTML += `
-                    </div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
-            `;
-
-            exerciseContainer.innerHTML = exerciseHTML;
-            updateProgress();
+    setTimeout(() => {
+        currentExercise++;
+        if (currentExercise < exercises.length) {
+            loadExercise(currentExercise);
+        } else {
+            showResults();
         }
+    }, 1500);
+}
 
-        function checkAnswer(selectedIndex, correctIndex) {
-            const options = document.querySelectorAll('.option');
-            const feedback = document.getElementById('feedback');
+function updateProgress() {
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const progress = (currentExercise / exercises.length) * 100;
+    progressFill.style.width = progress + '%';
+    progressText.textContent = Math.round(progress) + '%';
+}
 
-            options.forEach(option => option.style.pointerEvents = 'none');
+function showResults() {
+    const exerciseContainer = document.getElementById('exercise-container');
+    const percentage = (score / exercises.length) * 100;
+    let resultHTML = `
+        <div class="exercise">
+            <h2>Parabéns! Você completou os exercícios.</h2>
+            <p>Você acertou ${score} de ${exercises.length} questões.</p>
+            <p>Pontuação: ${Math.round(percentage)}%</p>
+    `;
+    if (percentage >= 80) {
+        resultHTML += `<p>Excelente trabalho!</p>`;
+    } else if (percentage >= 50) {
+        resultHTML += `<p>Bom trabalho, mas você pode melhorar!</p>`;
+    } else {
+        resultHTML += `<p>Continue praticando para melhorar.</p>`;
+    }
+    resultHTML += `</div>`;
+    exerciseContainer.innerHTML = resultHTML;
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-text').textContent = '100%';
+}
 
-            if (selectedIndex === correctIndex) {
-                options[selectedIndex].classList.add('correct');
-                feedback.textContent = "Correto!";
-                score++;
-            } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[correctIndex].classList.add('correct');
-                feedback.textContent = "Incorreto. A resposta correta é: " + exercises[currentExercise].options[correctIndex];
-            }
+// Carrega o primeiro exercício
+loadExercise(currentExercise);
 
-            setTimeout(() => {
-                currentExercise++;
-                if (currentExercise < exercises.length) {
-                    loadExercise(currentExercise);
-                } else {
-                    showResults();
-                }
-            }, 1500);
-        }
-
-        function updateProgress() {
-            const progressFill = document.getElementById('progress-fill');
-            const progressText = document.getElementById('progress-text');
-            const progress = (currentExercise / exercises.length) * 100;
-
-            progressFill.style.width = progress + '%';
-            progressText.textContent = Math.round(progress) + '%';
-        }
-
-        function showResults() {
-            const exerciseContainer = document.getElementById('exercise-container');
-            const percentage = (score / exercises.length) * 100;
-
-            let resultHTML = `
-                <div class="exercise">
-                    <h2>Parabéns! Você completou os exercícios.</h2>
-                    <p>Você acertou ${score} de ${exercises.length} questões.</p>
-                    <p>Pontuação: ${Math.round(percentage)}%</p>
-            `;
-
-            if (percentage >= 80) {
-                resultHTML += `<p>Excelente trabalho!</p>`;
-            } else if (percentage >= 50) {
-                resultHTML += `<p>Bom trabalho, mas você pode melhorar!</p>`;
-            } else {
-                resultHTML += `<p>Continue praticando para melhorar.</p>`;
-            }
-
-            resultHTML += `</div>`;
-            exerciseContainer.innerHTML = resultHTML;
-
-            document.getElementById('progress-fill').style.width = '100%';
-            document.getElementById('progress-text').textContent = '100%';
-        }
-
-        loadExercise(currentExercise);
     </script>
 
     <script src="../static/JS/tema.js"></script>

@@ -1,6 +1,5 @@
 /* Fonte mais elegante */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 /* Corpo da página */
 body {
     font-family: "Inter", sans-serif;
@@ -14,12 +13,10 @@ body {
     color: #222;
     animation: fadeBody 0.8s ease-out;
 }
-
 @keyframes fadeBody {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
 /* Container principal */
 .container {
     width: 90%;
@@ -33,7 +30,6 @@ body {
     animation: drop 0.7s ease-out;
     box-sizing: border-box;
 }
-
 @keyframes drop {
     from {
         opacity: 0;
@@ -44,7 +40,6 @@ body {
         transform: translateY(0) scale(1);
     }
 }
-
 /* Título */
 h1 {
     font-size: 30px;
@@ -54,20 +49,17 @@ h1 {
     margin-bottom: 25px;
     letter-spacing: -0.5px;
 }
-
 /* Player */
 .audio-player {
     text-align: center;
     margin: 30px 0;
 }
-
 audio {
     width: 100%;
     max-width: 550px;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
-
 /* Bloco da pergunta */
 .question {
     background: #f5f5ff;
@@ -80,12 +72,10 @@ audio {
     width: 100%;
     box-sizing: border-box;
 }
-
 .question:hover {
     transform: scale(1.01);
     box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
-
 /* Textarea */
 textarea {
     width: 100%;
@@ -99,20 +89,17 @@ textarea {
     height: 20px;
     box-sizing: border-box;
 }
-
-/* Ajuste específico para o textarea#translator */
-textarea#translator {
+/* Ajuste específico para o textarea#translation */
+textarea#translation {
     width: calc(100% - 20px);
     margin: 0 auto;
     display: block;
     max-width: 500px;
 }
-
 textarea:focus {
     border-color: #8f72ff;
     box-shadow: 0 0 10px rgba(143,114,255,0.4);
 }
-
 /* Botões principais */
 button {
     background: linear-gradient(135deg, #8f72ff, #6d54f7);
@@ -128,29 +115,24 @@ button {
     transition: 0.25s ease;
     box-shadow: 0 10px 22px rgba(109, 84, 247, 0.35);
 }
-
 button:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 30px rgba(109, 84, 247, 0.47);
 }
-
 /* Navegação */
 .navigation {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
 }
-
 .navigation button {
     width: 48%;
    background: linear-gradient(135deg, #8f72ff, #6d54f7);
 }
-
 .navigation button:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 30px rgba(109, 84, 247, 0.47);
 }
-
 /* Feedback */
 .feedback {
     margin-top: 25px;
@@ -160,12 +142,16 @@ button:hover {
     opacity: 0;
     animation: fadeFeedback 0.4s forwards;
 }
-
+.feedback .correct {
+    color: #4CAF50; /* Verde */
+}
+.feedback .incorrect {
+    color: #F44336; /* Vermelho */
+}
 @keyframes fadeFeedback {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 /* Responsividade */
 @media (max-width: 600px) {
     .container {
@@ -180,11 +166,10 @@ button:hover {
     .navigation {
         gap: 10px;
     }
-    textarea#translator {
+    textarea#translation {
         width: 100%;
     }
 }
-
 /* NAVBAR */
 .bottom-navbar {
   position: fixed;
@@ -204,7 +189,6 @@ button:hover {
   transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
   z-index: 1001;
 }
-
 .bottom-navbar ul {
   list-style: none;
   margin: 0;
@@ -213,13 +197,11 @@ button:hover {
   width: 100%;
   justify-content: space-around;
 }
-
 .bottom-navbar li {
   margin: 0;
   display: flex;
   align-items: center;
 }
-
 .bottom-navbar a {
   display: flex;
   align-items: center;
@@ -230,12 +212,10 @@ button:hover {
   border-radius: 50px;
   transition: transform 0.4s ease;
 }
-
 .bottom-navbar a i {
   font-size: 20px;
   transition: transform 0.3s ease;
 }
-
 .bottom-navbar a span {
   font-size: 15px;
   opacity: 0;
@@ -245,26 +225,21 @@ button:hover {
   white-space: nowrap;
   transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
 }
-
 .bottom-navbar:hover {
   width: 70%;
   padding: 10px 20px;
 }
-
 .bottom-navbar:hover a span {
   opacity: 1;
   width: auto;
   transform: translateX(0);
 }
-
 .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
 .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
 .bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
 .bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
-.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
-
 /* ---- ONDAS ---- */
 .wave {
   position: fixed;
@@ -276,7 +251,6 @@ button:hover {
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
-
 .wave span {
   position: absolute;
   width: 360vh;
@@ -285,25 +259,21 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -75%);
 }
-
 .wave span:nth-child(1) {
   border-radius: 45%;
   background: rgba(255, 255, 255, 0.5);
   animation: animate 5s linear infinite;
 }
-
 .wave span:nth-child(2) {
   border-radius: 40%;
   background: rgba(255, 255, 255, 0.4);
   animation: animate 10s linear infinite;
 }
-
 .wave span:nth-child(3) {
   border-radius: 42.5%;
   background: rgba(255, 255, 255, 0.3);
   animation: animate 15s linear infinite;
 }
-
 @keyframes animate {
   0% {
     transform: translate(-50%, -75%) rotate(0deg);
@@ -312,9 +282,7 @@ button:hover {
     transform: translate(-50%, -75%) rotate(180deg);
   }
 }
-
-
-/* Tema escuro (deve estar em todas as páginas) */
+/* Tema escuro */
 body.dark-theme {
     background: #222;
     color: #f0f0f0;

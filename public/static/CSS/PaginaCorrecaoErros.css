@@ -136,7 +136,6 @@ button:hover {
 .navigation button {
     width: 48%;
     background: linear-gradient(135deg, #8f72ff, #6d54f7);
-    
 }
 
 .navigation button:hover {
@@ -152,6 +151,14 @@ button:hover {
     text-align: center;
     opacity: 0;
     animation: fadeFeedback 0.4s forwards;
+}
+
+.feedback .correct {
+    color: #4CAF50; /* Verde */
+}
+
+.feedback .incorrect {
+    color: #F44336; /* Vermelho */
 }
 
 @keyframes fadeFeedback {
@@ -281,7 +288,6 @@ button:hover {
 .bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
-.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
 
 /* Tema escuro */
 body.dark-theme {
@@ -335,15 +341,19 @@ body.dark-theme .wave span:nth-child(3) {
     .container {
         padding: 25px;
     }
+
     h1 {
         font-size: 24px;
     }
+
     button, .navigation button {
         width: 100%;
     }
+
     .navigation {
         gap: 10px;
     }
+
     input[type="text"] {
         width: 90%;
     }

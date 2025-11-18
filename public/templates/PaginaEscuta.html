@@ -92,73 +92,75 @@
 
 
     <script>
-        const exercises = [
-            {
-                audio: "/static/assets/listening6.mp3",
-                sentence: "Hello, how are you?",
-                translation: "Olá, como você está?"
-            },
-            {
-                audio: "/static/assets/listening2.mp3",
-                sentence: "What is your name?",
-                translation: "Qual é o seu nome?"
-            },
-            {
-                audio: "/static/assets/listening3.mp3",
-                sentence: "I am fine, thank you.",
-                translation: "Estou bem, obrigado."
-            },
-            {
-                audio: "/static/assets/listening1.mp3",
-                sentence: "Where do you live?",
-                translation: "Onde você mora?"
-            },
-            {
-                audio: "/static/assets/listening4.mp3",
-                sentence: "Good morning!",
-                translation: "Bom dia!"
-            },
-            {
-                audio: "/static/assets/listening5.mp3",
-                sentence: "See you later.",
-                translation: "Até mais tarde."
-            }
-        ];
+    const exercises = [
+    {
+        audio: "/static/assets/listening6.mp3",
+        sentence: "Hello, how are you?",
+        translation: "Olá, como você está?"
+    },
+    {
+        audio: "/static/assets/listening2.mp3",
+        sentence: "What is your name?",
+        translation: "Qual é o seu nome?"
+    },
+    {
+        audio: "/static/assets/listening3.mp3",
+        sentence: "I am fine, thank you.",
+        translation: "Estou bem, obrigado."
+    },
+    {
+        audio: "/static/assets/listening1.mp3",
+        sentence: "Where do you live?",
+        translation: "Onde você mora?"
+    },
+    {
+        audio: "/static/assets/listening4.mp3",
+        sentence: "Good morning!",
+        translation: "Bom dia!"
+    },
+    {
+        audio: "/static/assets/listening5.mp3",
+        sentence: "See you later.",
+        translation: "Até mais tarde."
+    }
+];
 
-        let currentExercise = 0;
+let currentExercise = 0;
 
-        function loadExercise(index) {
-            const exercise = exercises[index];
-            document.getElementById("audioSource").src = exercise.audio;
-            document.getElementById("instruction").textContent = `Ouça a frase: "${exercise.sentence}" e traduza para o português:`;
-            document.getElementById("audioPlayer").load();
-            document.getElementById("feedback").textContent = "";
-            document.getElementById("translation").value = "";
-        }
+function loadExercise(index) {
+    const exercise = exercises[index];
+    document.getElementById("audioSource").src = exercise.audio;
+    document.getElementById("instruction").textContent = `Ouça a frase: "${exercise.sentence}" e traduza para o português:`;
+    document.getElementById("audioPlayer").load();
+    document.getElementById("feedback").textContent = "";
+    document.getElementById("translation").value = "";
+}
 
-        function checkTranslation() {
-            const userTranslation = document.getElementById("translation").value.trim();
-            const correctTranslation = exercises[currentExercise].translation;
+function checkTranslation() {
+    const userTranslation = document.getElementById("translation").value.trim();
+    const correctTranslation = exercises[currentExercise].translation;
+    const feedbackElement = document.getElementById("feedback");
 
-            if (userTranslation.toLowerCase() === correctTranslation.toLowerCase()) {
-                document.getElementById("feedback").textContent = "Parabéns! Sua tradução está correta.";
-            } else {
-                document.getElementById("feedback").textContent = `Sua tradução está incorreta. A tradução correta é: "${correctTranslation}"`;
-            }
-        }
+    if (userTranslation.toLowerCase() === correctTranslation.toLowerCase()) {
+        feedbackElement.innerHTML = '<span class="correct">Parabéns! Sua tradução está correta.</span>';
+    } else {
+        feedbackElement.innerHTML = `<span class="incorrect">Sua tradução está incorreta. A tradução correta é: "${correctTranslation}"</span>`;
+    }
+}
 
-        function nextExercise() {
-            currentExercise = (currentExercise + 1) % exercises.length;
-            loadExercise(currentExercise);
-        }
+function nextExercise() {
+    currentExercise = (currentExercise + 1) % exercises.length;
+    loadExercise(currentExercise);
+}
 
-        function prevExercise() {
-            currentExercise = (currentExercise - 1 + exercises.length) % exercises.length;
-            loadExercise(currentExercise);
-        }
+function prevExercise() {
+    currentExercise = (currentExercise - 1 + exercises.length) % exercises.length;
+    loadExercise(currentExercise);
+}
 
-        // Load the first exercise
-        loadExercise(currentExercise);
+// Carrega o primeiro exercício
+loadExercise(currentExercise);
+
     </script>
 
     <script src="../static/JS/tema.js"></script>
