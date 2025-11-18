@@ -74,9 +74,10 @@
 
         <div class="audio-player">
             <audio controls id="audioPlayer">
-                <source id="audioSource" src="" type="audio/mpeg">
-                Seu navegador não suporta o elemento de áudio.
-            </audio>
+    <source id="audioSource" src="{{ url_for('static', filename='assets/listening1.mp3') }}" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
+
         </div>
 
         <div class="question">
@@ -96,32 +97,32 @@
     <script>
         const exercises = [
             {
-                audio: "https://example.com/audio1.mp3",
+                audio: "/static/assets/listening6.mp3",
                 sentence: "Hello, how are you?",
                 translation: "Olá, como você está?"
             },
             {
-                audio: "https://example.com/audio2.mp3",
+                audio: "/static/assets/listening2.mp3",
                 sentence: "What is your name?",
                 translation: "Qual é o seu nome?"
             },
             {
-                audio: "https://example.com/audio3.mp3",
+                audio: "/static/assets/listening3.mp3",
                 sentence: "I am fine, thank you.",
                 translation: "Estou bem, obrigado."
             },
             {
-                audio: "https://example.com/audio4.mp3",
+                audio: "/static/assets/listening1.mp3",
                 sentence: "Where do you live?",
                 translation: "Onde você mora?"
             },
             {
-                audio: "https://example.com/audio5.mp3",
+                audio: "/static/assets/listening4.mp3",
                 sentence: "Good morning!",
                 translation: "Bom dia!"
             },
             {
-                audio: "https://example.com/audio6.mp3",
+                audio: "/static/assets/listening5.mp3",
                 sentence: "See you later.",
                 translation: "Até mais tarde."
             }
