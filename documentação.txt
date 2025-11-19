@@ -16,11 +16,13 @@ BD:
         senha VARCHAR(255) NOT NULL
     );
 
+    def configuracoes():
+    return render_template("PaginaConfig.html")
+
 
     @app.route("/configuracoes")
 @login_required
-def configuracoes():
-    return render_template("PaginaConfig.html")
+
 
 
 

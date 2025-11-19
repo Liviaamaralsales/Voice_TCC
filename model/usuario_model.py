@@ -1,11 +1,10 @@
-
 import pymysql
 
-# Configuração da conexãoo
+# Configuração da conexão
 db_config = {
     "host": "localhost",
     "user": "root",
-    "password": "",   # ⚠ Coloque sua senha do MySQL aqui
+    "password": "",  # ⚠ Coloque sua senha do MySQL aqui
     "database": "voice",
     "cursorclass": pymysql.cursors.DictCursor
 }
@@ -14,6 +13,15 @@ def get_db_connection():
     """Cria e retorna uma conexão com o banco de dados."""
     return pymysql.connect(**db_config)
 
+def buscar_usuario_por_id(usuario_id):
+    """Busca usuário pelo ID."""
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM usuarios WHERE id = %s", (usuario_id,))
+            return cursor.fetchone()
+    finally:
+        conn.close()
 
 def buscar_usuario_por_rm_e_email(rm, email):
     """Busca usuário pelo RM e Email."""
@@ -28,7 +36,6 @@ def buscar_usuario_por_rm_e_email(rm, email):
     finally:
         conn.close()
 
-
 def cadastrar(nome, data_nascimento, email, senha_hash):
     """Cadastra um novo usuário no banco de dados."""
     conn = get_db_connection()
@@ -42,7 +49,6 @@ def cadastrar(nome, data_nascimento, email, senha_hash):
     finally:
         conn.close()
 
-
 def buscar_usuario_por_email(email):
     """Busca usuário pelo Email."""
     conn = get_db_connection()
@@ -53,16 +59,14 @@ def buscar_usuario_por_email(email):
     finally:
         conn.close()
 
-
-  # ou onde quer que esteja sua função get_db_connection()
-
 def excluir_usuario(user_id):
+    """Exclui um usuário pelo ID."""
     conn = get_db_connection()
     try:
         with conn.cursor() as cursor:
             cursor.execute("DELETE FROM usuarios WHERE id = %s", (user_id,))
             conn.commit()
-            return cursor.rowcount > 0  # True se deletou alguma linha
+            return cursor.rowcount > 0  # Retorna True se deletou alguma linha
     finally:
         conn.close()
 
@@ -79,7 +83,6 @@ def atualizar_avatar(usuario_id, avatar):
     finally:
         conn.close()
 
-
 def buscar_avatar(usuario_id):
     """Busca o avatar do usuário pelo ID."""
     conn = get_db_connection()
@@ -87,7 +90,7 @@ def buscar_avatar(usuario_id):
         with conn.cursor() as cursor:
             cursor.execute(
                 "SELECT avatar FROM usuarios WHERE id = %s",
-                (usuario_id)
+                (usuario_id,)
             )
             result = cursor.fetchone()
             return result["avatar"] if result else None
@@ -95,6 +98,7 @@ def buscar_avatar(usuario_id):
         conn.close()
 
 def atualizar_senha(id_usuario, nova_senha_hash):
+    """Atualiza a senha do usuário."""
     conn = get_db_connection()
     try:
         with conn.cursor() as cursor:

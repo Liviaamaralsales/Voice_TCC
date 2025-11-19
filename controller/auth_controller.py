@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from model import usuario_model
 from functools import wraps
@@ -14,7 +14,6 @@ def cadastro():
         senha = request.form["senha"]
         confirmarSenha = request.form["confirmarSenha"]
 
-        # --- Validações ---
         if confirmarSenha != senha:
             flash("Erro: senha e confirmação não conferem")
             return redirect(url_for("auth.cadastro"))
@@ -35,26 +34,21 @@ def cadastro():
             flash("Usuário já cadastrado com este e-mail.")
             return redirect(url_for("auth.cadastro"))
 
-        # --- Cadastro ----
-        senha_hash = generate_password_hash(senha) 
+        senha_hash = generate_password_hash(senha)
         usuario_model.cadastrar(nome, data_nascimento, email, senha_hash)
-
         flash("Usuário cadastrado com sucesso!")
         return redirect(url_for("auth.login"))
 
-    return render_template("PaginaTelaLogin.html")
+    return render_template("index.html")
 
-# ROTA DE LOGIN
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
         email = request.form["email"]
         senha = request.form["senha"]
-
         usuario = usuario_model.buscar_usuario_por_email(email)
 
-        # Ajuste dependendo de como o model retorna os dados
-        if usuario and check_password_hash(usuario["senha"], senha):  
+        if usuario and check_password_hash(usuario["senha"], senha):
             session["usuario_id"] = usuario["id"]
             session["usuario"] = usuario["email"]
             flash("Login realizado com sucesso!")
@@ -63,28 +57,32 @@ def login():
             flash("E-mail ou senha inválidos")
             return redirect(url_for("auth.login"))
 
-    return render_template("PaginaTelaLogin.html")
+    return render_template("index.html")
 
 @auth_bp.route("/excluir_conta", methods=["POST"])
 def excluir_conta():
     if "usuario_id" not in session:
-        flash("Você precisa estar logado para excluir sua conta.")
-        return redirect(url_for("auth.login"))
+        return jsonify({'success': False, 'message': 'Você precisa estar logado para excluir sua conta.'}), 401
+
+    data = request.get_json()
+    senha = data.get('password')
 
     user_id = session["usuario_id"]
+    usuario = usuario_model.buscar_usuario_por_id(user_id)
+
+    if not usuario:
+        return jsonify({'success': False, 'message': 'Usuário não encontrado.'}), 404
+
+    if not check_password_hash(usuario["senha"], senha):
+        return jsonify({'success': False, 'message': 'Senha incorreta.'}), 403
 
     sucesso = usuario_model.excluir_usuario(user_id)
-
     if sucesso:
         session.clear()
-        flash("Conta excluída com sucesso!")
-        return redirect(url_for("auth.login"))
+        return jsonify({'success': True, 'message': 'Conta excluída com sucesso.'})
     else:
-        flash("Erro ao excluir a conta ou usuário não encontrado.")
-        return redirect(url_for("configuracoes"))
+        return jsonify({'success': False, 'message': 'Erro ao excluir a conta.'}), 500
 
-
-# ROTA DE LOGOUT
 @auth_bp.route('/logout')
 def logout():
     session.pop("usuario", None)
@@ -105,18 +103,12 @@ def redefinir():
     email = request.form.get("email")
     nova_senha = request.form.get("senha")
 
-    # Busca usuário pelo e-mail
     usuario = usuario_model.buscar_usuario_por_email(email)
-
     if not usuario:
         flash("E-mail não encontrado.")
         return redirect(url_for("configuracoes"))
 
-    # Gera hash da nova senha
     nova_senha_hash = generate_password_hash(nova_senha)
-
-    # Atualiza no banco de dados
     usuario_model.atualizar_senha(usuario["id"], nova_senha_hash)
-
     flash("Senha redefinida com sucesso! Faça login.")
     return redirect(url_for("auth.login"))
