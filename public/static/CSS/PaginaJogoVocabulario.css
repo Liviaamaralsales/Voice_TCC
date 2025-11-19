@@ -1,19 +1,16 @@
 /* Fonte */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-
 /* Background wavy */
 body, html {
     height: 100%;
     overflow: hidden;
 }
-
 section {
     position: relative;
     width: 100%;
@@ -26,7 +23,6 @@ section {
     padding-bottom: 150px; /* Espaço para o nav-bottom */
     box-sizing: border-box; /* Garante que o padding não aumente a altura total */
 }
-
 .wave {
     position: absolute;
     left: 0;
@@ -36,7 +32,7 @@ section {
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
     z-index: 0;
 }
-  
+
 .wave span {
     position: absolute;
     width: 360vh; /* reduzido de 325vh */
@@ -45,25 +41,25 @@ section {
     left: 50%;
     transform: translate(-50%, -75%);
 }
-  
+
 .wave span:nth-child(1) {
     border-radius: 45%;
     background: rgba(255, 255, 255, 0.5);
     animation: animate 5s linear infinite;
 }
-  
+
 .wave span:nth-child(2) {
     border-radius: 40%;
     background: rgba(255, 255, 255, 0.4);
     animation: animate 10s linear infinite;
 }
-  
+
 .wave span:nth-child(3) {
     border-radius: 42.5%;
     background: rgba(255, 255, 255, 0.3);
     animation: animate 15s linear infinite;
 }
-  
+
 @keyframes animate {
   0% {
     transform: translate(-50%, -75%) rotate(0deg);
@@ -72,7 +68,6 @@ section {
     transform: translate(-50%, -75%) rotate(180deg);
   }
 }
-
 .container {
     max-width: 80%;
     height: 480px;
@@ -81,8 +76,8 @@ section {
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     overflow: hidden;
+    position: relative;
 }
-
 .header {
     padding: 5px 0;
     text-align: center;
@@ -90,14 +85,12 @@ section {
     color: #fff;
     background: linear-gradient(90deg,rgba(70, 15, 140, 1) 0%, rgba(118, 75, 162, 1) 50%, rgba(51, 26, 79, 1) 100%);
 }
-
 .header h1 {
     font-size: 30px;
     margin-top: 10px;
     margin-bottom: 5px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-
 .score-board {
     display: flex;
     justify-content: center;
@@ -105,7 +98,6 @@ section {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 .score-item {
     background: rgba(255,255,255,0.2);
     padding: 5px 10px;
@@ -113,23 +105,19 @@ section {
     font-weight: bold;
     font-size: 18px;
 }
-
 .game-area {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 75%;
     overflow-y: hidden;
-
 }
-
 .verbs-column, .definitions-column {
     flex: 1;
     padding: 10px;
     overflow-y: auto;
     margin-top: 5%;
 }
-
 .verb-card, .definition-card {
     padding: 10px;
     border-radius: 15px;
@@ -141,39 +129,32 @@ section {
     border: 3px solid transparent;
     position: relative;
     overflow: hidden;
-}
-
-.verb-card {
     margin-bottom: 10px;
+}
+.verb-card {
     background: linear-gradient(45deg, #4ecdc4, #44a08d);
     color: white;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
-
 .definition-card {
-    margin-bottom: 10px;
     background: linear-gradient(45deg, #f093fb, #f5576c);
     color: white;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
-
 .verb-card:hover, .definition-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
-
 .selected {
     border-color: #ffd700 !important;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
     animation: pulse 1s infinite;
 }
-
 .matched {
     background: linear-gradient(45deg, #56ab2f, #a8e6cf) !important;
     animation: celebrate 0.6s ease-in-out;
     pointer-events: none;
 }
-
 .controls {
     display: flex;
     flex-direction: column;
@@ -181,7 +162,6 @@ section {
     justify-content: center;
     padding: 10px;
 }
-
 button {
     padding: 5px;
     font-size: 0.8em;
@@ -191,7 +171,6 @@ button {
     text-overflow: ellipsis;
     max-width: 120px;
 }
-
 .hint-btn, .reset-btn {
     padding: 15px 15px;
     border: none;
@@ -203,22 +182,18 @@ button {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
 .hint-btn {
     background: linear-gradient(45deg, #ffecd2, #fcb69f);
     color: #8b4513;
 }
-
 .reset-btn {
     background: linear-gradient(45deg, #a8edea, #fed6e3);
     color: #2c3e50;
 }
-
 .hint-btn:hover, .reset-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
-
 .hint-display {
     background: #fff3cd;
     border: 2px solid #ffeaa7;
@@ -233,7 +208,6 @@ button {
     align-items: center;
     justify-content: center;
 }
-
 .connection-line {
     position: absolute;
     height: 3px;
@@ -243,7 +217,6 @@ button {
     opacity: 0;
     animation: drawLine 0.5s ease-in-out forwards;
 }
-
 .celebration {
     position: fixed;
     top: 50%;
@@ -254,7 +227,6 @@ button {
     animation: celebrationPop 1s ease-in-out;
     pointer-events: none;
 }
-
 .completion-message {
     position: fixed;
     top: 0;
@@ -269,7 +241,6 @@ button {
     opacity: 0;
     animation: fadeIn 0.5s ease-in-out forwards;
 }
-
 .completion-message .message-content {
     font-size: 1em;
     max-width: 40%;
@@ -279,7 +250,6 @@ button {
     border-radius: 10px;
     z-index: 1001;
 }
-
 .completion-content {
     background: white;
     padding: 40px;
@@ -287,19 +257,16 @@ button {
     text-align: center;
     animation: bounceIn 0.6s ease-in-out;
 }
-
 .completion-content h2 {
     color: #27ae60;
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
-
 .completion-content p {
     font-size: 1.2rem;
     color: #2c3e50;
     margin-bottom: 30px;
 }
-
 .play-again-btn {
     background: linear-gradient(45deg, #667eea, #764ba2);
     color: white;
@@ -311,17 +278,14 @@ button {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .play-again-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
-
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
 }
-
 @keyframes celebrate {
     0% { transform: scale(1) rotate(0deg); }
     25% { transform: scale(1.1) rotate(5deg); }
@@ -329,50 +293,44 @@ button {
     75% { transform: scale(1.1) rotate(3deg); }
     100% { transform: scale(1) rotate(0deg); }
 }
-
 @keyframes drawLine {
     0% { width: 0; opacity: 1; }
     100% { width: 100%; opacity: 1; }
 }
-
 @keyframes celebrationPop {
     0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
     50% { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
     100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
 }
-
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
-
 @keyframes bounceIn {
     0% { transform: scale(0.3); opacity: 0; }
     50% { transform: scale(1.05); opacity: 1; }
     70% { transform: scale(0.9); }
     100% { transform: scale(1); }
 }
-
 @media (max-width: 768px) {
     .game-area {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .controls {
         order: -1;
     }
-    
+
     .header h1 {
         font-size: 2rem;
     }
-    
+
     .score-board {
         flex-direction: column;
         gap: 10px;
     }
 }
-
 /* NAVBAR */
 .bottom-navbar {
     position: fixed;
@@ -391,7 +349,7 @@ button {
     transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
     z-index: 1001; /* Garante que fique acima de tudo */
   }
-  
+
   .bottom-navbar ul {
     list-style: none;
     margin: 0;
@@ -400,13 +358,13 @@ button {
     width: 100%;
     justify-content: space-around; /* ícones igualmente espaçados */
   }
-  
+
   .bottom-navbar li {
     margin: 0;
     display: flex;
     align-items: center;
   }
-  
+
   /* Links */
   .bottom-navbar a {
     display: flex;
@@ -418,13 +376,13 @@ button {
     border-radius: 50px;
     transition: transform 0.4s ease;
   }
-  
+
   /* Ícone sempre visível */
   .bottom-navbar a i {
     font-size: 20px;
     transition: transform 0.3s ease;
   }
-  
+
   /* Texto inicialmente escondido */
   .bottom-navbar a span {
     opacity: 0;
@@ -434,20 +392,20 @@ button {
     white-space: nowrap;
     transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
   }
-  
+
   /* Hover: barra expande */
   .bottom-navbar:hover {
     width: 70%;
     padding: 10px 20px;
   }
-  
+
   /* Hover: texto aparece */
   .bottom-navbar:hover a span {
     opacity: 1;
     width: auto;
     transform: translateX(0);
   }
-  
+
   /* Efeito cascata para os spans */
   .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
   .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
@@ -456,8 +414,6 @@ button {
   .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
   .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
   .bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
-  
-
 
   /* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
 .logo-button {
@@ -477,20 +433,18 @@ button {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     z-index: 1002; /* acima de tudo */
   }
-  
+
   .logo-button img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
+
   .logo-button:hover {
     transform: scale(1.07);
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
   }
-
-
   /* Tema escuro (deve estar em todas as páginas) */
 body.dark-theme {
     background: #222;
@@ -526,7 +480,6 @@ body.dark-theme .bottom-navbar a {
 body.dark-theme .wave span:nth-child(3) {
     background: rgb(0, 0, 0) !important;
 }
-
 body.dark-theme .game-area {
     background-color: #222;
 }

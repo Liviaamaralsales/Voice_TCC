@@ -7,15 +7,40 @@
     <link rel="stylesheet" href="../static/CSS/PaginaJogoVocabulario.css">
     <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Apenas o estilo do botão Voltar */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: linear-gradient(135deg, #8f72ff, #6d54f7);
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 22px rgba(109, 84, 247, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(109, 84, 247, 0.47);
+        }
+    </style>
 </head>
 <body>
-
     <!-- Botão no canto superior direito -->
     <a href="{{ url_for('chatbot.chat') }}" class="logo-button">
       <img src="../static/assets/botao-chat.jpeg" alt="Logo" />
     </a>
 
-  
     <!-- ONDAS -->
     <div class="wave">
       <span></span>
@@ -24,43 +49,43 @@
     </div>
 
     <section>
-    <div class="container">
-        <div class="header">
-            <h1>🎯 Jogo de Vocabulário em Inglês</h1>
-            <div class="score-board">
-                <div class="score-item">
-                    <span>Acertos: </span><span id="correct-count">0</span>
+        <div class="container">
+            <button class="back-button" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </button>
+            <div class="header">
+                <h1>🎯 Jogo de Vocabulário em Inglês</h1>
+                <div class="score-board">
+                    <div class="score-item">
+                        <span>Acertos: </span><span id="correct-count">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span>Tentativas: </span><span id="attempts-count">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span>Dicas Usadas: </span><span id="hints-count">0</span>
+                    </div>
                 </div>
-                <div class="score-item">
-                    <span>Tentativas: </span><span id="attempts-count">0</span>
+            </div>
+            <div class="game-area">
+                <div class="verbs-column" id="verbs-column">
+                    <!-- Verbos serão inseridos aqui -->
                 </div>
-                <div class="score-item">
-                    <span>Dicas Usadas: </span><span id="hints-count">0</span>
+                <div class="controls">
+                    <button class="hint-btn" id="hint-btn">💡 Dica</button>
+                    <button class="reset-btn" id="reset-btn">🔄 Reiniciar</button>
+                    <div class="hint-display" id="hint-display">
+                        Clique em "Dica" para obter ajuda!
+                    </div>
+                </div>
+                <div class="definitions-column" id="definitions-column">
+                    <!-- Definições serão inseridos aqui -->
                 </div>
             </div>
         </div>
-
-        <div class="game-area">
-            <div class="verbs-column" id="verbs-column">
-                <!-- Verbos serão inseridos aqui -->
-            </div>
-
-            <div class="controls">
-                <button class="hint-btn" id="hint-btn">💡 Dica</button>
-                <button class="reset-btn" id="reset-btn">🔄 Reiniciar</button>
-                <div class="hint-display" id="hint-display">
-                    Clique em "Dica" para obter ajuda!
-                </div>
-            </div>
-
-            <div class="definitions-column" id="definitions-column">
-                <!-- Definições serão inseridas aqui -->
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- navbar -->
-
     <nav class="bottom-navbar">
       <ul>
           <li>
@@ -100,233 +125,181 @@
               </a>
           </li>
       </ul>
-  </nav> 
-    </section>
+    </nav>
 
     <script>
         const gameData = {
             verbs: [
-                { word: "EXPLORE", 
-                  definition: "To travel through an area to learn about it", 
+                { word: "EXPLORE",
+                  definition: "To travel through an area to learn about it",
                   hint: "Aventureiros fazem isso em lugares desconhecidos 🗺️" },
-
-                { word: "CREATE", 
-                  definition: "To make something new or bring into existence", 
+                { word: "CREATE",
+                  definition: "To make something new or bring into existence",
                   hint: "Artistas fazem isso com suas obras 🎨" },
-
-                { word: "DISCOVER", 
-                  definition: "To find something for the first time", 
+                { word: "DISCOVER",
+                  definition: "To find something for the first time",
                   hint: "Cientistas fazem isso com novas espécies 🔬" },
-
-                { word: "ACHIEVE", 
-                 definition: "To successfully complete or accomplish something", 
+                { word: "ACHIEVE",
+                 definition: "To successfully complete or accomplish something",
                  hint: "Atletas fazem isso com seus objetivos 🏆" },
-
-                { word: "INSPIRE", 
+                { word: "INSPIRE",
                   definition: "To motivate someone to do something creative",
                   hint: "Professores fazem isso com seus alunos ✨" },
-                
+
                 { word: "TRANSFORM",
                   definition: "To change completely in form or appearance",
                   hint: "Lagartas fazem isso para se tornarem borboletas 🦋" },
-                { word: "LEARN", 
-                  definition: "To acquire knowledge or skills through study or experience", 
+                { word: "LEARN",
+                  definition: "To acquire knowledge or skills through study or experience",
                   hint: "Estudantes fazem isso na escola 📚" },
-
-                { word: "COMMUNICATE", 
-                  definition: "To share or exchange information, thoughts, or feelings", 
+                { word: "COMMUNICATE",
+                  definition: "To share or exchange information, thoughts, or feelings",
                   hint: "Amigos fazem isso para se entenderem 🗣️" },
-
-                { word: "MOTIVATE", 
-                  definition: "To give someone a reason or incentive to do something", 
+                { word: "MOTIVATE",
+                  definition: "To give someone a reason or incentive to do something",
                   hint: "Líderes fazem isso com suas equipes 👏" },
-
-                { word: "SUPPORT", 
-                  definition: "To give help or assistance", 
+                { word: "SUPPORT",
+                  definition: "To give help or assistance",
                   hint: "Família faz isso para nos apoiar em momentos difíceis 🤗" },
-
-                { word: "IMAGINE", 
-                  definition: "To form a mental image or concept of something", 
+                { word: "IMAGINE",
+                  definition: "To form a mental image or concept of something",
                   hint: "Escritores fazem isso ao criar mundos fantásticos 📖" },
-
-                { word: "BUILD", 
-                  definition: "To construct something by putting parts or materials together", 
+                { word: "BUILD",
+                  definition: "To construct something by putting parts or materials together",
                   hint: "Arquitetos fazem isso para criar novas construções 🏗️" },
-
-                { word: "DESIGN", 
-                  definition: "To plan and create something with a specific function or appearance", 
+                { word: "DESIGN",
+                  definition: "To plan and create something with a specific function or appearance",
                   hint: "Designers fazem isso com seus projetos 💡" },
-
-                { word: "COLLABORATE", 
-                  definition: "To work together with others to achieve a common goal", 
+                { word: "COLLABORATE",
+                  definition: "To work together with others to achieve a common goal",
                   hint: "Equipes fazem isso para alcançar melhores resultados 🤝" },
-
-                { word: "INNOVATE", 
-                  definition: "To make changes or introduce new methods, ideas, or products", 
+                { word: "INNOVATE",
+                  definition: "To make changes or introduce new methods, ideas, or products",
                   hint: "Empresas fazem isso para se destacarem no mercado 🚀" },
-
-                { word: "CONQUER", 
-                  definition: "To overcome something or gain control of it", 
+                { word: "CONQUER",
+                  definition: "To overcome something or gain control of it",
                   hint: "Guerreiros fazem isso em batalhas ⚔️" },
-
-                { word: "EXPRESS", 
-                  definition: "To convey or communicate an idea or feeling", 
+                { word: "EXPRESS",
+                  definition: "To convey or communicate an idea or feeling",
                   hint: "Artistas fazem isso através de suas obras 🎤" },
-
-                { word: "IMPROVE", 
-                  definition: "To make something better or more effective", 
+                { word: "IMPROVE",
+                  definition: "To make something better or more effective",
                   hint: "Atletas fazem isso em seu desempenho no esporte 🏃‍♂️" },
-
-                { word: "HELP", 
-                  definition: "To give assistance or aid to someone", 
+                { word: "HELP",
+                  definition: "To give assistance or aid to someone",
                   hint: "Médicos fazem isso para salvar vidas 🩺" },
-
-                { word: "REFLECT", 
-                  definition: "To think deeply or carefully about something", 
+                { word: "REFLECT",
+                  definition: "To think deeply or carefully about something",
                   hint: "Filósofos fazem isso para entender a vida 🤔" },
-
-                { word: "CONNECT", 
-                  definition: "To join or link together", 
+                { word: "CONNECT",
+                  definition: "To join or link together",
                   hint: "Tecnologia faz isso entre pessoas em todo o mundo 🌍" },
-
-                { word: "ACHIEVE", 
-                  definition: "To successfully complete or accomplish something", 
+                { word: "ACHIEVE",
+                  definition: "To successfully complete or accomplish something",
                   hint: "Atletas fazem isso com seus objetivos 🏆" },
-
-                { word: "SING", 
-                  definition: "To produce musical tones with the voice", 
+                { word: "SING",
+                  definition: "To produce musical tones with the voice",
                   hint: "Cantores fazem isso para entreter o público 🎤" },
-
-                { word: "DREAM", 
-                  definition: "To imagine something as a possibility or goal", 
+                { word: "DREAM",
+                  definition: "To imagine something as a possibility or goal",
                   hint: "Sonhadores fazem isso para criar seu futuro ✨" },
-
-                { word: "JUMP", 
-                  definition: "To push yourself off the ground and into the air", 
+                { word: "JUMP",
+                  definition: "To push yourself off the ground and into the air",
                   hint: "Gatos fazem isso quando se assustam 😸" },
-
-                { word: "RUN", 
-                  definition: "To move at a fast pace on foot", 
+                { word: "RUN",
+                  definition: "To move at a fast pace on foot",
                   hint: "Corredores fazem isso em competições 🏃" },
-
-                { word: "READ", 
-                  definition: "To look at and understand written words", 
+                { word: "READ",
+                  definition: "To look at and understand written words",
                   hint: "Estudantes fazem isso para aprender 📖" },
-
-                { word: "WRITE", 
-                  definition: "To produce text or symbols on a surface", 
+                { word: "WRITE",
+                  definition: "To produce text or symbols on a surface",
                   hint: "Escritores fazem isso para contar histórias 🖋️" },
-
-                { word: "HELP", 
-                  definition: "To give assistance or support", 
+                { word: "HELP",
+                  definition: "To give assistance or support",
                   hint: "Voluntários fazem isso para ajudar quem precisa 🤲" },
-
-                { word: "LISTEN", 
-                  definition: "To give attention to sound or speech", 
+                { word: "LISTEN",
+                  definition: "To give attention to sound or speech",
                   hint: "Músicos fazem isso para aprender novas melodias 🎶" },
-
-                { word: "SHOW", 
-                  definition: "To present or display something", 
+                { word: "SHOW",
+                  definition: "To present or display something",
                   hint: "Apresentadores fazem isso em programas de TV 📺" },
-
-                { word: "CREATE", 
-                  definition: "To make something new or bring into existence", 
+                { word: "CREATE",
+                  definition: "To make something new or bring into existence",
                   hint: "Artistas fazem isso com suas obras 🎨" },
-                  
-                { word: "IMAGINE", 
-                  definition: "To form a mental image of something", 
+
+                { word: "IMAGINE",
+                  definition: "To form a mental image of something",
                   hint: "Escritores fazem isso ao criar mundos fantásticos 📖" },
-
-                { word: "THINK", 
-                  definition: "To use the mind to process information", 
+                { word: "THINK",
+                  definition: "To use the mind to process information",
                   hint: "Filósofos fazem isso para refletir sobre a existência 🤯" },
-
-                { word: "SLEEP", 
-                  definition: "To rest in a state of unconsciousness", 
+                { word: "SLEEP",
+                  definition: "To rest in a state of unconsciousness",
                   hint: "Pessoas fazem isso para descansar e recarregar energias 😴" },
-
-                { word: "GROW", 
-                  definition: "To increase in size, number, or importance", 
+                { word: "GROW",
+                  definition: "To increase in size, number, or importance",
                   hint: "Plantas fazem isso ao se desenvolverem no solo 🌱" },
-
-                { word: "RELAX", 
-                  definition: "To become less tense or anxious", 
+                { word: "RELAX",
+                  definition: "To become less tense or anxious",
                   hint: "Pessoas fazem isso para reduzir o estresse 🧘‍♀️" },
-
-                { word: "BREATHE", 
-                  definition: "To take air into the lungs and expel it", 
+                { word: "BREATHE",
+                  definition: "To take air into the lungs and expel it",
                   hint: "Todos fazem isso para viverem 🫁" },
-
-                { word: "EXPLORE", 
-                  definition: "To travel through an area to learn about it", 
+                { word: "EXPLORE",
+                  definition: "To travel through an area to learn about it",
                   hint: "Aventureiros fazem isso em lugares desconhecidos 🗺️" },
-
-                { word: "SHARE", 
-                  definition: "To give a portion of something to others", 
+                { word: "SHARE",
+                  definition: "To give a portion of something to others",
                   hint: "Amigos fazem isso quando dividem seus momentos 🤝" },
-
-                { word: "OBSERVE", 
-                  definition: "To watch carefully", 
+                { word: "OBSERVE",
+                  definition: "To watch carefully",
                   hint: "Cientistas fazem isso para estudar fenômenos naturais 🔬" },
-
-                { word: "JUDGE", 
-                  definition: "To form an opinion or conclusion about something", 
+                { word: "JUDGE",
+                  definition: "To form an opinion or conclusion about something",
                   hint: "Juízes fazem isso em tribunais ⚖️" },
-
-                { word: "TEACH", 
-                  definition: "To impart knowledge or skills", 
+                { word: "TEACH",
+                  definition: "To impart knowledge or skills",
                   hint: "Professores fazem isso em salas de aula 👩‍🏫" },
-
-                { word: "LEAD", 
-                  definition: "To guide or direct a group or activity", 
+                { word: "LEAD",
+                  definition: "To guide or direct a group or activity",
                   hint: "Líderes fazem isso para alcançar objetivos coletivos 💼" },
-
-                { word: "RUN", 
-                  definition: "To move quickly on foot", 
+                { word: "RUN",
+                  definition: "To move quickly on foot",
                   hint: "Corredores fazem isso em maratonas 🏃‍♂️" },
-
-                { word: "PRACTICE", 
-                  definition: "To do something repeatedly to improve skill", 
+                { word: "PRACTICE",
+                  definition: "To do something repeatedly to improve skill",
                   hint: "Músicos fazem isso com seus instrumentos 🎸" },
-
-                { word: "HELP", 
-                  definition: "To provide assistance", 
+                { word: "HELP",
+                  definition: "To provide assistance",
                   hint: "Profissionais de saúde fazem isso para tratar pacientes 🏥" },
-
-                { word: "REMEMBER", 
-                  definition: "To bring to mind an idea or fact", 
+                { word: "REMEMBER",
+                  definition: "To bring to mind an idea or fact",
                   hint: "Pessoas fazem isso para não esquecer algo importante 🧠" },
-
-                { word: "RESOLVE", 
-                  definition: "To find a solution to a problem", 
+                { word: "RESOLVE",
+                  definition: "To find a solution to a problem",
                   hint: "Engenheiros fazem isso para consertar falhas em projetos 🛠️" },
-
-                { word: "DISCUSS", 
-                  definition: "To talk about something in detail", 
+                { word: "DISCUSS",
+                  definition: "To talk about something in detail",
                   hint: "Estudantes fazem isso para trocar ideias sobre um tema 🗣️" },
-
-                { word: "CREATE", 
-                  definition: "To produce something new", 
+                { word: "CREATE",
+                  definition: "To produce something new",
                   hint: "Músicos fazem isso com suas composições 🎼" },
-
-                { word: "IMPROVISE", 
-                  definition: "To create or perform something without preparation", 
+                { word: "IMPROVISE",
+                  definition: "To create or perform something without preparation",
                   hint: "Atores fazem isso durante uma performance improvisada 🎭" },
-
-                { word: "STUDY", 
-                  definition: "To apply oneself to learning or understanding", 
+                { word: "STUDY",
+                  definition: "To apply oneself to learning or understanding",
                   hint: "Alunos fazem isso para se preparar para provas 📚" },
-
-                { word: "WAIT", 
-                  definition: "To remain in a state of readiness or expectation", 
+                { word: "WAIT",
+                  definition: "To remain in a state of readiness or expectation",
                   hint: "Pacientes fazem isso em salas de espera ⏳" },
-
-                { word: "EXERCISE", 
-                  definition: "To engage in physical activity to maintain fitness", 
+                { word: "EXERCISE",
+                  definition: "To engage in physical activity to maintain fitness",
                   hint: "Pessoas fazem isso para se manterem saudáveis 💪" },
-                  
-                { word: "CLEAN", 
-                  definition: "To remove dirt or mess", 
+
+                { word: "CLEAN",
+                  definition: "To remove dirt or mess",
                   hint: "Domésticas fazem isso para manter o ambiente limpo"}
         ]
     };
@@ -352,17 +325,13 @@
         const verbsColumn = document.getElementById('verbs-column');
         const definitionsColumn = document.getElementById('definitions-column');
 
-        // Limpar colunas
         verbsColumn.innerHTML = '';
         definitionsColumn.innerHTML = '';
 
-        // Selecionar 4 verbos aleatórios
         selectedVerbs = shuffleArray(gameData.verbs).slice(0, 4);
 
-        // Embaralhar definições dos verbos selecionados
         const shuffledDefinitions = shuffleArray([...selectedVerbs]);
 
-        // Criar cards de verbos
         selectedVerbs.forEach((item, index) => {
             const verbCard = document.createElement('div');
             verbCard.className = 'verb-card';
@@ -372,7 +341,6 @@
             verbsColumn.appendChild(verbCard);
         });
 
-        // Criar cards de definições (embaralhados)
         shuffledDefinitions.forEach((item, index) => {
             const definitionCard = document.createElement('div');
             definitionCard.className = 'definition-card';
@@ -382,37 +350,29 @@
             definitionsColumn.appendChild(definitionCard);
         });
 
-        // Reset counters
         matches = [];
         attempts = 0;
         hintsUsed = 0;
         currentHintIndex = 0;
         updateScoreboard();
-
         document.getElementById('hint-display').textContent = 'Clique em "Dica" para obter ajuda!';
     }
 
     function selectVerb(card, index) {
         if (card.classList.contains('matched')) return;
 
-        // Remover seleção anterior
         document.querySelectorAll('.verb-card').forEach(c => c.classList.remove('selected'));
-
         selectedVerb = { card, index };
         card.classList.add('selected');
-
         checkForMatch();
     }
 
     function selectDefinition(card, originalIndex) {
         if (card.classList.contains('matched')) return;
 
-        // Remover seleção anterior
         document.querySelectorAll('.definition-card').forEach(c => c.classList.remove('selected'));
-
         selectedDefinition = { card, index: parseInt(originalIndex) };
         card.classList.add('selected');
-
         checkForMatch();
     }
 
@@ -420,33 +380,26 @@
         if (!selectedVerb || !selectedDefinition) return;
 
         attempts++;
-
         if (selectedVerb.index === selectedDefinition.index) {
-            // Match correto!
             selectedVerb.card.classList.add('matched');
             selectedDefinition.card.classList.add('matched');
             selectedVerb.card.classList.remove('selected');
             selectedDefinition.card.classList.remove('selected');
-
             matches.push({
                 verb: selectedVerb.index,
                 definition: selectedDefinition.index
             });
-
             showCelebration();
 
-            // Verificar se o jogo terminou
             if (matches.length === selectedVerbs.length) {
                 setTimeout(showCompletionMessage, 1000);
             }
         } else {
-            // Match incorreto
             setTimeout(() => {
                 selectedVerb.card.classList.remove('selected');
                 selectedDefinition.card.classList.remove('selected');
             }, 1000);
         }
-
         selectedVerb = null;
         selectedDefinition = null;
         updateScoreboard();
@@ -458,7 +411,6 @@
         celebration.className = 'celebration';
         celebration.textContent = celebrations[Math.floor(Math.random() * celebrations.length)];
         document.body.appendChild(celebration);
-
         setTimeout(() => {
             document.body.removeChild(celebration);
         }, 1000);
@@ -495,7 +447,6 @@
             return;
         }
 
-        // Encontrar próximo verbo não combinado
         let hintIndex = currentHintIndex;
         while (hintIndex < selectedVerbs.length && matches.some(m => m.verb === hintIndex)) {
             hintIndex++;
@@ -509,7 +460,6 @@
         const hint = selectedVerbs[hintIndex].hint;
         const word = selectedVerbs[hintIndex].word;
         document.getElementById('hint-display').textContent = `💡 ${word}: ${hint}`;
-
         hintsUsed++;
         currentHintIndex = hintIndex + 1;
         updateScoreboard();
@@ -521,17 +471,11 @@
         document.getElementById('hints-count').textContent = hintsUsed;
     }
 
-    // Event listeners
     document.getElementById('hint-btn').addEventListener('click', showHint);
     document.getElementById('reset-btn').addEventListener('click', initializeGame);
 
-    // Inicializar o jogo
     initializeGame();
-
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d9d90ca63af1e6',t:'MTc1NzYyMTgzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-
-
-<script src="../static/JS/tema.js"></script>
+    <script src="../static/JS/tema.js"></script>
 </body>
 </html>

@@ -1,10 +1,16 @@
+/* Fonte mais elegante */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* Corpo da página */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", sans-serif;
     background-color: #9554ff;
     margin: 0;
     padding: 20px;
 }
 
+/* Container principal */
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -12,13 +18,57 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    position: relative; /* Para posicionar o botão Voltar */
 }
 
+/* Botão Voltar */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Botões com estilo de degrade roxo */
+.purple-gradient-button {
+    background: linear-gradient(135deg, #8f72ff, #6d54f7);
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 22px rgba(109, 84, 247, 0.35);
+    width: fit-content;
+    margin: 5px;
+}
+
+.purple-gradient-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(109, 84, 247, 0.47);
+}
+
+/* Título */
 h1 {
     text-align: center;
     color: black;
 }
 
+/* Painel de pontuação */
+.score-panel {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Tabuleiro do jogo */
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -26,6 +76,7 @@ h1 {
     margin-top: 20px;
 }
 
+/* Cartas */
 .card {
     height: 120px;
     background-color: #5900ff;
@@ -73,35 +124,15 @@ h1 {
     object-fit: contain;
 }
 
-.score-panel {
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
+/* Controles */
 .controls {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    gap: 10px;
 }
 
-button {
-    background-color: #9200cc;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 10px;
-}
-
-button:hover {
-    background-color: #0b7dda;
-}
-
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -137,160 +168,175 @@ button:hover {
 
 /* NAVBAR */
 .bottom-navbar {
-  position: fixed;
-  font-family: "Poppins";
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  width: 400px; /* Barra fechada */
-  padding: 10px 0;
-  border-radius: 50px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
-  z-index: 1001; /* Garante que fique acima de tudo */
+    position: fixed;
+    font-family: "Poppins";
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    width: 400px;
+    padding: 10px 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
+    z-index: 1001;
 }
+
 .bottom-navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  width: 100%;
-  justify-content: space-around; /* ícones igualmente espaçados */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }
+
 .bottom-navbar li {
-  margin: 0;
-  display: flex;
-  align-items: center;
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
-/* Links */
+
 .bottom-navbar a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-  border-radius: 50px;
-  transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 50px;
+    transition: transform 0.4s ease;
 }
-/* Ícone sempre visível */
+
 .bottom-navbar a i {
-  font-size: 20px;
-  transition: transform 0.3s ease;
+    font-size: 20px;
+    transition: transform 0.3s ease;
 }
-/* Texto inicialmente escondido */
+
 .bottom-navbar a span {
-  font-size: 15px;
-  opacity: 0;
-  width: 0px;
-  transform: translateX(-10px);
-  margin-left: 8px;
-  white-space: nowrap;
-  transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
+    font-size: 15px;
+    opacity: 0;
+    width: 0px;
+    transform: translateX(-10px);
+    margin-left: 8px;
+    white-space: nowrap;
+    transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
 }
-/* Hover: barra expande */
+
 .bottom-navbar:hover {
-  width: 70%;
-  padding: 10px 20px;
+    width: 70%;
+    padding: 10px 20px;
 }
-/* Hover: texto aparece */
+
 .bottom-navbar:hover a span {
-  opacity: 1;
-  width: auto;
-  transform: translateX(0);
+    opacity: 1;
+    width: auto;
+    transform: translateX(0);
 }
-/* Efeito cascata para os spans */
+
 .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
 .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
 .bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
 .bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
 .bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
-.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
-/* ---- ONDAS (mantidas como estão no seu código original) ---- */
+
+/* ONDAS */
 .wave {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #9c65f5;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-  z-index: -1;
-}
-.wave span {
-  position: absolute;
-  width: 360vh;
-  height: 360vh;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -75%);
-}
-.wave span:nth-child(1) {
-  border-radius: 45%;
-  background: rgba(255, 255, 255, 0.5);
-  animation: animate 5s linear infinite;
-}
-.wave span:nth-child(2) {
-  border-radius: 40%;
-  background: rgba(255, 255, 255, 0.4);
-  animation: animate 10s linear infinite;
-}
-.wave span:nth-child(3) {
-  border-radius: 42.5%;
-  background: rgba(255, 255, 255, 0.3);
-  animation: animate 15s linear infinite;
-}
-@keyframes animate {
-  0% {
-    transform: translate(-50%, -75%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -75%) rotate(180deg);
-  }
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #9c65f5;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    z-index: -1;
 }
 
-/* Tema escuro (deve estar em todas as páginas) */
+.wave span {
+    position: absolute;
+    width: 360vh;
+    height: 360vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -75%);
+}
+
+.wave span:nth-child(1) {
+    border-radius: 45%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: animate 5s linear infinite;
+}
+
+.wave span:nth-child(2) {
+    border-radius: 40%;
+    background: rgba(255, 255, 255, 0.4);
+    animation: animate 10s linear infinite;
+}
+
+.wave span:nth-child(3) {
+    border-radius: 42.5%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: animate 15s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: translate(-50%, -75%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -75%) rotate(180deg);
+    }
+}
+
+/* Tema escuro */
 body.dark-theme {
     background: #222;
     color: #f0f0f0;
 }
+
 body.dark-theme .container {
     background: rgba(60, 60, 60, 0.5);
     color: #f0f0f0;
 }
+
 body.dark-theme .config-left,
 body.dark-theme .config-right {
     background: #333;
     color: #f0f0f0;
 }
+
 body.dark-theme input,
 body.dark-theme select {
     background: #444;
     color: #f0f0f0;
     border-color: #555;
 }
+
 body.dark-theme .toggle-group .toggle {
     background: #444;
     color: #f0f0f0;
     border-color: #555;
 }
+
 body.dark-theme .toggle-group .toggle.active {
-    background:  #a678d1 ;
+    background: #a678d1;
     color: white;
 }
+
 body.dark-theme .bottom-navbar {
     background: #333;
     color: #f0f0f0;
 }
+
 body.dark-theme .bottom-navbar a {
     color: #f0f0f0;
 }
+
 body.dark-theme .wave span:nth-child(3) {
     background: rgb(0, 0, 0) !important;
 }
@@ -300,9 +346,32 @@ body.dark-theme h1 {
 }
 
 body.dark-theme .escrita1 {
-    color: #a678d1 ;
+    color: #a678d1;
 }
 
-body.dark-theme .escrita2{
-    color: #a678d1 ;
+body.dark-theme .escrita2 {
+    color: #a678d1;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .purple-gradient-button {
+        width: 100%;
+        max-width: 200px;
+        margin: 5px 0;
+    }
 }

@@ -7,30 +7,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Jogo da Memória - Inglês com Imagens</title>
 </head>
-
 <body>
-
-      <!-- ONDAS -->
+    <!-- ONDAS -->
     <div class="wave">
         <span></span>
         <span></span>
         <span></span>
     </div>
 
-
     <div class="container">
+        <button class="purple-gradient-button back-button" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
         <h1>Jogo da Memória - Frases</h1>
-
         <div class="score-panel">
-            <div class="escrita1"> Pares encontrados: <span id="pairs-found">0</span></div>
+            <div class="escrita1">Pares encontrados: <span id="pairs-found">0</span></div>
             <div class="escrita2">Tentativas: <span id="attempts">0</span></div>
         </div>
-
         <div class="game-board" id="game-board"></div>
-
         <div class="controls">
-            <button id="restart-btn">Reiniciar Jogo</button>
-            <button id="new-game-btn">Novo Jogo</button>
+            <button class="purple-gradient-button" id="restart-btn">Reiniciar Jogo</button>
+            <button class="purple-gradient-button" id="new-game-btn">Novo Jogo</button>
         </div>
     </div>
 
@@ -43,48 +40,47 @@
         </div>
     </div>
 
-     <!-- navbar -->
-
-       <nav class="bottom-navbar">
-    <ul>
-        <li>
-            <a href="{{ url_for('home') }}">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">Início</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('classes') }}">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span class="nav-text">Classes</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('activities') }}">
-                <i class="fas fa-running"></i>
-                <span class="nav-text">Activities</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('games') }}">
-                <i class="fas fa-gamepad"></i>
-                <span class="nav-text">Games</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('configuracoes') }}">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Configurações</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('apoiadores') }}">
-                <i class="fas fa-life-ring"></i>
-                <span class="nav-text">Apoio</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+    <!-- navbar -->
+    <nav class="bottom-navbar">
+        <ul>
+            <li>
+                <a href="{{ url_for('home') }}">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Início</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('classes') }}">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span class="nav-text">Classes</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('activities') }}">
+                    <i class="fas fa-running"></i>
+                    <span class="nav-text">Activities</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('games') }}">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="nav-text">Games</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('configuracoes') }}">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">Configurações</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('apoiadores') }}">
+                    <i class="fas fa-life-ring"></i>
+                    <span class="nav-text">Apoio</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
     <script>
         const words = [
@@ -165,7 +161,6 @@
                 secondCard = cardId;
                 attempts++;
                 document.getElementById('attempts').textContent = attempts;
-
                 checkForMatch();
             }
 
@@ -176,7 +171,6 @@
             if (cards[firstCard].english === cards[secondCard].english) {
                 cards[firstCard].isMatched = true;
                 cards[secondCard].isMatched = true;
-
                 pairsFound++;
                 document.getElementById('pairs-found').textContent = pairsFound;
 
@@ -219,7 +213,6 @@
 
         initGame();
     </script>
-
     <script src="../static/JS/tema.js"></script>
 </body>
 </html>
