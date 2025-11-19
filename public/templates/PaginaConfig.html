@@ -57,11 +57,6 @@
                 <button type="button" class="toggle active">Claro</button>
                 <button type="button" class="toggle">Escuro</button>
               </div>
-              <label>Efeitos sonoros:</label>
-              <div class="toggle-group">
-                <button type="button" class="toggle active">Ativar</button>
-                <button type="button" class="toggle">Desativar</button>
-              </div>
             </div>
             <hr />
             <h3>ÁREA DE RISCO</h3>
@@ -189,10 +184,29 @@
     </nav>
 
     <script>
-      // Função para alternar entre abas
+      // Função para alternar entre abas E ajustar a altura
       document.addEventListener("DOMContentLoaded", function () {
         const tabButtons = document.querySelectorAll(".tab-button");
         const tabContents = document.querySelectorAll(".tab-content");
+        const configLeft = document.querySelector(".config-left"); // <--- Adicionado: Seleciona o elemento que terá a altura alterada
+
+        // Função que ajusta a altura de .config-left
+        function adjustHeight(tabId) {
+            if (configLeft) {
+                if (tabId === "personal") {
+                    configLeft.style.height = "380px"; // Altura para a aba Pessoal
+                } else if (tabId === "other") {
+                    configLeft.style.height = "500px"; // Altura para a aba Other
+                }
+            }
+        }
+
+        // Chamada inicial para garantir a altura correta ao carregar a página
+        const activeTabButton = document.querySelector(".tab-button.active");
+        if (activeTabButton) {
+            adjustHeight(activeTabButton.getAttribute("data-tab"));
+        }
+
         tabButtons.forEach((button) => {
           button.addEventListener("click", function () {
             tabButtons.forEach((btn) => btn.classList.remove("active"));
@@ -200,6 +214,9 @@
             this.classList.add("active");
             const tabId = this.getAttribute("data-tab");
             document.getElementById(tabId).classList.add("active");
+            
+            // CHAMA A FUNÇÃO DE AJUSTE DE ALTURA
+            adjustHeight(tabId); 
           });
         });
 

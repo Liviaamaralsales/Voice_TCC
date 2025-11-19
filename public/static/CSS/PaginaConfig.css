@@ -14,7 +14,7 @@ body {
     gap: 20px;
     position: relative;
     z-index: 1;
-    height: 400px;
+    /* height: 400px; <--- REMOVIDO */
     margin-top: 30px;
 }
 .config-left,
@@ -22,17 +22,20 @@ body {
     background: white;
     border-radius: 15px;
     padding: 20px;
-    height: 380px;
+    /* height: 380px; <--- REMOVIDO do config-left para controle via JS */
     width: 500px;
 }
 .config-left {
     flex: 2;
+    height: 380px; /* <--- ADICIONADO: Altura inicial para a aba 'personal' */
+    transition: height 0.3s ease-in-out; /* <--- ADICIONADO: Transição suave */
 }
 .config-right {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 380px; /* Mantido fixo, se for a altura desejada para o bloco direito */
 }
 /* Tabs */
 .tabs {
@@ -357,15 +360,15 @@ h3 {
 }
 /* Media Queries para responsividade */
 @media (max-width: 768px) {
-  .config-page {
-    flex-direction: column;
-  }
-  .config-left, .config-right {
-    width: 100%;
-  }
-  .bottom-navbar {
-    width: 90%;
-  }
+    .config-page {
+        flex-direction: column;
+    }
+    .config-left, .config-right {
+        width: 100%;
+    }
+    .bottom-navbar {
+        width: 90%;
+    }
 }
 /* css do angelinho */
 .redefinir_senha{
@@ -551,4 +554,3 @@ body.dark-theme .wave span:nth-child(3) {
     border-radius: 20px;
     cursor: pointer;
 }
-
