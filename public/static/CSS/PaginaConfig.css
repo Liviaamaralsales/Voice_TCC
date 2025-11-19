@@ -24,7 +24,7 @@ body {
     background: white;
     border-radius: 15px;
     padding: 20px;
-    height: 530px;
+    height: 630px;
     width: 500px;
 }
 
@@ -96,48 +96,39 @@ select {
     align-items: center;
 }
 
-/* Botão excluir conta*/
-
-
-
 /* Botão "Salvar alterações" menor e à esquerda */
 .form-actions {
     display: flex;
     justify-content: flex-start; 
-    margin: 10px 0 
+    margin: 10px 0;
 }
 
 /* Botão "Salvar alterações" no estilo do botão "Enviar Link" */
 button.success {
-    background: #7d0dac; /* Cor verde original */
+    background: #7d0dac;
     color: white;
     border: none;
-    padding: 10px 20px; /* Um pouco menor que o "Enviar Link" */
-    border-radius: 25px; /* Mesmas bordas arredondadas */
+    padding: 10px 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 0.9em; /* Fonte um pouco menor */
+    font-size: 0.9em;
     transition: background 0.3s;
     margin-top: 10px;
 }
 
 button.success:hover {
-    background: #7d0dac; /* Efeito hover escurecido */
+    background: #7d0dac;
 }
 
-
-
-
 button.danger {
-    background: #7d0dac;
+    background: green;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
 }
-
-
 
 /* Outras configs */
 .toggle-group {
@@ -222,9 +213,6 @@ h3 {
     text-align: center;
     color: #7d0dac;
 }
-
-
-
 
 /* Ondas no fundo */
 .wave {
@@ -434,7 +422,6 @@ h3 {
   }
 }
 
-
 /* css do angelinho */
 .redefinir_senha{
     width: 30vw;
@@ -459,10 +446,11 @@ h3 {
     padding: 0.5rem 0.8rem;
 }
 
+/* AJUSTE REALIZADO AQUI */
 .redefinir_senha > div > div{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .redefinir_senha > div > div > button{
@@ -473,7 +461,64 @@ h3 {
     color: #ddd;
     border: none;
     border-radius: 15px;
+    margin-left: 40px;
 }
+
+/* Ajuste para os botões "Limpar dados" e "Descartar alterações" */
+.danger-zone > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.danger-zone button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.danger-zone button.danger {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+}
+
+.danger-zone button.danger:hover {
+    background: #e60000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajuste para o botão "Salvar alterações" */
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-actions button.success {
+    background: green;
+    color: white;
+    border: none;
+}
+
 
 
 /* Tema escuro */
@@ -481,39 +526,45 @@ body.dark-theme {
     background: #222;
     color: #f0f0f0;
 }
+
 body.dark-theme .config-left,
 body.dark-theme .config-right {
     background: #333;
     color: #f0f0f0;
 }
+
 body.dark-theme input,
 body.dark-theme select {
     background: #444;
     color: #f0f0f0;
     border-color: #555;
 }
+
 body.dark-theme .toggle-group .toggle {
     background: #444;
     color: #f0f0f0;
     border-color: #555;
 }
+
 body.dark-theme .toggle-group .toggle.active {
     background: #7d0dac;
     color: white;
 }
+
 body.dark-theme .bottom-navbar {
     background: #333;
-    color: #f0f0f0;
 }
+
 body.dark-theme .bottom-navbar a {
     color: #f0f0f0;
 }
+
 /* Ondas no tema escuro */
 body.dark-theme .wave {
-    background: #9c65f5; /* Mantém o fundo original das ondas */
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Mantém a sombra original */
+    background: #9c65f5;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
 }
-/* Apenas a terceira onda fica preta no tema escuro */
+
 body.dark-theme .wave span:nth-child(3) {
-    background: rgb(0, 0, 0) !important; /* Terceira onda preta com transparência */
+    background: rgb(0,0,0) !important;
 }
