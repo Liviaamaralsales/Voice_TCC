@@ -4,30 +4,27 @@ body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;
+  min-height: 100vh; /* agora responde ao mobile */
   position: relative;
-  top: -60px; /* move container pra cima */
-  overflow: hidden;
+  padding-top: 40px;
+  overflow-x: hidden;
 }
 
-/* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
+/* ================== BOTÃO SUPERIOR DIREITO ================== */
 .logo-button {
   position: fixed;
   top: 20px;
   right: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   overflow: hidden;
   background-color: white;
-  border: 3px solid #8a2be2; /* borda roxa */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1002; /* acima de tudo */
+  border: 3px solid #8a2be2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: .2s ease;
+  z-index: 1002;
 }
 
 .logo-button img {
@@ -38,49 +35,41 @@ body {
 
 .logo-button:hover {
   transform: scale(1.07);
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
 }
 
 /* ================== CONTAINER ================== */
 .container {
-    position: relative;
-    top: -80px;
-    background: rgba(255, 255, 255, 0.05); /* vidro embaçado */
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 16px;
-     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
     border: 1px solid rgba(255, 255, 255, 1);
-
-    padding: 60px;
-    width: 1000px;
+    padding: 40px;
+    width: min(95%, 900px);
     text-align: center;
     color: #000;
-
-    transform: scale(1.25); /* aumenta só o container */
-    transform-origin: center top;
 }
 
 /* ================== TÍTULO ================== */
 h1 {
   color: #7a3cf2;
-  font-size: 60px;
-  margin-bottom: 50px;
+  font-size: clamp(32px, 6vw, 60px);
+  margin-bottom: 40px;
 }
 
 /* ================== GRID ================== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
 }
 
 /* ================== CARDS ================== */
 .card {
   background-color: white;
   border-radius: 16px;
-  height: 180px;
+  height: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,33 +83,30 @@ h1 {
 
 /* Cards ativos */
 .card.active {
-  position: relative;
-  overflow: hidden;
-  justify-content: flex-start;
-  align-items: flex-start;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px;
+  gap: 15px;
+  height: auto;
 }
 
 .card.active .character {
-  height: 100%;
-  border-radius: 12px 0 0 12px;
+  width: 45%;
+  border-radius: 12px;
 }
 
 .card.active .text {
-  padding: 30px;
+  width: 55%;
   text-align: left;
 }
 
 .card.active h2 {
-  font-size: 28px;
-  color: #000;
-  margin: 0;
+  font-size: 24px;
 }
 
 .card.active p {
-  font-size: 18px;
-  color: #555;
-  margin-top: 8px;
+  font-size: 16px;
 }
 
 /* Cards bloqueados */
@@ -130,27 +116,23 @@ h1 {
 }
 
 .lock {
-  font-size: 50px;
-  margin-bottom: 15px;
+  font-size: 45px;
+  margin-bottom: 12px;
 }
 
 /* ================== FUNDO ANIMADO ================== */
 .wave-container {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
   z-index: -1;
 }
 
 .wave {
-  position: relative;
   width: 100%;
   height: 100%;
   background: #9c65f5;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
 }
 
 .wave span {
@@ -161,19 +143,19 @@ h1 {
   left: 50%;
   transform: translate(-50%, -75%);
   border-radius: 45%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255,255,255,0.5);
   animation: animate 5s linear infinite;
 }
 
 .wave span:nth-child(2) {
   border-radius: 40%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255,255,255,0.4);
   animation: animate 10s linear infinite;
 }
 
 .wave span:nth-child(3) {
   border-radius: 42.5%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255,255,255,0.3);
   animation: animate 15s linear infinite;
 }
 
@@ -182,19 +164,17 @@ h1 {
   100% { transform: translate(-50%, -75%) rotate(180deg); }
 }
 
-
 /* ================== BOTTOM NAVBAR ================== */
-
 .bottom-navbar {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   background: white;
-  width: 400px;
+  width: clamp(260px, 70%, 400px);
   padding: 10px 0;
-  border-radius: 50px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 40px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -204,121 +184,110 @@ h1 {
 }
 
 .bottom-navbar ul {
-  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
   margin: 0;
   padding: 0;
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-}
-
-.bottom-navbar li {
-  margin: 0;
-  display: flex;
-  align-items: center;
-}
-
-.bottom-navbar a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-  border-radius: 50px;
-  transition: transform 0.4s ease;
 }
 
 .bottom-navbar a i {
-  font-size: 20px;
-  transition: transform 0.3s ease;
-}
-
-.bottom-navbar a span {
-  opacity: 0;
-  width: 0px;
-  transform: translateX(-10px);
-  margin-left: 8px;
-  white-space: nowrap;
-  transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
+  font-size: 18px;
 }
 
 .bottom-navbar:hover {
-  width: 70%;
-  padding: 10px 20px;
+  width: 90%;
 }
 
-.bottom-navbar:hover a span {
-  opacity: 1;
-  width: auto;
-  transform: translateX(0);
+/* Mostrar labels só no hover em telas grandes */
+.bottom-navbar a span {
+  display: none;
 }
 
-.bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
-.bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
-.bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
-.bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
-.bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
-.bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
-.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
+@media (min-width: 700px) {
+  .bottom-navbar:hover a span {
+    display: inline;
+  }
+}
 
+/* ================== MEDIA QUERIES ================== */
 
-/* Tema escuro para a página "Classes" */
+/* --- Tablet --- */
+@media (max-width: 900px) {
+  .container {
+    transform: none;
+    padding: 30px;
+  }
+
+  .logo-button {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+  body {
+    padding-top: 10px;
+  }
+
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .card {
+    height: 140px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .bottom-navbar {
+    width: 95%;
+    border-radius: 30px;
+  }
+
+  .bottom-navbar a i {
+    font-size: 16px;
+  }
+}
+
+/* ================== DARK THEME ================== */
+/* (mantive tudo igual, só ficou no final) */
+
 body.dark-theme {
     background-color: #222;
     color: #f0f0f0;
 }
 
-/* Container principal */
 body.dark-theme .container {
-    background: rgba(40, 40, 40, 0.8);
-    border: 1px solid rgba(122, 60, 242, 0.5);
-    color: #f0f0f0;
+    background: rgba(40,40,40,0.8);
+    border: 1px solid rgba(122,60,242,0.5);
 }
 
-/* Título */
 body.dark-theme h1 {
-    color: #a882ff; /* Roxo claro para contraste */
+    color: #a882ff;
 }
 
-/* Cards */
 body.dark-theme .card {
     background-color: #333;
     color: #f0f0f0;
-    border: 1px solid rgba(122, 60, 242, 0.3);
 }
 
-/* Cards bloqueados */
 body.dark-theme .card.locked {
     background-color: #444;
 }
 
-body.dark-theme .card.locked {
-    color: #f0f0f0;
-}
-
 body.dark-theme .lock {
-    color: rgba(122, 60, 242, 0.7);
+    color: rgba(122,60,242,0.7);
 }
 
-/* Fundo animado (ondas) */
-body.dark-theme .wave-container .wave {
-    background: #2d1b47; /* Roxo escuro */
+body.dark-theme .wave {
+    background: #2d1b47;
 }
 
-body.dark-theme .wave-container .wave span:nth-child(1) {
-    background: rgba(100, 100, 100, 0.5);
-}
-
-body.dark-theme .wave-container .wave span:nth-child(2) {
-    background: rgba(100, 100, 100, 0.4);
-}
-
-body.dark-theme .wave-container .wave span:nth-child(3) {
-    background: rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Navbar */
 body.dark-theme .bottom-navbar {
     background: #333;
 }

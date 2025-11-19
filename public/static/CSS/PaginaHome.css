@@ -1,5 +1,6 @@
 /* Fonte */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
 /* ---- Corpo ---- */
 body {
   font-family: 'Katibeh', cursive;
@@ -8,14 +9,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: auto;
   margin: 0;
   overflow-x: hidden;
 }
-.teste{
+
+.teste {
   font-size: 2rem;
 }
-/* ================== BOTÃO NO CANTO SUPERIOR DIREITO ================== */
+
+/* ================== BOTÃO SUPERIOR DIREITO ================== */
 .logo-button {
   position: fixed;
   top: 20px;
@@ -28,21 +31,24 @@ body {
   border-radius: 50%;
   overflow: hidden;
   background-color: white;
-  border: 3px solid #8a2be2; /* borda roxa */
+  border: 3px solid #8a2be2;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1002; /* acima de tudo */
+  z-index: 1002;
 }
+
 .logo-button img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .logo-button:hover {
   transform: scale(1.07);
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
 }
+
 /* ---- Layout principal ---- */
 .principal {
   display: flex;
@@ -55,6 +61,7 @@ body {
   z-index: 2;
   position: relative;
 }
+
 /* ---- Botões ---- */
 .button-container {
   display: flex;
@@ -64,6 +71,7 @@ body {
   align-items: center;
   width: 500px;
 }
+
 .button {
   background-color: #8B5FBF;
   color: white;
@@ -76,30 +84,34 @@ body {
   cursor: pointer;
   border: none;
   transition: background-color 0.3s;
-  text-decoration: none; /* Remove o sublinhado */
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  line-height: 1.2; /* Ajusta o espaçamento vertical do texto */
+  line-height: 1.2;
   box-sizing: border-box;
-  height: auto; /* Altura automática para se ajustar ao conteúdo */
+  height: auto;
 }
+
 .button:hover {
   background-color: #7a4fa0;
 }
+
 /* ---- Logo ---- */
 .logo-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
+
 .logo-container img {
   width: clamp(150px, 30vw, 300px);
   height: auto;
   object-fit: contain;
 }
-/* ---- Container do calendário ---- */
+
+/* ---- Container calendário ---- */
 .calendario-container {
   background: linear-gradient(135deg, #8B5FBF, #6d4799);
   border-radius: 30px;
@@ -108,7 +120,8 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   animation: borderGlow 2.5s infinite alternate;
 }
-/* ---- Animação da borda brilhante ---- */
+
+/* ---- Animação ---- */
 @keyframes borderGlow {
   from {
     box-shadow: 0 0 10px #6E00B3, 0 0 20px #b06cff;
@@ -129,35 +142,41 @@ body {
   text-align: center;
   gap: 15px;
 }
+
 .calendario header {
   font-size: clamp(16px, 2vw, 20px);
   font-weight: 600;
   margin-bottom: 20px;
 }
+
 .weekdays,
 .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
 }
+
 .weekdays div {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
 }
+
 .days div {
   padding: 10px 0;
   border-radius: 50%;
   transition: 0.3s;
 }
+
 .days div:hover {
   background: rgba(255, 255, 255, 0.15);
 }
+
 .today {
   background: #a678d1;
   font-weight: bold;
 }
 
-/* NAVBAR */
+/* ---- NAVBAR ---- */
 .bottom-navbar {
   position: fixed;
   font-family: "Poppins";
@@ -165,7 +184,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: white;
-  width: 400px; /* Barra fechada */
+  width: 400px;
   padding: 10px 0;
   border-radius: 50px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
@@ -174,22 +193,23 @@ body {
   align-items: center;
   overflow: hidden;
   transition: width 0.8s ease-in-out, padding 0.8s ease-in-out;
-  z-index: 1001; /* Garante que fique acima de tudo */
+  z-index: 1001;
 }
+
 .bottom-navbar ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   width: 100%;
-  justify-content: space-around; /* ícones igualmente espaçados */
+  justify-content: space-around;
 }
+
 .bottom-navbar li {
-  margin: 0;
   display: flex;
   align-items: center;
 }
-/* Links */
+
 .bottom-navbar a {
   display: flex;
   align-items: center;
@@ -200,12 +220,12 @@ body {
   border-radius: 50px;
   transition: transform 0.4s ease;
 }
-/* Ícone sempre visível */
+
 .bottom-navbar a i {
   font-size: 20px;
   transition: transform 0.3s ease;
 }
-/* Texto inicialmente escondido */
+
 .bottom-navbar a span {
   font-size: 15px;
   opacity: 0;
@@ -215,26 +235,26 @@ body {
   white-space: nowrap;
   transition: opacity 0.6s ease, transform 0.6s ease, width 0.6s ease;
 }
-/* Hover: barra expande */
+
 .bottom-navbar:hover {
   width: 70%;
   padding: 10px 20px;
 }
-/* Hover: texto aparece */
+
 .bottom-navbar:hover a span {
   opacity: 1;
   width: auto;
   transform: translateX(0);
 }
-/* Efeito cascata para os spans */
+
+/* Cascata */
 .bottom-navbar:hover li:nth-child(1) a span { transition-delay: 0.1s; }
 .bottom-navbar:hover li:nth-child(2) a span { transition-delay: 0.2s; }
 .bottom-navbar:hover li:nth-child(3) a span { transition-delay: 0.3s; }
 .bottom-navbar:hover li:nth-child(4) a span { transition-delay: 0.4s; }
 .bottom-navbar:hover li:nth-child(5) a span { transition-delay: 0.5s; }
-.bottom-navbar:hover li:nth-child(6) a span { transition-delay: 0.6s; }
-.bottom-navbar:hover li:nth-child(7) a span { transition-delay: 0.7s; }
-/* ---- ONDAS (mantidas como estão no seu código original) ---- */
+
+/* ---- ONDAS ---- */
 .wave {
   position: fixed;
   left: 0;
@@ -245,6 +265,7 @@ body {
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
+
 .wave span {
   position: absolute;
   width: 360vh;
@@ -253,93 +274,93 @@ body {
   left: 50%;
   transform: translate(-50%, -75%);
 }
+
 .wave span:nth-child(1) {
   border-radius: 45%;
   background: rgba(255, 255, 255, 0.5);
   animation: animate 5s linear infinite;
 }
+
 .wave span:nth-child(2) {
   border-radius: 40%;
   background: rgba(255, 255, 255, 0.4);
   animation: animate 10s linear infinite;
 }
+
 .wave span:nth-child(3) {
   border-radius: 42.5%;
   background: rgba(255, 255, 255, 0.3);
   animation: animate 15s linear infinite;
 }
+
 @keyframes animate {
-  0% {
-    transform: translate(-50%, -75%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -75%) rotate(180deg);
-  }
+  0% { transform: translate(-50%, -75%) rotate(0deg); }
+  100% { transform: translate(-50%, -75%) rotate(180deg); }
 }
-/* ---- MEDIA QUERIES ---- */
+
+/* ========================= MEDIA QUERIES ========================= */
+
 @media (max-width: 1024px) {
   .principal {
     flex-direction: column;
     text-align: center;
   }
-  .button-container {
-    padding: 20px 0;
-  }
+
   .logo-container img {
     width: 220px;
   }
 }
+
 @media (max-width: 600px) {
   body {
     font-size: 16px;
   }
+
   .button {
     font-size: 30px;
     width: 80%;
     padding: 25px;
   }
+
   .calendario {
     width: 90%;
   }
+
   .bottom-navbar {
     width: 95%;
     border-radius: 40px;
+    padding: 10px 20px;
+  }
+
+  .bottom-navbar a i {
+    font-size: 16px;
+  }
+
+  .bottom-navbar a span {
+    font-size: 14px;
+  }
+
+  .logo-container img {
+    width: 60%;
   }
 }
 
+/* ========================= TEMA ESCURO ========================= */
 
-/* Tema escuro (deve estar em todas as páginas) */
 body.dark-theme {
-    background: #222;
-    color: #f0f0f0;
+  background: #222;
+  color: #f0f0f0;
 }
-body.dark-theme .config-left,
-body.dark-theme .config-right {
-    background: #333;
-    color: #f0f0f0;
-}
-body.dark-theme input,
-body.dark-theme select {
-    background: #444;
-    color: #f0f0f0;
-    border-color: #555;
-}
-body.dark-theme .toggle-group .toggle {
-    background: #444;
-    color: #f0f0f0;
-    border-color: #555;
-}
-body.dark-theme .toggle-group .toggle.active {
-    background: #7d0dac;
-    color: white;
-}
+
 body.dark-theme .bottom-navbar {
-    background: #333;
-    color: #f0f0f0;
+  background: #333;
+  color: #f0f0f0;
 }
+
 body.dark-theme .bottom-navbar a {
-    color: #f0f0f0;
+  color: #f0f0f0;
 }
+
 body.dark-theme .wave span:nth-child(3) {
-    background: rgb(0, 0, 0) !important;
+  background: rgb(0, 0, 0) !important;
 }
