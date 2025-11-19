@@ -15,14 +15,14 @@ body {
     position: relative;
     z-index: 1;
     height: 400px;
-    margin-top: 70px;
+    margin-top: 30px;
 }
 .config-left,
 .config-right {
     background: white;
     border-radius: 15px;
     padding: 20px;
-    height: 630px;
+    height: 380px;
     width: 500px;
 }
 .config-left {
@@ -63,7 +63,6 @@ body {
 }
 /* Form */
 form {
-    padding: 27px;
     margin-top: 20px;
 }
 label {
@@ -171,12 +170,19 @@ button.danger {
     cursor: pointer;
 }
 .icon img {
-    width: 80%;
+    width: 100%;
     border-radius: 50%;
     transition: all 0.2s;
 }
 .icon img:hover {
     transform: scale(1.1);
+}
+button.icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border-color: transparent;
+    background-color: transparent;
 }
 h3 {
     text-align: center;
