@@ -1,0 +1,6 @@
+flask
+flask-sqlalchemy
+PyMySQL
+google-generativeai
+requests
+mysql-connector-python
