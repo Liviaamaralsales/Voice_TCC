@@ -1,30 +1,39 @@
 import sys
 import os
-# garante que o Python encontra a raiz do projeto
+
+# -------------------------------------------------------
+# Ajustes de path para garantir que o HostGator encontre tudo
+# -------------------------------------------------------
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+sys.path.append(os.path.join(base_dir, "controller"))
+sys.path.append(os.path.join(base_dir, "chat"))
+sys.path.append(os.path.join(base_dir, "model"))
+
+# Mantendo seu path original para compatibilidade
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+# -------------------------------------------------------
 from flask import Flask, render_template, session
 from controller.auth_controller import auth_bp
 from controller.auth_controller import login_required
-from chat.chatbot import chatbot_bp  # importa o blueprint do chatbot
+from chat.chatbot import chatbot_bp
 from controller.avatar_controller import avatar_bp
 
-
+# Inicialização da aplicação Flask
 app = Flask(__name__, template_folder="public/templates", static_folder="public/static")
-
-# garante que o Python encontra a raiz do projeto
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-
-# chave secreta (ideal mover pra config/variável de ambiente em produção)
 app.config['SECRET_KEY'] = 'uma_chave_secreta_segura'
 
-# ----------------- Registro dos Blueprints -----------------
+# -------------------------------------------------------
+# Registro dos Blueprints
+# -------------------------------------------------------
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(chatbot_bp, url_prefix="/chatbot")
 app.register_blueprint(avatar_bp, url_prefix="/avatar")
 
-# ----------------- Rotas principais -----------------
+# -------------------------------------------------------
+# Rotas principais
+# -------------------------------------------------------
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -43,30 +52,26 @@ def home():
 def apoiadores():
     return render_template("PaginaApoiadores.html")
 
-
 @app.route("/configuracoes")
 @login_required
 def configuracoes():
     usuario_id = session.get("usuario_id")
 
-    # --- busca o avatar no banco ---
+    # busca avatar no banco
     avatar = None
     if usuario_id:
-        from model import usuario_model  # garante o import aqui
+        from model import usuario_model
         resultado = usuario_model.buscar_avatar(usuario_id)
 
-        # dependendo de como o model retorna, adaptamos:
         if isinstance(resultado, dict):
             avatar = resultado.get("avatar")
         else:
             avatar = resultado
 
-    # --- define fallback ---
     if not avatar:
         avatar = "avatar_padrao.png"
 
-    print("Avatar final enviado pro template:", avatar)  # debug temporário
-
+    print("Avatar final enviado pro template:", avatar)
     return render_template("PaginaConfig.html", usuario_avatar=avatar)
 
 @app.route("/classes")
@@ -77,8 +82,9 @@ def classes():
 def video():
     return render_template("PaginaClassVideo.html")
 
-
-# ----------------- Exercícios -----------------
+# -------------------------------------------------------
+# Exercícios
+# -------------------------------------------------------
 @app.route("/exercicios")
 @login_required
 def exercicios():
@@ -99,7 +105,9 @@ def exercicio_erros():
 def exercicio_escuta():
     return render_template("PaginaEscuta.html")
 
-# ----------------- Jogos -----------------
+# -------------------------------------------------------
+# Jogos
+# -------------------------------------------------------
 @app.route("/jogo-memoria")
 @login_required
 def jogo_memoria():
@@ -115,9 +123,9 @@ def jogo_formar_frase():
 def jogo_vocabulario():
     return render_template("PaginaJogoVocabulario.html")
 
-
-
-# ----------------- Pagina Escolhas -----------------
+# -------------------------------------------------------
+# Páginas de escolha
+# -------------------------------------------------------
 @app.route("/activities")
 @login_required
 def activities():
@@ -128,6 +136,8 @@ def activities():
 def games():
     return render_template("PaginaEscolhaGames.html") 
 
-# ----------------- Inicialização -----------------
+# -------------------------------------------------------
+# Execução local
+# -------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
